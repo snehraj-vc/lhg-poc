@@ -50,6 +50,9 @@ import {
 //lazyload / code splitting example of an internal component
 const LazyTextComponent = withAsyncImport(() => import(`./Text/Text`));
 
+const HelloWorldComponent = withAsyncImport(() => import(`./HelloWorld/HelloWorld`));
+
+
 //lazyload / code splitting examples of external components
 const TitleV2 = withAsyncImport(() => import(`@adobe/aem-core-components-react-base/dist/authoring/title/v2/TitleV2`));
 const CarouselV1 = withAsyncImport(() => import(`@adobe/aem-core-components-react-spa/dist/container/carousel/v1/CarouselV1`));
@@ -92,3 +95,12 @@ const TextEditConfig = {
 };
 
 MapTo('lhg-lms/components/text')(LazyTextComponent, TextEditConfig);
+
+const HelloWorldEditConfig = {
+    emptyLabel: 'Hello World',
+
+    isEmpty: function (props) {
+        return !props || !props.text || props.text.trim().length < 1;
+    }
+};
+MapTo('lhg-lms/components/helloworld')(HelloWorldComponent, HelloWorldEditConfig);
