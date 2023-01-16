@@ -1,0 +1,7 @@
+{
+    "scripts": [
+        "create path (sling:OrderedFolder) /content/dam/lhg-lms",
+        "create path (nt:unstructured) /content/dam/lhg-lms/jcr:content",
+        "set properties on /content/dam/lhg-lms/jcr:content\n  set cq:conf{String} to /conf/lhg-lms\n  set jcr:title{String} to \"LHG LMS\"\nend"
+    ]
+}

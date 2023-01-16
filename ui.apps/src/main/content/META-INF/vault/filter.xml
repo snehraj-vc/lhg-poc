@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspaceFilter version="1.0">
+    <filter root="/apps/lhg-lms/clientlibs"/>
+    <filter root="/apps/lhg-lms/components"/>
+    <filter root="/apps/lhg-lms/i18n"/>
+</workspaceFilter>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<workspaceFilter version="1.0">
+    <filter root="/conf/lhg-lms" mode="merge"/>
+    <filter root="/content/lhg-lms" mode="merge"/>
+    <filter root="/content/dam/lhg-lms/asset.jpg" mode="merge"/>
+    <filter root="/content/experience-fragments/lhg-lms" mode="merge"/>
+</workspaceFilter>
