@@ -50,8 +50,9 @@ import {
 
 //lazyload / code splitting example of an internal component
 const LazyTextComponent = withAsyncImport(() => import(`./Text/Text`));
-
 const HelloWorldComponent = withAsyncImport(() => import(`./HelloWorld/HelloWorld`));
+const NavigationComponent = withAsyncImport(() => import(`./Navigation/Navigation`));
+const LanguageNavigationComponent = withAsyncImport(() => import(`./LanguageNavigation/LanguageNavigation`));
 
 
 //lazyload / code splitting examples of external components
@@ -70,8 +71,6 @@ MapTo('lhg-lms/components/title')(TitleV2, {isEmpty: TitleV2IsEmptyFn});
 
 
 MapTo('lhg-lms/components/breadcrumb')(BreadCrumbV2, {isEmpty: BreadCrumbV2IsEmptyFn});
-MapTo('lhg-lms/components/navigation')(NavigationV1);
-MapTo('lhg-lms/components/languagenavigation')(LanguageNavigationV1);
 
 
 MapTo('lhg-lms/components/tabs')(TabsV1, {isEmpty: TabsV1IsEmptyFn});
@@ -89,7 +88,7 @@ MapTo('lhg-lms/components/container')(ContainerV1, {isEmpty: ContainerV1IsEmptyF
  */
 const TextEditConfig = {
     emptyLabel: 'Text',
-
+    
     isEmpty: function (props) {
         return !props || !props.text || props.text.trim().length < 1;
     }
@@ -99,9 +98,27 @@ MapTo('lhg-lms/components/text')(LazyTextComponent, TextEditConfig);
 
 const HelloWorldEditConfig = {
     emptyLabel: 'Hello World',
-
+    
     isEmpty: function (props) {
         return !props || !props.text || props.text.trim().length < 1;
     }
 };
 MapTo('lhg-lms/components/helloworld')(HelloWorldComponent, HelloWorldEditConfig);
+
+const NavigationConfig = {
+    emptyLabel: 'Navigation',
+    isEmpty: (props) => {
+        return !props;
+    }
+}
+MapTo('lhg-lms/components/navigation')(NavigationComponent, NavigationConfig);
+
+
+const LanguageNavigationConfig = {
+    emptyLabel: 'LanguageNavigation',
+    isEmpty: (props) => {
+        return !props;
+    }
+}
+MapTo('lhg-lms/components/languagenavigation')(LanguageNavigationComponent, LanguageNavigationConfig);
+

@@ -1,0 +1,7 @@
+.navigation ul {
+    float: right;
+}
+.navigation ul li {
+    display: inline-block;
+    margin-left: 20px;
+}
