@@ -24,7 +24,7 @@ const ExperienceFragmentVariationConfig = {
     emptyLabel: 'Experience Fragment',
 
     isEmpty: function(props) {
-        return !props || !props.configured;
+        return !props || !props.configured;       
     }
 };
 

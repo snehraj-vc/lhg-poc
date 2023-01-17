@@ -19,17 +19,24 @@ import sanitizeWhiteList from '../sanitize-html.whitelist';
 
 import React, { Component } from 'react';
 import extractModelId from '../../utils/extract-model-id';
+import './HelloWorld.css';
 
 require('./HelloWorld.css');
 
 /**
  * Text React component
  */
-class HelloWorld extends Component {
-  
-  render() {
-    return <div>{this.props.text}</div>;
+// class HelloWorld extends Component {
+  const Helloworld = (props) => {
+    
+    return ( <div className="test">{props.text} {console.log(props)}</div>);
   }
-}
+  
+   
+  export default Helloworld;
+//   render() {
+//     return <div>{this.props.text}</div>;
+//   }
+// }
 
-export default HelloWorld;
+// export default HelloWorld;
