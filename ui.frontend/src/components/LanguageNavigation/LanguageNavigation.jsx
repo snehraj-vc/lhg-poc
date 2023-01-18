@@ -8,7 +8,9 @@ const LanguageNavigation = (props) => {
         items = []
     } = props;
     return (<>
-        <div id={id} class="navigation">
+        <div id={id} className="navigation">
+        <div className="menu-img"><img src="https://cdn-icons-png.flaticon.com/512/1160/1160358.png" className="icon-img"/></div>
+        <div className="menu-item">
             {items.length ?
                 <ul>
                     {
@@ -29,6 +31,7 @@ const LanguageNavigation = (props) => {
                 </ul>
                 : null
             }
+            </div>
         </div>
     </>)
 };
