@@ -1,15 +1,14 @@
 import { Page, withModel } from '@adobe/aem-react-editable-components';
 import React from 'react';
-import Helloworld from './components/HelloWorld/HelloWorld';
 
 // This component is the application entry point
 class App extends Page {
   render() {
+    console.log(this.childComponents, this.childPages)
     return (
       <div>
         {this.childComponents}
         {this.childPages}
-       
       </div>
     );
   }

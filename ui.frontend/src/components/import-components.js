@@ -15,9 +15,15 @@
  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 import withAsyncImport from "../utils/withAsyncImport";
 
-import './Page/Page';
-import './Container/Container';
-import './ExperienceFragment/ExperienceFragment';
+import './helperComponents/Container/Container';
+import './helperComponents/ExperienceFragment/ExperienceFragment';
+
+import { Text } from './atoms';
+import {
+    HelloWorld,
+    Navigation,
+    LanguageNavigation
+} from './organisms';
 
 import {MapTo} from '@adobe/aem-react-editable-components';
 
@@ -40,8 +46,6 @@ import {
     BreadCrumbV2,BreadCrumbV2IsEmptyFn,
     ButtonV1,ButtonV1IsEmptyFn,
     ImageV2,ImageV2IsEmptyFn,
-    LanguageNavigationV1,
-    NavigationV1,
     TeaserV1,TeaserV1IsEmptyFn,
     DownloadV1,DownloadV1IsEmptyFn,
     SeparatorV1,SeparatorV1IsEmptyFn,
@@ -49,10 +53,10 @@ import {
 } from '@adobe/aem-core-components-react-base';
 
 //lazyload / code splitting example of an internal component
-const LazyTextComponent = withAsyncImport(() => import(`./Text/Text`));
-const HelloWorldComponent = withAsyncImport(() => import(`./HelloWorld/HelloWorld`));
-const NavigationComponent = withAsyncImport(() => import(`./Navigation/Navigation`));
-const LanguageNavigationComponent = withAsyncImport(() => import(`./LanguageNavigation/LanguageNavigation`));
+const LazyTextComponent = withAsyncImport(() => Text);
+const HelloWorldComponent = withAsyncImport(() => HelloWorld);
+const NavigationComponent = withAsyncImport(() => Navigation);
+const LanguageNavigationComponent = withAsyncImport(() => LanguageNavigation);
 
 
 //lazyload / code splitting examples of external components
