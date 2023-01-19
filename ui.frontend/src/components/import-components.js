@@ -14,18 +14,10 @@
  ~ limitations under the License.
  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 import withAsyncImport from "../utils/withAsyncImport";
-
+import {MapTo} from '@adobe/aem-react-editable-components';
+import './pages/Page/Page';
 import './helperComponents/Container/Container';
 import './helperComponents/ExperienceFragment/ExperienceFragment';
-
-import { Text } from './atoms';
-import {
-    HelloWorld,
-    Navigation,
-    LanguageNavigation
-} from './organisms';
-
-import {MapTo} from '@adobe/aem-react-editable-components';
 
 
 import {
@@ -52,13 +44,6 @@ import {
     ListV2,ListV2IsEmptyFn
 } from '@adobe/aem-core-components-react-base';
 
-//lazyload / code splitting example of an internal component
-const LazyTextComponent = withAsyncImport(() => Text);
-const HelloWorldComponent = withAsyncImport(() => HelloWorld);
-const NavigationComponent = withAsyncImport(() => Navigation);
-const LanguageNavigationComponent = withAsyncImport(() => LanguageNavigation);
-
-
 //lazyload / code splitting examples of external components
 const TitleV2 = withAsyncImport(() => import(`@adobe/aem-core-components-react-base/dist/authoring/title/v2/TitleV2`));
 const CarouselV1 = withAsyncImport(() => import(`@adobe/aem-core-components-react-spa/dist/container/carousel/v1/CarouselV1`));
@@ -82,8 +67,11 @@ MapTo('lhg-lms/components/accordion')(AccordionV1, {isEmpty: AccordionV1IsEmptyF
 MapTo('lhg-lms/components/carousel')(CarouselV1, {isEmpty: CarouselV1IsEmptyFn});
 MapTo('lhg-lms/components/container')(ContainerV1, {isEmpty: ContainerV1IsEmptyFn});
 
-
-//lazy load of internal component (hello world)
+//lazyload / code splitting example of an internal component
+const LazyTextComponent = withAsyncImport(() => import(`../components/atoms/Text/Text`));
+const HelloWorldComponent = withAsyncImport(() => import(`../components/organisms/HelloWorld/HelloWorld`));
+const NavigationComponent = withAsyncImport(() => import(`../components/organisms/Navigation/Navigation`));
+const LanguageNavigationComponent = withAsyncImport(() => import(`../components/organisms/LanguageNavigation/LanguageNavigation`));
 
 /**
  * Default Edit configuration for the Text component that interact with the Core Text component and sub-types

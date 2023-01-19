@@ -106,3 +106,15 @@ reports/
 dispatcher/src/conf.d/variables/default.vars
 ui.tests/test-module/assets/form/themes/**/*diff.png
 ui.tests/test-module/assets/form/themes/**/*current.png
+
+ui.apps/src/main/content/jcr_root/apps/lhg-lms/clientlibs/clientlib-react/css.txt
+ui.apps/src/main/content/jcr_root/apps/lhg-lms/clientlibs/clientlib-react/js.txt
+ui.apps/src/main/content/jcr_root/apps/lhg-lms/clientlibs/clientlib-react/resources/index.html
+*.chunk.js
+*.chunk.css
+runtime-main.*.js
+*.js.map
+*-manifest.json
+*.chunk.js.map
+*.chunk.css.map
+*.chunk.js.LICENSE.txt
