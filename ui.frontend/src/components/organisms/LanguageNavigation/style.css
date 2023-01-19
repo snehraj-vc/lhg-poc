@@ -1,0 +1,46 @@
+.icon-img{
+    background-repeat:no-repeat;
+    width: 26px;
+    height: 23px;
+    object-fit: cover;
+    float: right;
+    
+}
+.menu-item{
+    display: none;
+    float: right;
+    margin-top: 22px;
+    margin-right: -60px;
+    text-align: center;
+    
+}
+.menu-item li{
+    margin-top: 10px;
+    background-color: red;
+    list-style: none;
+    width:100px;
+    border-radius: 20px;
+    height: 40px;
+}
+.menu-item li a{
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 11px;
+    color:white;
+}
+
+.icon-img:hover ul li{
+    display: block;
+
+}
+.menu-img:hover +.menu-item{
+    display: block;
+}
+
+.menu-item:hover{
+    display: block;
+}
+
+.menu-item li:hover{
+    background-color: blue;
+}
