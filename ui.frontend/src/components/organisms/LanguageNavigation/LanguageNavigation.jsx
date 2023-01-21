@@ -2,7 +2,6 @@ import React from 'react';
 import './style.css'
 
 const LanguageNavigation = (props) => {
-    // console.log('LanguageNavigation props', props);
     const {
         id = "",
         items = []
@@ -15,7 +14,6 @@ const LanguageNavigation = (props) => {
                 <ul>
                     {
                         items.map((item, key) => {
-                            console.log('item props', item)
                             const {
                                 id,
                                 url,

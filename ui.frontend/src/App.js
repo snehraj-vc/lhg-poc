@@ -4,7 +4,6 @@ import React from 'react';
 // This component is the application entry point
 class App extends Page {
   render() {
-    console.log(this.childComponents, this.childPages)
     return (
       <div>
         {this.childComponents}

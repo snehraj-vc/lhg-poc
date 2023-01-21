@@ -70,7 +70,15 @@ h5 {
   text-align: center;
 }
 .test{
-  background-color: red;
+  background-color: pink;
+  position: relative;
+  &:before {
+    content: 'HEY HEY';
+    position: absolute;
+    right: 0;
+    color: red;
+    
+  }
 }
 
 @media (min-width: 651px) and (max-width: 1200px) {

@@ -1,7 +1,5 @@
 import React from 'react';
-import './HelloWorld.css';
-
-require('./HelloWorld.css');
+import './HelloWorld.scss';
 
 /**
  * Text React component
@@ -9,7 +7,7 @@ require('./HelloWorld.css');
 // class HelloWorld extends Component {
   const Helloworld = (props) => {
     
-    return ( <div className="test">{props.text} {console.log(props)}</div>);
+    return ( <div className="test">{props.text}</div>);
   }
   
    
