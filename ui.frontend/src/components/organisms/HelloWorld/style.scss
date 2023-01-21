@@ -1,0 +1,10 @@
+.helloWorld{
+  background-color: pink;
+  position: relative;
+  &:before {
+    content: 'HEY HEY';
+    position: absolute;
+    right: 0;
+    color: red; 
+  }
+}
