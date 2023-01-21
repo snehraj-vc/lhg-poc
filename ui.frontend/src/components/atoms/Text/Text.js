@@ -17,34 +17,31 @@
 import sanitizeHtml from 'sanitize-html';
 import sanitizeWhiteList from '../../sanitize-html.whitelist';
 
-import React, { Component } from 'react';
+import React from 'react';
 import extractModelId from '../../../utils/extract-model-id';
 
-require('./Text.css');
+import './Text.scss';
 
 /**
  * Text React component
  */
-class Text extends Component {
-  get richTextContent() {
-    return (
-      <div
-        id={extractModelId(this.props.cqPath)}
-        data-rte-editelement
-        dangerouslySetInnerHTML={{
-          __html: sanitizeHtml(this.props.text, sanitizeWhiteList)
-        }}
-      />
-    );
-  }
 
-  get textContent() {
-    return <div>{this.props.text}</div>;
-  }
+const Text = (props) => {
+  const richTextContent = () => {
+    return (<div
+      id={extractModelId(props.cqPath)}
+      data-rte-editelement
+      dangerouslySetInnerHTML={{
+        __html: sanitizeHtml(props.text, sanitizeWhiteList)
+      }}
+    />)
+  };
 
-  render() {
-    return this.props.richText ? this.richTextContent : this.textContent;
-  }
-}
+  return (
+    <div className="text-component">
+      {props.richText ? richTextContent() : props.text}
+    </div>
+  )
+};
 
 export default Text;

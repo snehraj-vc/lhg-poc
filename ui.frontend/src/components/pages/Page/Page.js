@@ -21,7 +21,7 @@ import {
 } from '@adobe/aem-react-editable-components';
 import { withRoute } from '../../helperComponents/RouteHelper/RouteHelper';
 
-require('./Page.css');
+import './Page.scss';
 
 // This component is a variant of a Page component mapped to the
 // "lhg-lms/components/page" resource type. For now, the rendering is
