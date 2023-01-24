@@ -14,12 +14,11 @@
  ~ limitations under the License.
  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 import withAsyncImport from "../utils/withAsyncImport";
-
-import './Page/Page';
-import './Container/Container';
-import './ExperienceFragment/ExperienceFragment';
-
 import {MapTo} from '@adobe/aem-react-editable-components';
+import './pages/Page/Page';
+import './helperComponents/Container/Container';
+import './helperComponents/ExperienceFragment/ExperienceFragment';
+
 
 import {
     CarouselV1IsEmptyFn
@@ -39,19 +38,11 @@ import {
     BreadCrumbV2,BreadCrumbV2IsEmptyFn,
     ButtonV1,ButtonV1IsEmptyFn,
     ImageV2,ImageV2IsEmptyFn,
-    LanguageNavigationV1,
-    NavigationV1,
     TeaserV1,TeaserV1IsEmptyFn,
     DownloadV1,DownloadV1IsEmptyFn,
     SeparatorV1,SeparatorV1IsEmptyFn,
     ListV2,ListV2IsEmptyFn
 } from '@adobe/aem-core-components-react-base';
-
-//lazyload / code splitting example of an internal component
-const LazyTextComponent = withAsyncImport(() => import(`./Text/Text`));
-
-const HelloWorldComponent = withAsyncImport(() => import(`./HelloWorld/HelloWorld`));
-
 
 //lazyload / code splitting examples of external components
 const TitleV2 = withAsyncImport(() => import(`@adobe/aem-core-components-react-base/dist/authoring/title/v2/TitleV2`));
@@ -69,8 +60,6 @@ MapTo('lhg-lms/components/title')(TitleV2, {isEmpty: TitleV2IsEmptyFn});
 
 
 MapTo('lhg-lms/components/breadcrumb')(BreadCrumbV2, {isEmpty: BreadCrumbV2IsEmptyFn});
-MapTo('lhg-lms/components/navigation')(NavigationV1);
-MapTo('lhg-lms/components/languagenavigation')(LanguageNavigationV1);
 
 
 MapTo('lhg-lms/components/tabs')(TabsV1, {isEmpty: TabsV1IsEmptyFn});
@@ -78,8 +67,11 @@ MapTo('lhg-lms/components/accordion')(AccordionV1, {isEmpty: AccordionV1IsEmptyF
 MapTo('lhg-lms/components/carousel')(CarouselV1, {isEmpty: CarouselV1IsEmptyFn});
 MapTo('lhg-lms/components/container')(ContainerV1, {isEmpty: ContainerV1IsEmptyFn});
 
-
-//lazy load of internal component (hello world)
+//lazyload / code splitting example of an internal component
+const LazyTextComponent = withAsyncImport(() => import(`../components/atoms/Text/Text`));
+const HelloWorldComponent = withAsyncImport(() => import(`../components/organisms/HelloWorld/HelloWorld`));
+const NavigationComponent = withAsyncImport(() => import(`../components/organisms/Navigation/Navigation`));
+const LanguageNavigationComponent = withAsyncImport(() => import(`../components/organisms/LanguageNavigation/LanguageNavigation`));
 
 /**
  * Default Edit configuration for the Text component that interact with the Core Text component and sub-types
@@ -88,7 +80,7 @@ MapTo('lhg-lms/components/container')(ContainerV1, {isEmpty: ContainerV1IsEmptyF
  */
 const TextEditConfig = {
     emptyLabel: 'Text',
-
+    
     isEmpty: function (props) {
         return !props || !props.text || props.text.trim().length < 1;
     }
@@ -98,9 +90,27 @@ MapTo('lhg-lms/components/text')(LazyTextComponent, TextEditConfig);
 
 const HelloWorldEditConfig = {
     emptyLabel: 'Hello World',
-
+    
     isEmpty: function (props) {
         return !props || !props.text || props.text.trim().length < 1;
     }
 };
 MapTo('lhg-lms/components/helloworld')(HelloWorldComponent, HelloWorldEditConfig);
+
+const NavigationConfig = {
+    emptyLabel: 'Navigation',
+    isEmpty: (props) => {
+        return !props;
+    }
+}
+MapTo('lhg-lms/components/navigation')(NavigationComponent, NavigationConfig);
+
+
+const LanguageNavigationConfig = {
+    emptyLabel: 'LanguageNavigation',
+    isEmpty: (props) => {
+        return !props;
+    }
+}
+MapTo('lhg-lms/components/languagenavigation')(LanguageNavigationComponent, LanguageNavigationConfig);
+

@@ -1,0 +1,14 @@
+@import '../../../styles/_colors';
+@import '../../../styles/mixins';
+
+.helloWorld{
+  background-color: pink;
+  position: relative;
+  &:before {
+    content: 'HEY HEY';
+    position: absolute;
+    right: 0;
+    color: $red; 
+    font-size: pxToRem(18);
+  }
+}

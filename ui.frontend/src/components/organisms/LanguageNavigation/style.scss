@@ -1,0 +1,52 @@
+@import '../../../styles/_colors';
+
+.icon-img {
+  background-repeat: no-repeat;
+  width: 26px;
+  height: 23px;
+  object-fit: cover;
+  float: right;
+
+  &:hover {
+    ul {
+      li {
+        display: block;
+      }
+    }
+  }
+}
+.menu-item {
+  display: none;
+  float: right;
+  margin-top: 22px;
+  margin-right: -60px;
+  text-align: center;
+  li {
+    margin-top: 10px;
+    background-color: red;
+    list-style: none;
+    width: 100px;
+    border-radius: 20px;
+    height: 40px;
+
+    &:hover {
+        background-color: blue;
+    }
+
+    a {
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 11px;
+      color: $white;
+    }
+  }
+}
+
+.menu-img {
+  &:hover {
+    display: block;
+    & + .menu-item {
+      display: block;
+    }
+  }
+}
