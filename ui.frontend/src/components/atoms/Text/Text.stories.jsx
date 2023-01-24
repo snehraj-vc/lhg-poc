@@ -19,6 +19,6 @@ PlainText.args = {
 export const RichText = Template.bind({});
 
 RichText.args = {
-    text: '<p>Hello<p>',
+    text: '<p>Hello</p>',
     richText: true
 }
