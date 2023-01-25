@@ -5,7 +5,7 @@ import { gapi } from 'gapi-script';
 const SsoGoogle = (props) => {
     const [profile, setProfile] = useState([]);
     const {
-        gglClientId: clientId = ''
+        gglclientid: clientId = ''
     } = props
     // const clientId = '710467752768-e5pd1t9k89j4mctf6bbdhd24kepqghd5.apps.googleusercontent.com';
     useEffect(() => {

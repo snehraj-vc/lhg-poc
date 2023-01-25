@@ -4,7 +4,7 @@ import FacebookLogin from 'react-facebook-login';
 const SsoFacebook = (props) => {
   const [user, setUser] = useState(null);
   const {
-    fbAppId = "",
+    fbappid = "",
     fbFields = "name,email,id"
   } = props;
 
@@ -25,7 +25,7 @@ const SsoFacebook = (props) => {
           :
           <FacebookLogin
             // appId="878025543243819"
-            appId={fbAppId}
+            appId={fbappid}
             autoLoad={false}
             fields={fbFields}
             onClick={responseFacebook}
