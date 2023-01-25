@@ -25,7 +25,8 @@
     "react-dom": "^16.12.0",
     "react-router-dom": "^5.1.2",
     "react-universal-component": "^4.5.0",
-    "sanitize-html": "^2.3.3"
+    "sanitize-html": "^2.3.3",
+    "sass": "^1.57.1"
   },
   "devDependencies": {
     "@storybook/addon-actions": "^6.5.15",
