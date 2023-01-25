@@ -1,14 +1,11 @@
 package com.lhg.lms.aem.core.servlets;
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.rmi.ServerException;
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.jcr.Node;
 import javax.servlet.Servlet;
-
 import org.apache.commons.lang.text.StrLookup;
 import org.apache.commons.mail.HtmlEmail;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -47,7 +44,7 @@ import com.day.cq.mailer.MessageGatewayService;
 
 @Component(service = Servlet.class, property = { Constants.SERVICE_DESCRIPTION + "=Simple Demo Template Email Servlet",
         "sling.servlet.methods=" + HttpConstants.METHOD_GET, "sling.servlet.paths=" + "/bin/sendemail2" })
-public class SendEmailServletExample2 extends SlingSafeMethodsServlet {
+public class HtmlTemplateEmailServletExample extends SlingSafeMethodsServlet {
 
     private static final long serialVersionUID = 2598426539166789516L;
     private static final String EMAIL_TEMPLATE = "/etc/notification/email/html/en.txt";
