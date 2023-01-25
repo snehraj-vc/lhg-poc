@@ -29,6 +29,7 @@
     "react-google-login": "^5.2.2",
     "react-router-dom": "^5.1.2",
     "react-universal-component": "^4.5.0",
+    "sass": "^1.57.1",
     "sanitize-html": "^2.3.3"
   },
   "devDependencies": {
