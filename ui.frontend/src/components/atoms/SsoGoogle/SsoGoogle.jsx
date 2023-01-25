@@ -2,9 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import { gapi } from 'gapi-script';
 
-function SsoGoogle() {
-    const [ profile, setProfile ] = useState([]);
-    const clientId = '710467752768-e5pd1t9k89j4mctf6bbdhd24kepqghd5.apps.googleusercontent.com';
+const SsoGoogle = (props) => {
+    const [profile, setProfile] = useState([]);
+    const {
+        gglClientId: clientId = ''
+    } = props
+    // const clientId = '710467752768-e5pd1t9k89j4mctf6bbdhd24kepqghd5.apps.googleusercontent.com';
     useEffect(() => {
         const initClient = () => {
             gapi.client.init({
@@ -26,19 +29,14 @@ function SsoGoogle() {
     const logOut = () => {
         setProfile(null);
     };
-    
+
     return (
-        
-        <div>
-            <h2>React Google Login</h2>
-            <br />
-            <br />
+        <div className="sso-google">
             {profile ? (
-                
                 <div>
-                {console.log(profile)}
-                {console.log("Current logged in user name is "+profile.name)}
-                {console.log("Current logged in user Email id is "+profile.email)}
+                    {console.log(profile)}
+                    {console.log("Current logged in user name is " + profile.name)}
+                    {console.log("Current logged in user Email id is " + profile.email)}
                     <img src={profile.imageUrl} alt="user image" />
                     <h3>User Logged in</h3>
                     <p>Name: {profile.name}</p>
@@ -48,15 +46,15 @@ function SsoGoogle() {
                     <GoogleLogout clientId={clientId} buttonText="Log out" onLogoutSuccess={logOut} />
                 </div>
             ) : (
-                <GoogleLogin
-                    clientId={clientId}
-                    buttonText="Sign in with Google"
-                    onSuccess={onSuccess}
-                    onFailure={onFailure}
-                    cookiePolicy={'single_host_origin'}
-                    isSignedIn={true}
-                />
-            )}
+                    <GoogleLogin
+                        clientId={clientId}
+                        buttonText="Sign in with Google"
+                        onSuccess={onSuccess}
+                        onFailure={onFailure}
+                        cookiePolicy={'single_host_origin'}
+                        isSignedIn={true}
+                    />
+                )}
         </div>
     );
 }

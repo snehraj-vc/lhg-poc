@@ -73,8 +73,7 @@ const HelloWorldComponent = withAsyncImport(() => import(`../components/organism
 const NavigationComponent = withAsyncImport(() => import(`../components/organisms/Navigation/Navigation`));
 const LanguageNavigationComponent = withAsyncImport(() => import(`../components/organisms/LanguageNavigation/LanguageNavigation`));
 
-const SsoComponent = withAsyncImport(() => import(`./atoms/Sso/Sso`));
-const SsoFacebookComponent = withAsyncImport(() => import(`./atoms/SsoFacebook/SsoFacebook`));
+const SsoComponent = withAsyncImport(() => import(`./molecules/Sso/Sso`));
 
 /**
  * Default Edit configuration for the Text component that interact with the Core Text component and sub-types
@@ -125,11 +124,4 @@ const SsoConfig = {
 }
 MapTo('lhg-lms/components/sso')(SsoComponent, SsoConfig);
 
-const SsoFacebookConfig = {
-    emptyLabel: 'SsoFacebook',
-    isEmpty: (props) => {
-        return !props;
-    }
-}
-MapTo('lhg-lms/components/ssofacebook')(SsoFacebookComponent, SsoFacebookConfig);
 
