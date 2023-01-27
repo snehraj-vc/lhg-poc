@@ -20,6 +20,7 @@ const SsoGoogle = (props) => {
 
     const onSuccess = (res) => {
         setProfile(res.profileObj);
+        console.log(res);
     };
 
     const onFailure = (err) => {

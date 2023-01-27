@@ -7,6 +7,7 @@ const LanguageNavigation = (props) => {
         items = []
     } = props;
     return (<>
+    {console.log(props)}
         <div id={id} className="navigation">
         <div className="menu-img"><img src="https://cdn-icons-png.flaticon.com/512/1160/1160358.png"  alt="" className="icon-img"/></div>
         <div className="menu-item">
@@ -23,6 +24,7 @@ const LanguageNavigation = (props) => {
                             } = item;
                             return (<li key={key} id={id} lang={language} className={current ? "active" : ""}>
                                 <a href={url}>{title}</a>
+                                {console.log(item.url)}
                             </li>)
                         })
                     }
