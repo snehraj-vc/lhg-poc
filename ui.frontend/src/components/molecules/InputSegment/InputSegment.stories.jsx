@@ -18,7 +18,7 @@ WithLabel.args = {
     name:"first name",
     required: false,
     placeholder:"enter first name",
-    labelText:"First Name::",
+    labelText:"First Name:",
     inputType:"text"
 }
 
@@ -31,6 +31,43 @@ WithoutLabel.args =  {
     name:"last name",
     required:false,
     placeholder:"enter last name",
-    labelText:"Label Name::",
+    labelText:"Email",
     inputType:"text"
+}
+
+export const WithLabelEmail = Template.bind({});
+
+WithLabelEmail.args =  {
+    inputWithLabel:true,
+    className:"Label",
+    id:"label",
+    name:"Email",
+    required:false,
+    placeholder:"enter Email",
+    labelText:"Email",
+    inputType:"text"
+}
+
+export const WithLabelRadio = Template.bind({});
+
+WithLabelRadio.args =  {
+    inputWithLabel:true,
+    className:"Label",
+    id:"label",
+    name:"select",
+    required:false,
+    labelText:"select",
+    inputType:"radio"
+}
+
+export const WithLabelMultiSelect = Template.bind({});
+
+WithLabelMultiSelect.args =  {
+    inputWithLabel:true,
+    className:"Label",
+    id:" ",
+    name:"select",
+    required:false,
+    labelText:"check box",
+    inputType:"checkbox"
 }

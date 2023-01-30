@@ -74,6 +74,7 @@ const NavigationComponent = withAsyncImport(() => import(`../components/organism
 const LanguageNavigationComponent = withAsyncImport(() => import(`../components/organisms/LanguageNavigation/LanguageNavigation`));
 
 const SsoComponent = withAsyncImport(() => import(`./molecules/Sso/Sso`));
+const Location_formComponent= withAsyncImport(() => import(`../components/organisms/Location_form/Location_form`));
 
 /**
  * Default Edit configuration for the Text component that interact with the Core Text component and sub-types
@@ -124,4 +125,12 @@ const SsoConfig = {
 }
 MapTo('lhg-lms/components/sso')(SsoComponent, SsoConfig);
 
+
+const Location_formConfig = {
+    emptyLabel: 'Location_form',
+    isEmpty: (props) => {
+        return !props;
+    }
+}
+MapTo('lhg-lms/components/Location_form')(Location_formComponent,Location_formConfig);
 
