@@ -21,7 +21,6 @@
     "custom-event-polyfill": "^1.0.7",
     "gapi-script": "^1.2.0",
     "history": "^4.10.1",
-    "node-sass": "^8.0.0",
     "react": "^16.12.0",
     "react-app-polyfill": "^1.0.5",
     "react-dom": "^16.12.0",

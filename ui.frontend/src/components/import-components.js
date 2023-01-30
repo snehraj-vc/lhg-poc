@@ -73,6 +73,8 @@ const HelloWorldComponent = withAsyncImport(() => import(`../components/organism
 const NavigationComponent = withAsyncImport(() => import(`../components/organisms/Navigation/Navigation`));
 const LanguageNavigationComponent = withAsyncImport(() => import(`../components/organisms/LanguageNavigation/LanguageNavigation`));
 
+const HeaderSearchComponent = withAsyncImport(() => import(`../components/organisms/HeaderSearch/HeaderSearch`));
+
 const SsoComponent = withAsyncImport(() => import(`./molecules/Sso/Sso`));
 
 /**
@@ -114,7 +116,17 @@ const LanguageNavigationConfig = {
         return !props;
     }
 }
+
 MapTo('lhg-lms/components/languagenavigation')(LanguageNavigationComponent, LanguageNavigationConfig);
+
+const HeaderSearchConfig = {
+    emptyLabel: 'HeaderSearch',
+    isEmpty: (props) => {
+        return !props;
+    }
+}
+
+MapTo('lhg-lms/components/search')(HeaderSearchComponent, HeaderSearchConfig);
 
 const SsoConfig = {
     emptyLabel: 'Sso',
