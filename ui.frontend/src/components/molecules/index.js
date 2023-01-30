@@ -1,8 +1,8 @@
 import InputSegment from './InputSegment';
 import Sso from './Sso/Sso';
-import Button_submit from './button/buttonSegment';
+import ButtonGroup from './ButtonGroup/ButtonGroup';
 export {
-    Button_submit,
+    ButtonGroup,
     InputSegment,
     Sso
 };

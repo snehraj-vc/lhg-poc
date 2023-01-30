@@ -5,15 +5,12 @@ const Button = (props) => {
         id="",
         className="",
         text="",
-        type="",
-    
-        
+        type="button",
+        onClick = () => null,
     } = props;
 
     return (
-        
-        <button id={id}className={className} type={type}>{text}</button>
-        
+        <button id={id} className={className} onClick={() => onClick()} type={type}>{text}</button>
     )
 };
 
