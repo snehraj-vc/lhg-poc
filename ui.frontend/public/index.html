@@ -13,10 +13,17 @@
         <title>LHG LMS</title>
 
         <!-- AEM page model -->
-        <meta
-            property="cq:pagemodel_root_url"
-            content="%REACT_APP_PAGE_MODEL_PATH%"
-        />
+        <script>
+            let pageModelPath = location.pathname.split('/');
+            let pageName = pageModelPath[pageModelPath.length - 1];
+            pageName = pageName.substr(0, pageName.lastIndexOf(".")) + ".model.json";
+            pageModelPath[pageModelPath.length - 1] = pageName;
+            pageModelPath = pageModelPath.join('/');
+            let meta = document.createElement('meta');
+            meta.setAttribute('property', 'cq:pagemodel_root_url');
+            meta.setAttribute('content', pageModelPath);
+            document.getElementsByTagName('head')[0].appendChild(meta);
+        </script>
 
         <!-- AEM Base ClientLib -->
         <link rel="stylesheet" href="/etc.clientlibs/lhg-lms/clientlibs/clientlib-base.css" type="text/css" />
