@@ -1,14 +1,17 @@
 import React from 'react';
-
+import './style.scss';
 const HeaderSearch = (props) => {
     {console.log(props)}
     const {
-        id = ""
+        id = "",
+        resultsSize="",
+        searchTermMinimumLength="",
+        searchRootPagePath=""
     } = props;
     return (
         <div className="search">
-        <section id="search-5827664789" className="cmp-search" role="search" data-cmp-min-length="3" data-cmp-results-size="10">
-            <form className="cmp-search__form" data-cmp-hook-search="form" method="get" action="/content/lhgsite/us/en.searchresults.json/_jcr_content/root/search" autocomplete="off">
+        <section id={id} className="cmp-search" role="search" data-cmp-min-length={searchTermMinimumLength} data-cmp-results-size={resultsSize}>
+    <form className="cmp-search__form" data-cmp-hook-search="form" method="get" action={`${searchRootPagePath}/en.searchresults.json/_jcr_content/root/search`} autoComplete="off">
                 <div className="cmp-search__field">
                     <i className="cmp-search__icon" data-cmp-hook-search="icon"></i>
                     <span className="cmp-search__loading-indicator" data-cmp-hook-search="loadingIndicator"></span>
