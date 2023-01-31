@@ -73,7 +73,7 @@ const HelloWorldComponent = withAsyncImport(() => import(`../components/organism
 const NavigationComponent = withAsyncImport(() => import(`../components/organisms/Navigation/Navigation`));
 const LanguageNavigationComponent = withAsyncImport(() => import(`../components/organisms/LanguageNavigation/LanguageNavigation`));
 
-const HeaderSearchComponent = withAsyncImport(() => import(`./organisms/HeaderSearch/HeaderSearch`));
+const HeaderSearchComponent = withAsyncImport(() => import(`../components/organisms/HeaderSearch/HeaderSearch`));
 
 const SsoComponent = withAsyncImport(() => import(`./molecules/Sso/Sso`));
 

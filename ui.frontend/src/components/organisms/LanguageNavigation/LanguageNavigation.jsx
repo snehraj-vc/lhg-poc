@@ -24,7 +24,6 @@ const LanguageNavigation = (props) => {
                             } = item;
                             return (<li key={key} id={id} lang={language} className={current ? "active" : ""}>
                                 <a href={url}>{title}</a>
-                                {console.log(item.url)}
                             </li>)
                         })
                     }
