@@ -72,6 +72,7 @@ const LazyTextComponent = withAsyncImport(() => import(`../components/atoms/Text
 const HelloWorldComponent = withAsyncImport(() => import(`../components/organisms/HelloWorld/HelloWorld`));
 const NavigationComponent = withAsyncImport(() => import(`../components/organisms/Navigation/Navigation`));
 const LanguageNavigationComponent = withAsyncImport(() => import(`../components/organisms/LanguageNavigation/LanguageNavigation`));
+const OlapicComponent = withAsyncImport(() => import(`../components/organisms/Olapic/Olapic`));
 
 const SsoComponent = withAsyncImport(() => import(`./molecules/Sso/Sso`));
 
@@ -124,4 +125,10 @@ const SsoConfig = {
 }
 MapTo('lhg-lms/components/sso')(SsoComponent, SsoConfig);
 
-
+const OlapicConfig = {
+    emptyLabel: 'Olapic',
+    isEmpty: (props) => {
+        return !props;
+    }
+}
+MapTo('lhg-lms/components/olapic')(OlapicComponent, OlapicConfig);
