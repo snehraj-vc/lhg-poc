@@ -109,6 +109,10 @@ const customCompsSettings = [{
     feCompPath: import(`../components/molecules/Sso/Sso`),
     aemCompMap: 'lhg-lms/components/sso',
     compName: 'Sso'
+}, {
+    feCompPath: import(`../components/organisms/Olapic/Olapic`),
+    aemCompMap: 'lhg-lms/components/olapic',
+    compName: 'Olapic'
 }];
 
 
