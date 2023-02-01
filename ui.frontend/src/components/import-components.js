@@ -113,6 +113,11 @@ const customCompsSettings = [{
     feCompPath: import(`../components/organisms/HeaderSearch/HeaderSearch`),
     aemCompMap: 'lhg-lms/components/headersearch',
     compName: 'HeaderSearch'
+},
+{
+    feCompPath: import(`../components/organisms/SearchOther/SearchOther`),
+    aemCompMap: 'lhg-lms/components/searchother',
+    compName: 'SearchOther'
 }];
 
 
