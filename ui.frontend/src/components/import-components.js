@@ -68,13 +68,10 @@ MapTo('lhg-lms/components/carousel')(CarouselV1, {isEmpty: CarouselV1IsEmptyFn})
 MapTo('lhg-lms/components/container')(ContainerV1, {isEmpty: ContainerV1IsEmptyFn});
 
 //lazyload / code splitting example of an internal component
-const LazyTextComponent = withAsyncImport(() => import(`../components/atoms/Text/Text`));
-const HelloWorldComponent = withAsyncImport(() => import(`../components/organisms/HelloWorld/HelloWorld`));
-const NavigationComponent = withAsyncImport(() => import(`../components/organisms/Navigation/Navigation`));
-const LanguageNavigationComponent = withAsyncImport(() => import(`../components/organisms/LanguageNavigation/LanguageNavigation`));
+
 
 const SsoComponent = withAsyncImport(() => import(`./molecules/Sso/Sso`));
-const Location_formComponent= withAsyncImport(() => import(`../components/organisms/Location_form/Location_form`));
+
 
 /**
  * Default Edit configuration for the Text component that interact with the Core Text component and sub-types
@@ -86,51 +83,58 @@ const TextEditConfig = {
     
     isEmpty: function (props) {
         return !props || !props.text || props.text.trim().length < 1;
+
+const importComponent = ({
+    feCompPath,
+    compName,
+    aemCompMap,
+    customPropCheck,
+}) => {
+    const frontendComponent = withAsyncImport(() => feCompPath);
+    const configComponent = {
+        emptyLabel: compName,
+        isEmpty: (props) => {
+            return customPropCheck ? customPropCheck(props) : !props;
+        }
+
     }
+    MapTo(aemCompMap)(frontendComponent, configComponent);
 };
 
-MapTo('lhg-lms/components/text')(LazyTextComponent, TextEditConfig);
 
-const HelloWorldEditConfig = {
-    emptyLabel: 'Hello World',
-    
-    isEmpty: function (props) {
-        return !props || !props.text || props.text.trim().length < 1;
-    }
-};
-MapTo('lhg-lms/components/helloworld')(HelloWorldComponent, HelloWorldEditConfig);
-
-const NavigationConfig = {
-    emptyLabel: 'Navigation',
-    isEmpty: (props) => {
-        return !props;
-    }
-}
-MapTo('lhg-lms/components/navigation')(NavigationComponent, NavigationConfig);
-
-
-const LanguageNavigationConfig = {
-    emptyLabel: 'LanguageNavigation',
-    isEmpty: (props) => {
-        return !props;
-    }
-}
-MapTo('lhg-lms/components/languagenavigation')(LanguageNavigationComponent, LanguageNavigationConfig);
-
-const SsoConfig = {
-    emptyLabel: 'Sso',
-    isEmpty: (props) => {
-        return !props;
-    }
-}
-MapTo('lhg-lms/components/sso')(SsoComponent, SsoConfig);
+// All Components mapping would be done in below settings.
+const customCompsSettings = [{
+    feCompPath: import(`../components/atoms/Text/Text`),
+    aemCompMap: 'lhg-lms/components/text',
+    compName: 'Text',
+    customPropCheck: (props) => (!props || !props.text || props.text.trim().length < 1)
+}, {
+    feCompPath: import(`../components/organisms/HelloWorld/HelloWorld`),
+    aemCompMap: 'lhg-lms/components/helloworld',
+    compName: 'Hello World',
+    customPropCheck: (props) => (!props || !props.text || props.text.trim().length < 1)
+}, {
+    feCompPath: import(`../components/organisms/Navigation/Navigation`),
+    aemCompMap: 'lhg-lms/components/navigation',
+    compName: 'Navigation'
+}, {
+    feCompPath: import(`../components/organisms/LanguageNavigation/LanguageNavigation`),
+    aemCompMap: 'lhg-lms/components/languagenavigation',
+    compName: 'LanguageNavigation'
+}, {
+    feCompPath: import(`../components/molecules/Sso/Sso`),
+    aemCompMap: 'lhg-lms/components/sso',
+    compName: 'Sso'
+}];
 
 
-const Location_formConfig = {
-    emptyLabel: 'Location_form',
-    isEmpty: (props) => {
-        return !props;
-    }
-}
-MapTo('lhg-lms/components/Location_form')(Location_formComponent,Location_formConfig);
+customCompsSettings.forEach(comp => {
+    importComponent({
+        feCompPath: comp.feCompPath,
+        aemCompMap: comp.aemCompMap,
+        compName: comp.compName,
+        customPropCheck: comp.customPropCheck
+    })
+});
 
+    }}
