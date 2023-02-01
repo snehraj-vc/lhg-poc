@@ -67,23 +67,6 @@ MapTo('lhg-lms/components/accordion')(AccordionV1, {isEmpty: AccordionV1IsEmptyF
 MapTo('lhg-lms/components/carousel')(CarouselV1, {isEmpty: CarouselV1IsEmptyFn});
 MapTo('lhg-lms/components/container')(ContainerV1, {isEmpty: ContainerV1IsEmptyFn});
 
-//lazyload / code splitting example of an internal component
-
-
-const SsoComponent = withAsyncImport(() => import(`./molecules/Sso/Sso`));
-
-
-/**
- * Default Edit configuration for the Text component that interact with the Core Text component and sub-types
- *
- * @type EditConfig
- */
-const TextEditConfig = {
-    emptyLabel: 'Text',
-    
-    isEmpty: function (props) {
-        return !props || !props.text || props.text.trim().length < 1;
-
 const importComponent = ({
     feCompPath,
     compName,
@@ -136,5 +119,3 @@ customCompsSettings.forEach(comp => {
         customPropCheck: comp.customPropCheck
     })
 });
-
-    }}
