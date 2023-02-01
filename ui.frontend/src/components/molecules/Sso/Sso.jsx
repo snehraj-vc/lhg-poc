@@ -3,7 +3,7 @@ import {
     SsoGoogle,
     SsoFacebook,
     SsoApple,
-    SsoWeChat
+    // SsoWeChat
 } from '../../atoms';
 
 const Sso = (props) => {
@@ -13,7 +13,7 @@ const Sso = (props) => {
         fbSso=true,
         gglSso=true,
         appleSso=true,
-        weSso=true,
+        // weSso=true,
         fbappid="",
         fbFields="",
         gglclientid = ""

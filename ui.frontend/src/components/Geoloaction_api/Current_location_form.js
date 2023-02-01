@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useForm } from "react-hook-form";
 import "./location.css"
 
 
@@ -8,7 +7,7 @@ function Location() {
   const [currLocation, setCurrLocation] = useState({});
   const [greet,setgreet]=useState('')
   const [inputdata,setinputdata]=useState('')
-  const [validation,setvalidation]=useState(true)
+  const [validation]=useState(true)
  
 
   useEffect(() => {
