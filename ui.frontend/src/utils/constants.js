@@ -1,5 +1,5 @@
-const CONSTANTS = {
-    MOCK_CONSTANT: '',
-};
+const MOCK_GRAPHQL_CLIENT_URL= "https://48p1r2roz4.sse.codesandbox.io";
 
-export default CONSTANTS;
+export {
+    MOCK_GRAPHQL_CLIENT_URL
+};
