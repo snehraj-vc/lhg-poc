@@ -8,7 +8,7 @@ const Label = (props) => {
     } = props;
 
     return (
-        <label for={id} className={className}>{text}</label>
+        <label for={id} className={className} >{text}</label>
     )
 };
 

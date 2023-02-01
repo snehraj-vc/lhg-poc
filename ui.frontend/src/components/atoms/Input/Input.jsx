@@ -5,7 +5,7 @@ const Input = (props) => {
         id="",
         className="",
         placeholder="",
-        type="text",
+        type="",
         required=false,
         name=""
     } = props;

@@ -22,5 +22,11 @@ ButtonWithvalues.args = {
         className: 'btn-secondary',
         type: 'submit',
         onClick: () => { console.log('I am clicked on submit button')}
+    },
+    {
+        text: 'Submit Button',
+        className: 'btn-secondary',
+        type: 'submit',
+        onClick: () => { console.log('I am clicked on submit button')}
     }]
 }

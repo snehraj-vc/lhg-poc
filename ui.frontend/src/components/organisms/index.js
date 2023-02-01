@@ -2,10 +2,10 @@ import HelloWorld from './HelloWorld/HelloWorld';
 import LanguageNavigation from './LanguageNavigation/LanguageNavigation';
 import Navigation from './Navigation/Navigation';
 import  Sso  from '../molecules';
-import Location_form from './Form/Location_form';
+import LocationForm from './Form/LocationForm';
 
 export {
-    Location_form,
+    LocationForm,
     HelloWorld,
     LanguageNavigation,
     Navigation,

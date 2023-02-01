@@ -13,7 +13,7 @@ const InputSegment = (props) => {
         required=false,
         placeholder="",
         labelText="",
-        inputType="text"
+        inputType=""
     } = props;
 
     return (

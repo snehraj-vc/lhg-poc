@@ -1,4 +1,4 @@
-import InputSegment from './InputSegment';
+import  InputSegment from './InputSegment/InputSegment';
 import Sso from './Sso/Sso';
 import ButtonGroup from './ButtonGroup/ButtonGroup';
 export {
