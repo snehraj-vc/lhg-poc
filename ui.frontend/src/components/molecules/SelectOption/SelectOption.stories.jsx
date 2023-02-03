@@ -1,5 +1,4 @@
 import React from 'react';
-import { Label } from '../../atoms';
 import SelectOption from './SelectOption';
 
 export default {
@@ -16,7 +15,16 @@ export default {
     id:"MainSelectOption",
     className:"SelectOpton",
     name:"SelectOpton",
-    optionvalue:"India",
-    value:"India",
-    text:"Select the option",
+    options:[{
+        value: "ind",
+        text: "India"
+    }, {
+        value: "chn",
+        text: "China"
+    }, {
+        value: "usa",
+        text: "The United States of America"
+    }],
+    value:"chn",
+    labelText:"Select the option",
  }

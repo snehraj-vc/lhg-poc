@@ -10,7 +10,11 @@ const Button = (props) => {
     } = props;
 
     return (
-        <button id={id} className={className} onClick={() => onClick()} type={type}>{text}</button>
+        <>
+            <button id={id} className={`cp-button ${className}`} onClick={() => onClick()} type={type}>
+                {text}
+            </button>
+        </>
     )
 };
 

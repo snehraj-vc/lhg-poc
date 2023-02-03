@@ -2,7 +2,7 @@ import React from 'react';
 import ButtonGroup from './ButtonGroup';
 
 export default {
-    title: 'Molecule/ButtongGroup',
+    title: 'Molecules/ButtonGroup',
     component: ButtonGroup,
     argsTypes: {}
 }

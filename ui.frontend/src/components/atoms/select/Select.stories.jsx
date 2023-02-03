@@ -2,11 +2,11 @@ import React from 'react';
 import Select from './Select';
 
 export default {
-    title:'Atom/Select',
+    title:'Atoms/Select',
     component:Select,
     argstype:{}
 }
- const Template = (args)=> <Select {...args}/>
+ const Template = (args)=> <Select {...args}/>;
 
  export const InputSelect = Template.bind({});
 
@@ -14,6 +14,18 @@ export default {
     id:"MainSelectOption",
     className:"SelectOpton",
     name:"SelectOpton",
-    optionvalue:"India",
-    value:"India"
+    options:[{
+        text: "- Select a bird -",
+        value: ""
+    },{
+        text: "Parrot",
+        value: "prt"   
+    }, {
+        text: "Sparrow",
+        value: "spr"
+    }, {
+        value: "kfs",
+        text: "Kingfisher"
+    }],
+    preSelectedValue:""
  }

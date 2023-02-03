@@ -2,17 +2,21 @@ import React, { useState, useEffect } from 'react';
 import { useQuery, useLazyQuery } from '@apollo/client';
 import './style.scss';
 import { EXCHANGE_RATES } from '../../../utils/graphqlQueries';
+import {
+  SelectOption
+} from '../../molecules';
 
 const Helloworld = (props) => {
   const [currencies, setCurrencies] = useState([]);
   const [onDemandCurrency, setOnDemandCurrency] = useState(null);
+
   const { data, loading, error } = useQuery(EXCHANGE_RATES, {
     variables: {
       currency: 'USD'
     }
   });
 
-  const [checkCurrency, { data: calledData }] = useLazyQuery(EXCHANGE_RATES, {
+  const [checkCurrency, { data: calledData, loading: calledLoading }] = useLazyQuery(EXCHANGE_RATES, {
     variables: {
       currency: onDemandCurrency
     }
@@ -58,19 +62,33 @@ const Helloworld = (props) => {
     if (!currencies.length) {
       return null;
     }
-    const chkCurr = (val) => {
-      setOnDemandCurrency(val)
+    const chkCurr = (e) => {
+      setOnDemandCurrency(e.target.value)
       checkCurrency();
     };
 
+    const optionsMap = [{
+      text: '- Select Currency -',
+      value: ""
+    }];
+    currencies.forEach(curr => {
+      optionsMap.push({
+        value: curr,
+        text: curr
+      });
+    });
+
     return (<div>
-      Select the currency to check against INR
-      <select onChange={e => chkCurr(e.target.value)}>
-        <option value="" defaultValue="">- Select Currency -</option>
-        {currencies.map((curr, idx) => {
-          return (<option key={idx} value={curr}>{curr}</option>)
-        })}
-      </select>
+      <SelectOption
+        withLabel={true}
+        id="currencies-exchange"
+        labelText="Select the currency to check against INR"
+        options={optionsMap}
+        value={""}
+        onChange={chkCurr}
+        fieldName="currencies-exchange"
+      />
+      {calledLoading && (<div>Loading exchange Rates for {onDemandCurrency}, please wait!</div>)}
       {calledData && calledData.rates.length && (<div>
         <p>
           1 {onDemandCurrency} = {getINRValue(calledData.rates)} INR

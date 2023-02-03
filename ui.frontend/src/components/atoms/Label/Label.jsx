@@ -8,7 +8,11 @@ const Label = (props) => {
     } = props;
 
     return (
-        <label for={id} className={className} >{text}</label>
+        <>
+            <label htmlFor={id} className={`cp-label ${className}`}>
+                {text}
+            </label>
+        </>
     )
 };
 
