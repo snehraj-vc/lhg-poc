@@ -112,7 +112,8 @@ const customCompsSettings = [{
     feCompPath: import(`../components/organisms/Olapic/Olapic`),
     aemCompMap: 'lhg-lms/components/olapic',
     compName: 'Olapic'
-}];
+}
+];
 
 
 customCompsSettings.forEach(comp => {

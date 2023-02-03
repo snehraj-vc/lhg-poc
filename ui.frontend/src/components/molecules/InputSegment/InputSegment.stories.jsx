@@ -36,14 +36,4 @@ WithoutLabel.args =  {
 }
 export const WithoutLabel1 = Template.bind({});
 
-WithoutLabel1.args =  {
-    inputWithLabel:true,
-    className:"Label",
-    id:"label",
-    name:"last name",
-    required:false,
-    placeholder:"enter last name",
-    labelText:"radio",
-    inputType:"radio"
-}
 
