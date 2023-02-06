@@ -34,8 +34,15 @@ protected static final String RESOURCE_TYPE = "lhg-lms/components/olapic";
     
     @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
     protected String async;
+    
+    @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
+    protected String html;
 
     
+	public String getHtml() {
+		return html;
+	}
+
 	public String getId() {
 		return id;
 	}

@@ -41,6 +41,16 @@
                         sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                         fieldLabel="Async"
                         name="./async"/>
+					<html
+                        granite:hide="${cqDesign.htmlDisabled}"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/textarea"
+                        emptyText="Paste embed code"
+                        fieldDescription="The code of the content to embed. The embed code is filtered to remove unsafe tags, such as the script tag."
+                        fieldLabel="HTML"
+                        name="./html"
+                        required="{Boolean}true">
+                    </html>
                 </items>
             </column>
         </items>
