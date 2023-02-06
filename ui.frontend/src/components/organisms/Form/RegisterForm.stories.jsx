@@ -43,7 +43,6 @@ InputContent.args = {
         type: 'text',
         labelText: "First name",
         placeholder: 'Enter First Name',
-        inputType: 'text',
         className: 'input-firstName',
         name: "firstName",
         order: 2
@@ -52,7 +51,6 @@ InputContent.args = {
         type: 'text',
         labelText: "Middle name",
         placeholder: 'Enter Middle Name',
-        inputType: 'text',
         className: 'input-middleName',
         name: "middleName",
         order: 3
@@ -61,7 +59,6 @@ InputContent.args = {
         type: 'text',
         labelText: "Last Name",
         placeholder: 'Enter Last Name',
-        inputType: 'text',
         className: 'input-LastName',
         name: 'lastName',
         order: 4
@@ -70,8 +67,14 @@ InputContent.args = {
         type: 'text',
         labelText: "Email",
         placeholder: 'Enter Email',
-        inputType: 'text',
         className: 'input-email',
+        name: 'email',
+        order: 5,
+    }, {
+        id: "dob",
+        type: 'date',
+        labelText: "Date of birth",
+        className: 'input-date',
         name: 'email',
         order: 5,
     }, {
@@ -79,7 +82,6 @@ InputContent.args = {
         type: 'text',
         labelText: "Mobile",
         placeholder: 'Enter Mobile Number',
-        inputType: 'text',
         className: 'input-mobile',
         name: 'mobile',
         order: 6,
@@ -101,7 +103,6 @@ InputContent.args = {
         type: 'text',
         labelText: "City",
         placeholder: 'Enter City',
-        inputType: 'text',
         className: 'input-city',
         name: 'city',
         order: 8

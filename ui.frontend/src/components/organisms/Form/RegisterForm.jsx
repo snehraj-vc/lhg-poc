@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {getData, postData} from '../../../utils/server'
-import { InputSegment, SelectOption } from '../../molecules';
+import { InputSegment, SelectOption, DatepickerSegment } from '../../molecules';
 import { Button } from '../../atoms';
 import { LJI_URLS } from '../../../utils/constants';
 
@@ -84,7 +84,7 @@ const RegisterForm = (props) => {
   useEffect(() => {
     getLocation();
     orderInputs();
-  },[]);
+  });
 
   const TEXT_TYPE_INPUTS = ['text', 'number', 'email', undefined];
 
@@ -111,6 +111,14 @@ const RegisterForm = (props) => {
             key={index}
             value={inputVals[input.name] || ""}
             onChange={onInputChange}
+          />)
+        } else if (input.type === 'date') {
+          return (<DatepickerSegment
+            onDateChange={onInputChange}
+            name={input.name}
+            locale={input.locale}
+            minDate={new Date()}
+            key={index}
           />)
         }
       })}
