@@ -18,53 +18,11 @@ public class OlaPicModel {
 protected static final String RESOURCE_TYPE = "lhg-lms/components/olapic";
     
     @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
-    protected String id;
-    
-    @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
-    protected String scriptLink;
-    
-    @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
-    protected String widgetName;
-    
-    @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
-    protected String instance;
-    
-    @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
-    protected String apikey;
-    
-    @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
-    protected String async;
-    
-    @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
     protected String html;
 
     
 	public String getHtml() {
 		return html;
-	}
-
-	public String getId() {
-		return id;
-	}
-
-	public String getScriptLink() {
-		return scriptLink;
-	}
-
-	public String getWidgetName() {
-		return widgetName;
-	}
-
-	public String getInstance() {
-		return instance;
-	}
-
-	public String getApikey() {
-		return apikey;
-	}
-
-	public String getAsync() {
-		return async;
 	}
 
 	public String getExportedType() {
