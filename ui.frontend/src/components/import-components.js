@@ -67,8 +67,6 @@ MapTo('lhg-lms/components/accordion')(AccordionV1, {isEmpty: AccordionV1IsEmptyF
 MapTo('lhg-lms/components/carousel')(CarouselV1, {isEmpty: CarouselV1IsEmptyFn});
 MapTo('lhg-lms/components/container')(ContainerV1, {isEmpty: ContainerV1IsEmptyFn});
 
-//lazyload / code splitting example of an internal component
-
 const importComponent = ({
     feCompPath,
     compName,
@@ -81,6 +79,7 @@ const importComponent = ({
         isEmpty: (props) => {
             return customPropCheck ? customPropCheck(props) : !props;
         }
+
     }
     MapTo(aemCompMap)(frontendComponent, configComponent);
 };
@@ -113,7 +112,8 @@ const customCompsSettings = [{
     feCompPath: import(`../components/organisms/Olapic/Olapic`),
     aemCompMap: 'lhg-lms/components/olapic',
     compName: 'Olapic'
-}];
+}
+];
 
 
 customCompsSettings.forEach(comp => {
@@ -124,4 +124,3 @@ customCompsSettings.forEach(comp => {
         customPropCheck: comp.customPropCheck
     })
 });
-

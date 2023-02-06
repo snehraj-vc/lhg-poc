@@ -7,11 +7,22 @@ const Input = (props) => {
         placeholder="",
         type="text",
         required=false,
-        name=""
+        name="",
+        value=""
     } = props;
 
     return (
-        <input id={id} name={name} className={className} placeholder={placeholder} type={type} required={required} />
+        <>
+            <input
+                id={id}
+                name={name}
+                className={`cp-input ${className}`}
+                placeholder={placeholder}
+                type={type}
+                required={required}
+                value={value}
+            />
+        </>
     )
 };
 
