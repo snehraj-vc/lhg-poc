@@ -75,7 +75,7 @@ InputContent.args = {
         type: 'date',
         labelText: "Date of birth",
         className: 'input-date',
-        name: 'email',
+        name: 'date',
         order: 5,
     }, {
         id: "mobile",
