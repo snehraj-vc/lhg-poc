@@ -1,0 +1,11 @@
+<section data-sly-use.multiField="com.lhg.lms.aem.core.models.Search">
+            <div data-sly-test="${multiField.firstMF && multiField.firstMF.size != 0}"
+            data-sly-list.firstMF="${multiField.firstMF}">
+            <p>${firstMF.title}</p>
+             
+            <div data-sly-test="${firstMF.secondMF && firstMF.secondMF.size != 0}"
+            data-sly-list.secondMF="${firstMF.secondMF}">
+            <p>${secondMF.path}</p>
+            </div>
+            </div>
+</section>

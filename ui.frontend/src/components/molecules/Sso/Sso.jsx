@@ -1,7 +1,9 @@
 import React from 'react';
 import {
     SsoGoogle,
-    SsoFacebook
+    SsoFacebook,
+    SsoApple,
+    // SsoWeChat
 } from '../../atoms';
 
 const Sso = (props) => {
@@ -10,6 +12,8 @@ const Sso = (props) => {
         id="",
         fbSso=true,
         gglSso=true,
+        appleSso=true,
+        // weSso=true,
         fbappid="",
         fbFields="",
         gglclientid = ""
@@ -27,6 +31,9 @@ const Sso = (props) => {
         <div className={`sso-segment ${className}`} id={id}>
             { gglSso && <SsoGoogle {...gglProps } /> }
             { fbSso && <SsoFacebook {...fbProps} /> }
+            { appleSso && <SsoApple /> }
+            {/* { weSso && <SsoWeChat /> } */}
+            
         </div>
     );
 };

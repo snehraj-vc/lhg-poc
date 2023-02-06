@@ -20,6 +20,7 @@ const SsoGoogle = (props) => {
 
     const onSuccess = (res) => {
         setProfile(res.profileObj);
+        console.log(res);
     };
 
     const onFailure = (err) => {
@@ -37,7 +38,7 @@ const SsoGoogle = (props) => {
                     {console.log(profile)}
                     {console.log("Current logged in user name is " + profile.name)}
                     {console.log("Current logged in user Email id is " + profile.email)}
-                    <img src={profile.imageUrl} alt="user image" />
+                    <img src={profile.imageUrl} alt="user" />
                     <h3>User Logged in</h3>
                     <p>Name: {profile.name}</p>
                     <p>Email Address: {profile.email}</p>
