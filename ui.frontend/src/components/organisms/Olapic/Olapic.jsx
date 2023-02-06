@@ -2,7 +2,6 @@ import React, {useEffect, useRef} from 'react';
 
 const Olapic = (props) => {
     const {
-        id="",
         html=""
     } = props;
 
@@ -15,7 +14,7 @@ const Olapic = (props) => {
 
     return (
         <>
-            {html && (<div id={id} ref={olapicRef}></div>)}
+            {html && (<div className={`cp-olapic`} ref={olapicRef}></div>)}
         </>
     )
 };
