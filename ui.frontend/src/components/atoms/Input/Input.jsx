@@ -8,7 +8,9 @@ const Input = (props) => {
         type="text",
         required=false,
         name="",
-        value=""
+        value="",
+        onChange = () => null,
+        onBlur = () => null
     } = props;
 
     return (
@@ -21,6 +23,8 @@ const Input = (props) => {
                 type={type}
                 required={required}
                 value={value}
+                onChange={(e) => onChange(e.target.value, name)}
+                onBlur={(e) => onBlur(e.target.value, name)}
             />
         </>
     )
