@@ -122,6 +122,11 @@ const customCompsSettings = [{
     feCompPath: import(`../components/organisms/Olapic/Olapic`),
     aemCompMap: 'lhg-lms/components/olapic',
     compName: 'Olapic'
+},
+{
+    feCompPath: import(`../components/organisms/SearchOther/SearchOther`),
+    aemCompMap: 'lhg-lms/components/nestedsearch',
+    compName: 'NestedSearch'
 }
 ];
 
