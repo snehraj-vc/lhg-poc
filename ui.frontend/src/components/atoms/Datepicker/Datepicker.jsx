@@ -4,7 +4,6 @@ import DatePicker from 'react-date-picker';
 // import 'react-datepicker/dist/react-datepicker.css';
 
 const Datepicker = (props) => {
-    const [startDate, setStartDate] = useState(new Date());
     const {
         onDateChange = () => null,
         name = "",
@@ -15,6 +14,7 @@ const Datepicker = (props) => {
         minDate,
         maxDate,
     } = props;
+    const [startDate, setStartDate] = useState(new Date());
 
     const setDate = (date) => {
         setStartDate(date);
