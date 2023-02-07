@@ -47,7 +47,7 @@ const RegisterForm = (props) => {
       "salutation": inputVals.salutation,
       "member_name": inputVals.lastName,
       "middle_name": inputVals.middleName,
-      "date_of_birth": "1992-01-01",
+      "date_of_birth": inputVals.dob,
       "gender": inputVals.gender,
       "mobile": inputVals.mobile,
       "address_line1": null,
@@ -84,7 +84,7 @@ const RegisterForm = (props) => {
   useEffect(() => {
     getLocation();
     orderInputs();
-  });
+  }, []);
 
   const TEXT_TYPE_INPUTS = ['text', 'number', 'email', undefined];
 
@@ -117,7 +117,7 @@ const RegisterForm = (props) => {
             onDateChange={onInputChange}
             name={input.name}
             locale={input.locale}
-            minDate={new Date()}
+            maxDate={new Date()}
             key={index}
           />)
         }
