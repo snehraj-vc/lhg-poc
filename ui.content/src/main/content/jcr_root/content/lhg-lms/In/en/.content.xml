@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0"
+    jcr:primaryType="cq:Page">
+    <home/>
+    <jcr:content
+        cq:lastModified="{Date}2023-01-30T23:30:53.158+05:30"
+        cq:lastModifiedBy="admin"
+        cq:lastRolledout="{Date}2023-01-30T23:30:53.172+05:30"
+        cq:lastRolledoutBy="admin"
+        cq:template="/conf/lhg-lms/settings/wcm/templates/spa-app-template"
+        jcr:mixinTypes="[cq:LiveRelationship]"
+        jcr:primaryType="cq:PageContent"
+        jcr:title="en"
+        sling:resourceType="lhg-lms/components/spa"
+        pageTitle="LHG LMS"/>
+    <test-page/>
+    <register/>
+</jcr:root>
