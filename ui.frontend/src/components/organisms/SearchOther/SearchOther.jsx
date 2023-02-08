@@ -2,8 +2,6 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { Input, Button } from '../../atoms'
 import { SelectOption } from '../../molecules';
-
-//
 import {MOCK_SEARCH_RESULT} from '../../../utils/mockResponse';
 
 /**
@@ -34,30 +32,37 @@ import {MOCK_SEARCH_RESULT} from '../../../utils/mockResponse';
 
 const SearchOther = (props) => {
   const {
-    options = [],
+    categories = [],
     input = {},
     button: {
       text
     }
   } = props;
   
+  const [category, setCategory] = useState(categories[0].value);
+  const [filteredLinkList, setFilteredLinkList] = useState([]);
   const [query, setQuery] = useState("");
   const [filteredValues, setFilteredValues] = useState([]);
   const [selectionClick, setSelectionClick] = useState(false);
 
   const filterSearchResults = () => {
     //TODO: API call and response mapping here, temporary fix with mock response
-    if(!query || selectionClick) {
-      setFilteredValues([]);
-      setSelectionClick(false);
-      return;
-    }
+    //TODO: API call should be on the basis of category
     const filteredResults = MOCK_SEARCH_RESULT.data.filter(dt => {
       if(dt.name.toLowerCase().indexOf(query.trim().toLowerCase()) > -1) {
         return true;
       }
       return false;
     });
+  
+    if(selectionClick) {
+      setFilteredLinkList(filteredResults[0].link);    
+    }
+    if(!query || selectionClick) {
+      setFilteredValues([]);
+      setSelectionClick(false);
+      return;
+    }
     
     if(filteredResults.length > 0) {
       setFilteredValues(filteredResults);
@@ -69,7 +74,7 @@ const SearchOther = (props) => {
   }
 
   const submitFunction = () => {
-    console.log('Redirect search path');
+    console.log('Redirect search path with the values::', category, filteredLinkList, query);
   };
   
   const onInputChange = (value) => {
@@ -79,6 +84,10 @@ const SearchOther = (props) => {
   const onSelectOption = e => {
     setSelectionClick(true);
     setQuery(e.target.innerText);
+  };
+
+  const selectCategory = val => {
+    setCategory(val);
   }
 
   useEffect(() => {
@@ -86,7 +95,7 @@ const SearchOther = (props) => {
   }, [query]);
 
   return (<>
-    <SelectOption options={options} />
+    <SelectOption options={categories} onChange={selectCategory} />
 
     <Input onChange={onInputChange} name={input.name} value={query} placeholder={input.placeholder} />
     <Button text={text} onClick={submitFunction} />

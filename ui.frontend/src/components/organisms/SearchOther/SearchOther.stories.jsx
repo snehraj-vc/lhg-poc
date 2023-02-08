@@ -11,15 +11,18 @@ const Template = (args) => <SearchOther {...args} />;
 export const SearchContent = Template.bind({});
 
 SearchContent.args = {
-  options: [{
-    value: "ind",
-    text: "India"
+  categories: [{
+    value: "all",
+    text: "All"
   }, {
-    value: "chn",
-    text: "China"
+    value: "cat1",
+    text: "Category 1"
   }, {
-    value: "usa",
-    text: "The United States of America"
+    value: "cat2",
+    text: "Category 2"
+  }, {
+    value: "cat3",
+    text: "Category 3"
   }],
   inputs: {
     placeholder: "Search...",
