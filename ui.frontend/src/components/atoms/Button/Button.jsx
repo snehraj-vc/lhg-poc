@@ -11,7 +11,7 @@ const Button = (props) => {
 
     return (
         <>
-            <button id={id} className={`cp-button ${className}`} onClick={() => onClick()} type={type}>
+            <button id={id} className={`cp-button ${className}`} onClick={(e) => onClick(e)} type={type}>
                 {text}
             </button>
         </>

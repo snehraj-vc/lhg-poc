@@ -7,6 +7,7 @@ import SsoApple from './SsoApple/SsoApple';
 import SsoWeChat from './SsoWeChat/SsoWeChat';
 import Button from './Button/Button';
 import Select from './Select/Select';
+import Datepicker from './Datepicker/Datepicker';
 
 export {
     Select,
@@ -17,5 +18,6 @@ export {
     SsoFacebook,
     SsoGoogle,
     SsoApple,
-    SsoWeChat
+    SsoWeChat,
+    Datepicker
 };

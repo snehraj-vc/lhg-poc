@@ -14,13 +14,25 @@ const InputSegment = (props) => {
         placeholder="",
         labelText="",
         inputType="",
-        value=""
+        value="",
+        onInputChange= () => null,
+        onInputBlur = () => null
     } = props;
 
     return (
         <div className="input-segment">
             {inputWithLabel && <Label id={id} className={className} text={labelText} />}
-            <Input id={id} name={name} type={inputType} required={required} placeholder={placeholder} className={className} value={value} />
+            <Input
+                id={id}
+                name={name}
+                type={inputType}
+                required={required}
+                placeholder={placeholder}
+                className={className}
+                value={value}
+                onChange={onInputChange}
+                onBlur={onInputBlur}
+            />
         </div>
     )
 };
