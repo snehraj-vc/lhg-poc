@@ -3,7 +3,8 @@ import { useQuery, useLazyQuery } from '@apollo/client';
 import './style.scss';
 import { EXCHANGE_RATES } from '../../../utils/graphqlQueries';
 import {
-  SelectOption
+  SelectOption,
+  CheckInDateRangePicker
 } from '../../molecules';
 
 const Helloworld = (props) => {
@@ -100,6 +101,9 @@ const Helloworld = (props) => {
   return (
     <>
       <div className="helloWorld">{props.text}</div>
+      <hr />
+      <CheckInDateRangePicker />
+      <hr />
       <div className="exchange-rates">{getExchangeRates()}</div>
       <div className="exchange-rate-ondemand">{getExchangeRatesOnDemand()}</div>
     </>

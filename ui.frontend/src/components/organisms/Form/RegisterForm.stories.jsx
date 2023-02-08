@@ -7,80 +7,104 @@ export default {
     argsTypes: {}
 }
 
-const Template = (args) => <RegisterForm {...args}/>
+const Template = (args) => <RegisterForm {...args} />
 
 export const InputContent = Template.bind({});
 
 InputContent.args = {
-    id:"main-form-container",
-    className:"form-container",
-    select:[{
-        text:"Select the country",
-        value:[{value:"India"},
-        {value:"china"}],
-
-        
-    }],
+    id: "register-form",
+    className: "register-form",
+    title: "Registration form",
+    apiData: {
+        xApiKey: "rFGDxqrSaC4KxzuZJI5KQ12BL6nVcaRY7ybG12Ej"
+    },
     buttons: [{
         text: 'Register',
         className: 'btn-primary',
-        type: 'submit',
-        onClick: () => { console.log('I am clicked on submit button')}
-    },
- 
-    ],
-    input: [{
-        id:"firstName",
-        labelText:"First name",
+        type: 'submit'
+    }],
+    inputs: [{
+        withLabel: false,
+        type: "select",
+        options: [{
+            value: "MR",
+            text: "Mr."
+        }, {
+            value: "MRS",
+            text: "Mrs."
+        }, {
+            value: "MS",
+            text: "Ms."
+        }],
+        name: "salutation",
+        order: 1,
+    }, {
+        id: "firstName",
+        type: 'text',
+        labelText: "First name",
         placeholder: 'Enter First Name',
-        inputType:'text',
-        className: 'input-firstName'
-        
-    }, 
-    {
-        id:"lastName",
-        labelText:"Last Name",
+        className: 'input-firstName',
+        name: "firstName",
+        order: 2
+    }, {
+        id: "middleName",
+        type: 'text',
+        labelText: "Middle name",
+        placeholder: 'Enter Middle Name',
+        className: 'input-middleName',
+        name: "middleName",
+        order: 3
+    }, {
+        id: "lastName",
+        type: 'text',
+        labelText: "Last Name",
         placeholder: 'Enter Last Name',
-        inputType:'text',
-        className: 'input-LastName'
-    },  
-    {
-        id:"city",
-        labelText:"City",
+        className: 'input-LastName',
+        name: 'lastName',
+        order: 4
+    }, {
+        id: "email",
+        type: 'text',
+        labelText: "Email",
+        placeholder: 'Enter Email',
+        className: 'input-email',
+        name: 'email',
+        order: 5,
+    }, {
+        id: "dob",
+        type: 'date',
+        labelText: "Date of birth",
+        className: 'input-date',
+        name: 'dob',
+        order: 5,
+    }, {
+        id: "mobile",
+        type: 'text',
+        labelText: "Mobile",
+        placeholder: 'Enter Mobile Number',
+        className: 'input-mobile',
+        name: 'mobile',
+        order: 6,
+    }, {
+        withLabel: true,
+        type: "select",
+        options: [{
+            value: "male",
+            text: "Male"
+        }, {
+            value: "female",
+            text: "Female"
+        }],
+        name: "gender",
+        order: 7,
+        text: "Gender"
+    }, {
+        id: "city",
+        type: 'text',
+        labelText: "City",
         placeholder: 'Enter City',
-        inputType:'text',
-        className: 'input-city'
-      
-    },   
-    {
-        id:"countryCode",
-        labelText:"countryCode",
-        placeholder: 'Enter countryCode',
-        inputType:'text',
-        className: 'input-countryCode'
-    }, 
-    {
-        id:"state",
-        labelText:"State",
-        placeholder: 'Enter State',
-        inputType:'text',
-        className: 'input-State'
-    },
-    {
-        id:"postalCode",
-        labelText:"postalCode",
-        placeholder: 'Enter postalCode',
-        inputType:'text',
-        className: 'input-postalCode'
-    },
-    {
-        id:"phoneNumber",
-        labelText:"phoneNumber",
-        placeholder: 'Enter phoneNumber',
-        inputType:'text',
-        className: 'input-phoneNumber'
-    }
-  
-]
+        className: 'input-city',
+        name: 'city',
+        order: 8
+    }]
 }
-

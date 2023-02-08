@@ -12,15 +12,21 @@ const Select = (props) => {
 
     return (
         <>
-            <select name={name} id={id} defaultValue={preSelectedValue} className={`cp-select ${className}`} onChange={(e) => onChange(e)}>
+            <select
+                name={name}
+                id={id}
+                defaultValue={preSelectedValue}
+                className={`cp-select ${className}`}
+                onChange={(e) => onChange(e.target.value, name)}
+            >
                 {options.length && options.map((opt, idx) => {
                     return (<option
-                                value={opt.value}
-                                key={idx}
-                            >
-                                {opt.text}
-                            </option>
-                        )
+                        value={opt.value}
+                        key={idx}
+                    >
+                        {opt.text}
+                    </option>
+                    )
                 })}
             </select>
         </>

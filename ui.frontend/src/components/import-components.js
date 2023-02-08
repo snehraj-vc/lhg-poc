@@ -112,6 +112,10 @@ const customCompsSettings = [{
     feCompPath: import(`../components/organisms/Olapic/Olapic`),
     aemCompMap: 'lhg-lms/components/olapic',
     compName: 'Olapic'
+}, {
+    feCompPath: import(`../components/organisms/Form/RegisterForm`),
+    aemCompMap: 'lhg-lms/components/register',
+    compName: 'RegisterForm'
 }
 ];
 

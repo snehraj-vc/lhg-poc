@@ -1,68 +1,139 @@
-import React from 'react';
-import axios from "axios";
-import { InputSegment } from '../../molecules';
-import {Button} from '../../atoms';
-import {SelectOption} from '../../molecules'
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
+import {getData, postData} from '../../../utils/server'
+import { InputSegment, SelectOption, DatepickerSegment } from '../../molecules';
+import { Button } from '../../atoms';
+import { LJI_URLS } from '../../../utils/constants';
+
 const RegisterForm = (props) => {
-    const {
-      id="",
-      className="",
-      input=[],
-      buttons=[],
-      select=[]
-    }=props;
+  const [inputVals, setInputVals] = useState({})
+  const {
+    id = "",
+    className = "",
+    inputs = [],
+    buttons = [],
+    apiData = {}
+  } = props;
 
-    useEffect(() => {
-      getLocation();
-    
-    }, []);
+  const getLocation = async () => {
+    getData("https://ipapi.co/json")
+      .then(res => {
+        setInputVals({
+          ...inputVals,
+          city: res.data.city
+        });
+      })
+      .catch(err => {
+        console.error("There is some problem", err)
+      });
+  };
 
-    const [currLocation, setCurrLocation] = useState({});
-    const getLocation = async () => {
-      try{
-           const location = await axios.get("https://ipapi.co/json");
-             setCurrLocation(location.data);
-                console.log(location.data)
-         }
-      catch(error){
-        console.error("the server is down")
+  const orderInputs = () => {
+    inputs.sort((a,b) => {
+      if(a.order === 'undefined' || b.order === 'undefined') {
+        return -1;
       }
+      return a.order - b.order;
+    })
+  };
+
+  const onRegisteration = (e) => {
+    e.preventDefault();
+    const payload = {
+      "user": {
+        "email": inputVals.email,
+        "first_name": inputVals.firstName,
+        "last_name": inputVals.lastName
+      },
+      "salutation": inputVals.salutation,
+      "member_name": inputVals.lastName,
+      "middle_name": inputVals.middleName,
+      "date_of_birth": inputVals.dob,
+      "gender": inputVals.gender,
+      "mobile": inputVals.mobile,
+      "address_line1": null,
+      "address_line2": null,
+      "enrollment_touchpoint": 1,
+      "enrolling_sponsor": 4,
+      "enrolling_location": null,
+      "preferred_location": null,
+      "receive_offers": true,
+      "membership_tenure": 0,
+      "extra_data": {}
     };
 
-  return (<div className={`Input-form${className}`}>
+    const headers = {
+      ['x-api-key']: apiData.xApiKey
+    };
 
-  {input && input.map((input,index)=>{
-              console.log(input.inputType)
-                   return ( <InputSegment 
-                               
-                                inputType={input.inputType} 
-                                placeholder={input.placeholder} 
-                                className={input.className}
-                                id={input.id}
-                                labelText={input.labelText}
-                              
-                             />
-                          );
-                  } ) }
-{select && select.map((select,idx) => {
-             console.log(select.value[0].value)
-            return(<SelectOption optionvalue={select.value} text={select.text}/>);
-})}
-                  {buttons && buttons.map((btn,idx) => {
-                    
-                    return (<Button
-                            id={btn.id}
-                            onClick={btn.onClick}
-                            className={btn.className}
-                            type={btn.type}
-                            text={btn.text}
-                            key={idx}
-                        />);
-                  })}
-                  
-  </div>);
+    postData(LJI_URLS.CREATE_MEMBER, payload, headers)
+      .then(resp => {
+        console.log('resp::', resp);
+      })
+      .catch(err => {
+        console.log('err', err);
+      })
+  }
+
+  const onInputChange = (val, name) => {
+    setInputVals({
+      ...inputVals,
+      [name]: val
+    });
+  };
+
+  useEffect(() => {
+    getLocation();
+    orderInputs();
+  }, []);
+
+  const TEXT_TYPE_INPUTS = ['text', 'number', 'email', undefined];
+
+  return (<>
+    <div className={`register-form ${className}`} id={id}>
+      {inputs && inputs.map((input, index) => {
+        if (TEXT_TYPE_INPUTS.indexOf(input.type) > -1) {
+          return (<InputSegment
+            key={index}
+            name={input.name}
+            inputType={input.inputType}
+            placeholder={input.placeholder}
+            className={input.className}
+            id={input.id}
+            labelText={input.labelText}
+            onInputChange={onInputChange}
+            value={inputVals[input.name] || ""}
+          />);
+        } else if (input.type === 'select') {
+          return (<SelectOption
+            labelText={input.text || ""}
+            fieldName={input.name}
+            options={input.options}
+            key={index}
+            value={inputVals[input.name] || ""}
+            onChange={onInputChange}
+          />)
+        } else if (input.type === 'date') {
+          return (<DatepickerSegment
+            onDateChange={onInputChange}
+            name={input.name}
+            locale={input.locale}
+            maxDate={new Date()}
+            key={index}
+          />)
+        }
+      })}
+      {buttons && buttons.map((btn, idx) => {
+        return (<Button
+          id={btn.id}
+          onClick={onRegisteration}
+          className={btn.className}
+          type={btn.type}
+          text={btn.text}
+          key={idx}
+        />);
+      })}
+    </div>
+  </>);
 }
 
-  
 export default RegisterForm;

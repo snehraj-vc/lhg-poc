@@ -5,6 +5,7 @@ import SsoFacebook from './SsoFacebook/SsoFacebook';
 import SsoGoogle from './SsoGoogle/SsoGoogle';
 import Button from './Button/Button';
 import Select from './Select/Select';
+import Datepicker from './Datepicker/Datepicker';
 
 export {
     Select,
@@ -13,5 +14,6 @@ export {
     Input,
     Label,
     SsoFacebook,
-    SsoGoogle
+    SsoGoogle,
+    Datepicker
 };
