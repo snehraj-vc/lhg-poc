@@ -5,14 +5,21 @@ import { Button } from '../../atoms';
 import { LJI_URLS } from '../../../utils/constants';
 
 const RegisterForm = (props) => {
-  const [inputVals, setInputVals] = useState({})
+  const [inputVals, setInputVals] = useState({});
+  let modifiedProps = {};
+
+  if(typeof props.props === 'string') {
+    modifiedProps = {...JSON.parse(props.props)};
+  } else {
+    modifiedProps = {...props.props};
+  }
   const {
     id = "",
     className = "",
     inputs = [],
     buttons = [],
     apiData = {}
-  } = props;
+  } = modifiedProps;
 
   const getLocation = async () => {
     getData("https://ipapi.co/json")

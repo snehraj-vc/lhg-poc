@@ -14,7 +14,7 @@ const DatepickerSegment = (props) => {
 
     return (
         <>
-            <div class={`cp-datepicker-segment`}>
+            <div className={`cp-datepicker-segment`}>
                 {labelText && <Label id={name} text={labelText} />}
                 <Datepicker
                     name={name}
