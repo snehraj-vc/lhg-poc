@@ -14,12 +14,23 @@ SearchContent.args={
   value:"",
   text:"Search",
   placeholder:"Search...",
+  options:[{
+    value: "ind",
+    text: "India"
+}, {
+    value: "chn",
+    text: "China"
+}, {
+    value: "usa",
+    text: "The United States of America"
+}],
     data:[
       {
         Name: 'offers',
         link: [
-            "/content/sitea/fnb",
-            "/content/siteb/fnb"
+          "/content/sitea",
+          "/content/siteb",
+          "/content/lhg-lms"
             ]
       },
       {

@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { useState,useEffect } from 'react';
 import {Input,Button} from '../../atoms'
+import { SelectOption } from '../../molecules';
 /**
  * 
  * Requirements
@@ -32,25 +33,30 @@ const SearchOther = (props) => {
   const [query, setQuery] = useState("")
   const [populate_value,setpopulate_value] =useState("")
   const{
+    options = [],
      data=[],
      link="",
      id="",
      className="",
-     placeholder="",
+     placeholder="search...",
      type="text",
      required=false,
      name="",
      value="",
-     text=""
+     text="Search"
   }=props
 const submitFunction=(()=>{
-console.log(populate_value)
-
+console.log(populate_value);
+setpopulate_value("");
 })
   const onchange=((data)=>{
-    setpopulate_value(data)
+    setpopulate_value(data);
   })
 return(<>
+{options.map((data)=>{
+       return(<SelectOption options={data.options.value}/>);
+})}
+  
   <Input  onChange={event => setQuery(event.target.value)} value={query.length ? populate_value : "" } placeholder={placeholder}/>
   <Button text={text} onClick={()=> submitFunction()}/>
 {
