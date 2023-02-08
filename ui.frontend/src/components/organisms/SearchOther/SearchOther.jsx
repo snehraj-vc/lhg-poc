@@ -1,8 +1,11 @@
 import React from 'react';
-import axios from 'axios';
-import { useState,useEffect } from 'react';
-import {Input,Button} from '../../atoms'
+import { useState, useEffect } from 'react';
+import { Input, Button } from '../../atoms'
 import { SelectOption } from '../../molecules';
+
+//
+import {MOCK_SEARCH_RESULT} from '../../../utils/mockResponse';
+
 /**
  * 
  * Requirements
@@ -30,50 +33,74 @@ import { SelectOption } from '../../molecules';
  */
 
 const SearchOther = (props) => {
-  const [query, setQuery] = useState("")
-  const [populate_value,setpopulate_value] =useState("")
-  const{
+  const {
     options = [],
-     data=[],
-     link="",
-     id="",
-     className="",
-     placeholder="search...",
-     type="text",
-     required=false,
-     name="",
-     value="",
-     text="Search"
-  }=props
-const submitFunction=(()=>{
-console.log(populate_value);
-setpopulate_value("");
-})
-  const onchange=((data)=>{
-    setpopulate_value(data);
-  })
-return(<>
-{options.map((data)=>{
-       return(<SelectOption options={data.options.value}/>);
-})}
-  
-  <Input  onChange={event => setQuery(event.target.value)} value={query.length ? populate_value : "" } placeholder={placeholder}/>
-  <Button text={text} onClick={()=> submitFunction()}/>
-{
-  data.filter(post => {
-    if (query === '') {
-      return post;
-    } else if (post.Name.toLowerCase().includes(query.toLowerCase())) {
-      return post;
+    input = {},
+    button: {
+      text
     }
-  }).map((data)=>{
-  {console.log(data.Name)}
- 
-  return(<div onClick={()=>onchange(data.Name)}>{data.Name}</div>)
-})}
+  } = props;
+  
+  const [query, setQuery] = useState("");
+  const [filteredValues, setFilteredValues] = useState([]);
+  const [selectionClick, setSelectionClick] = useState(false);
 
-</>)
+  const filterSearchResults = () => {
+    //TODO: API call and response mapping here, temporary fix with mock response
+    if(!query || selectionClick) {
+      setFilteredValues([]);
+      setSelectionClick(false);
+      return;
+    }
+    const filteredResults = MOCK_SEARCH_RESULT.data.filter(dt => {
+      if(dt.name.toLowerCase().indexOf(query.trim().toLowerCase()) > -1) {
+        return true;
+      }
+      return false;
+    });
+    
+    if(filteredResults.length > 0) {
+      setFilteredValues(filteredResults);
+    } else {
+      setFilteredValues([
+        {name: 'Not found by the query keyword'}
+      ]);
+    }
+  }
+
+  const submitFunction = () => {
+    console.log('Redirect search path');
+  };
+  
+  const onInputChange = (value) => {
+    setQuery(value);
+  };
+
+  const onSelectOption = e => {
+    setSelectionClick(true);
+    setQuery(e.target.innerText);
+  }
+
+  useEffect(() => {
+    filterSearchResults();
+  }, [query]);
+
+  return (<>
+    <SelectOption options={options} />
+
+    <Input onChange={onInputChange} name={input.name} value={query} placeholder={input.placeholder} />
+    <Button text={text} onClick={submitFunction} />
+
+    {filteredValues.length > 0 && (
+      <div className={"filtered-results"}>
+        <ul>
+          {filteredValues.map((val, idx) => {
+            return (<li key={idx} onClick={(e) => onSelectOption(e)}>{val.name}</li>)
+          })}
+        </ul>
+      </div>
+    )}
+  </>);
 }
 
-  
 export default SearchOther;
