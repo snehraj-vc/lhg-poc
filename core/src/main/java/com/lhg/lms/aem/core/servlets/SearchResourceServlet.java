@@ -96,21 +96,27 @@ public class SearchResourceServlet extends SlingSafeMethodsServlet {
                     pageProperties.put("title", page.getTitle());
                     pageProperties.put("description", page.getDescription());
                     pageProperties.put("path", page.getPath());
-                    Node pageNode = page.adaptTo(Node.class);
-                    logger.info("Image Started {}",pageNode.getPath());
+//                    Node pageNode = page.adaptTo(Node.class);
+//                    logger.info("Image Started {}",pageNode.getPath());
+//
+//                    if (pageNode.hasNode("image")) {
+//                        logger.info("Image1 Found");
+//                        Node imageNode = pageNode.getNode("image");
+//                        logger.info("Image1");
+//                        if (imageNode != null) {
+//                            String fileReference = imageNode.getProperty("fileReference").getString();
+//                            logger.info("Image2");
+//                            pageProperties.put("thumbnail", fileReference);
+//                            logger.info("Image3");
+//                        }
+//                    }
 
-                    if (pageNode.hasNode("image")) {
-                        logger.info("Image1 Found");
-                        Node imageNode = pageNode.getNode("image");
-                        logger.info("Image1");
-                        if (imageNode != null) {
-                            String fileReference = imageNode.getProperty("fileReference").getString();
-                            logger.info("Image2");
-                            pageProperties.put("thumbnail", fileReference);
-                            logger.info("Image3");
-                        }
+                    String thumbnailFileReference = "";
+                    Resource thumbnailResource = page.getContentResource("image");
+                    if (thumbnailResource != null) {
+                        thumbnailFileReference = (String) thumbnailResource.getValueMap().get("fileReference");
                     }
-
+                    pageProperties.put("thumbnailFileReference", thumbnailFileReference);
 
                     pages.add(pageProperties);
                     logger.info("Image4");
