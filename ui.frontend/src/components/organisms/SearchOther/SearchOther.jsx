@@ -1,6 +1,7 @@
 import React from 'react';
-import './style.scss';
-
+import axios from 'axios';
+import { useState,useEffect } from 'react';
+import {Input,Button} from '../../atoms'
 /**
  * 
  * Requirements
@@ -28,18 +29,44 @@ import './style.scss';
  */
 
 const SearchOther = (props) => {
-  const {
-    text
-  } = props;
-  let searchPathsArray = {};
+  const [query, setQuery] = useState("")
+  const [populate_value,setpopulate_value] =useState("")
+  const{
+     data=[],
+     link="",
+     id="",
+     className="",
+     placeholder="",
+     type="text",
+     required=false,
+     name="",
+     value="",
+     text=""
+  }=props
+const submitFunction=(()=>{
+console.log(populate_value)
 
-  if(text && typeof text === 'string') {
-    searchPathsArray = JSON.parse(text);
-  }
+})
+  const onchange=((data)=>{
+    setpopulate_value(data)
+  })
+return(<>
+  <Input  onChange={event => setQuery(event.target.value)} value={query.length ? populate_value : "" } placeholder={placeholder}/>
+  <Button text={text} onClick={()=> submitFunction()}/>
+{
+  data.filter(post => {
+    if (query === '') {
+      return post;
+    } else if (post.Name.toLowerCase().includes(query.toLowerCase())) {
+      return post;
+    }
+  }).map((data)=>{
+  {console.log(data.Name)}
+ 
+  return(<div onClick={()=>onchange(data.Name)}>{data.Name}</div>)
+})}
 
-  return (<div className="cm-search-other">
-    {searchPathsArray && searchPathsArray.length && searchPathsArray.offers.map(a => (<div>{a}</div>))}
-  </div>);
+</>)
 }
 
   
