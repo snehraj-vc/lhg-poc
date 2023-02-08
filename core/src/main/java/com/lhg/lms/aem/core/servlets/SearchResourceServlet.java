@@ -9,12 +9,19 @@ import com.day.cq.wcm.api.Page;
 import com.google.gson.Gson;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
+import org.apache.sling.api.resource.LoginException;
 import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.apache.sling.api.servlets.HttpConstants;
 import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
 import org.apache.sling.servlets.annotations.SlingServletResourceTypes;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
+import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 import javax.servlet.Servlet;
@@ -35,50 +42,88 @@ import java.util.Map;
 )
 public class SearchResourceServlet extends SlingSafeMethodsServlet {
     private static final long serialVersionUID = 1L;
+    private final Logger logger = LoggerFactory.getLogger(SearchResourceServlet.class);
 
     private transient QueryBuilder queryBuilder;
-
+    @Reference
+    private ResourceResolverFactory resolverFactory;
+//create a system user and get resource resolver object through system user mapping
+    //user mapping files/config will be part of build and deployment
 
     @Override
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response)
             throws ServletException, IOException {
-
-        String keyword = "offers";
-        String[] paths = { "/content/sitea", "/content/siteb", "/content/lhg-lms" };
-
-        Session session = request.getResourceResolver().adaptTo(Session.class);
-
-        QueryBuilder queryBuilder = request.getResourceResolver().adaptTo(QueryBuilder.class);
-
-        List<Map<String, String>> pages = new ArrayList<>();
-        for (String path : paths) {
-            Map<String, String> map = new HashMap<>();
-            map.put("type", "cq:Page");
-            map.put("path", path);
-            map.put("fulltext", keyword);
-            map.put("p.limit", "-1");
-
-            Query query = queryBuilder.createQuery(PredicateGroup.create(map), session);
-            SearchResult result = query.getResult();
-
-            for (Hit hit : result.getHits()) {
-                Resource resource = null;
-                try {
-                    resource = hit.getResource();
-                } catch (RepositoryException e) {
-                    throw new RuntimeException(e);
-                }
-                Page page = resource.adaptTo(Page.class);
-                Map<String, String> pageProperties = new HashMap<>();
-                pageProperties.put("title", page.getTitle());
-                pageProperties.put("description", page.getDescription());
-                pageProperties.put("path", page.getPath());
-                pages.add(pageProperties);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        logger.info("00000");
+        String keyword = "offering ";
+        String[] paths = {"/content/sitea/us/en/offers", "/content/siteb/us/en/offers"};
+        Map<String, Object> paramMap = new HashMap<String, Object>();
+        paramMap.put(ResourceResolverFactory.SUBSERVICE, "systemUser");
+        logger.info("11111");
+        ResourceResolver resolver = null;
+        try {
+            try {
+                resolver = resolverFactory.getServiceResourceResolver(paramMap);
+            } catch (LoginException e) {
+                throw new RuntimeException(e);
             }
-        }
+            logger.info("22222");
+            Session session = resolver.adaptTo(Session.class);
+            QueryBuilder queryBuilder = resolver.adaptTo(QueryBuilder.class);
 
-        Gson gson = new Gson();
-        String json = gson.toJson(pages);
-        response.getWriter().write(json);
+            List<Map<String, String>> pages = new ArrayList<>();
+            for (String path : paths) {
+                Map<String, String> map = new HashMap<>();
+                map.put("type", "cq:Page");
+                map.put("path", path);
+                map.put("fulltext", keyword);
+                map.put("p.limit", "-1");
+                logger.info("33333");
+                Query query = queryBuilder.createQuery(PredicateGroup.create(map), session);
+                SearchResult result = query.getResult();
+
+                for (Hit hit : result.getHits()) {
+                    Resource resource = null;
+                    try {
+                        resource = hit.getResource();
+                    } catch (RepositoryException e) {
+                        throw new RuntimeException(e);
+                    }
+                    logger.info("4444");
+                    Page page = resource.adaptTo(Page.class);
+                    Map<String, String> pageProperties = new HashMap<>();
+                    pageProperties.put("title", page.getTitle());
+                    pageProperties.put("description", page.getDescription());
+                    pageProperties.put("path", page.getPath());
+                    Node pageNode = page.adaptTo(Node.class);
+                    logger.info("Image Started {}",pageNode.getPath());
+
+                    if (pageNode.hasNode("image")) {
+                        logger.info("Image1 Found");
+                        Node imageNode = pageNode.getNode("image");
+                        logger.info("Image1");
+                        if (imageNode != null) {
+                            String fileReference = imageNode.getProperty("fileReference").getString();
+                            logger.info("Image2");
+                            pageProperties.put("thumbnail", fileReference);
+                            logger.info("Image3");
+                        }
+                    }
+
+
+                    pages.add(pageProperties);
+                    logger.info("Image4");
+                }
+            }
+
+            Gson gson = new Gson();
+            String json = gson.toJson(pages);
+            response.getWriter().write(json);
+            logger.info("55555");
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }
