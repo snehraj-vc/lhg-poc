@@ -22,8 +22,27 @@ const RegisterForm = (props) => {
   } = modifiedProps;
 
   const getLocation = async () => {
+    let timeStamp = new Date()
+    timeStamp = timeStamp.getTime();
+    let geoLocationTimeStamp = localStorage.getItem('geolocationTimeStamp');
+    if(geoLocationTimeStamp) {
+      geoLocationTimeStamp = JSON.parse(geoLocationTimeStamp);
+    }
+
+    if(geoLocationTimeStamp && (timeStamp - geoLocationTimeStamp.ts) < 300000) {
+      setInputVals({
+        ...inputVals,
+        city: geoLocationTimeStamp.data.city
+      })
+      return;
+    }
+
     getData("https://ipapi.co/json")
       .then(res => {
+        localStorage.setItem('geolocationTimeStamp',JSON.stringify({
+          ts: timeStamp,
+          data: res.data
+        }));
         setInputVals({
           ...inputVals,
           city: res.data.city
