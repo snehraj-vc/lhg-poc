@@ -1,0 +1,87 @@
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:granite="http://www.adobe.com/jcr/granite/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+          jcr:primaryType="nt:unstructured"
+          jcr:title="Nested Accordion"
+          sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+            jcr:primaryType="nt:unstructured"
+            sling:resourceType="granite/ui/components/coral/foundation/container">
+        <items
+                jcr:primaryType="nt:unstructured">
+            <tabs
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                    maximized="{Boolean}true">
+                <items
+                        jcr:primaryType="nt:unstructured">
+                    <componentProperties
+                            jcr:primaryType="nt:unstructured"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            jcr:title="Component Properties">
+                        <items
+                                jcr:primaryType="nt:unstructured">
+                            <columns
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+                                <items
+                                        jcr:primaryType="nt:unstructured">
+                                    <column
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                                            margin="{Boolean}true">
+                                        <items
+                                                jcr:primaryType="nt:unstructured">
+                                            <title
+                                                    jcr:primaryType="nt:unstructured"
+                                                    fieldLabel="Title"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    emptyText="Title"
+                                                    name="./title"/>
+                                            <accordions
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                                    composite="{Boolean}true"
+                                                    fieldLabel="Accordions">
+                                                <field
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                                                        name="./accordions">
+                                                    <items jcr:primaryType="nt:unstructured">
+                                                        <title
+                                                                jcr:primaryType="nt:unstructured"
+                                                                fieldLabel="Accordion Title"
+                                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                emptyText="Title"
+                                                                name="./title"/>
+                                                        <list
+                                                                jcr:primaryType="nt:unstructured"
+                                                                sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                                                composite="{Boolean}true"
+                                                                fieldLabel="Bullet list">
+                                                            <field
+                                                                    jcr:primaryType="nt:unstructured"
+                                                                    sling:resourceType="granite/ui/components/coral/foundation/container"
+                                                                    name="./list">
+                                                                <items jcr:primaryType="nt:unstructured">
+                                                                    <description
+                                                                            fieldLabel="Description Label"
+                                                                            jcr:primaryType="nt:unstructured"
+                                                                            sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                            emptyText="Description"
+                                                                            name="./description"/>
+                                                                </items>
+                                                            </field>
+                                                        </list>
+                                                    </items>
+                                                </field>
+                                            </accordions>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </componentProperties>
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>

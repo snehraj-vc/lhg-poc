@@ -109,9 +109,24 @@ const customCompsSettings = [{
     aemCompMap: 'lhg-lms/components/sso',
     compName: 'Sso'
 }, {
+    feCompPath: import(`../components/organisms/HeaderSearch/HeaderSearch`),
+    aemCompMap: 'lhg-lms/components/headersearch',
+    compName: 'HeaderSearch'
+},
+{
+    feCompPath: import(`../components/organisms/SearchOther/SearchOther`),
+    aemCompMap: 'lhg-lms/components/searchother',
+    compName: 'SearchOther'
+},
+{
     feCompPath: import(`../components/organisms/Olapic/Olapic`),
     aemCompMap: 'lhg-lms/components/olapic',
     compName: 'Olapic'
+},
+{
+    feCompPath: import(`../components/organisms/SearchOther/SearchOther`),
+    aemCompMap: 'lhg-lms/components/searchother',
+    compName: 'NestedSearch'
 }, {
     feCompPath: import(`../components/organisms/Form/RegisterForm`),
     aemCompMap: 'lhg-lms/components/register',
