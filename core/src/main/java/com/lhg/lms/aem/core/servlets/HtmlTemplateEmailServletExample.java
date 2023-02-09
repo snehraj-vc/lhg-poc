@@ -61,7 +61,7 @@ public class HtmlTemplateEmailServletExample extends SlingSafeMethodsServlet {
             Node templateNode = req.getResourceResolver().getResource(EMAIL_TEMPLATE).adaptTo(Node.class);
             final Map<String, String> parameters = new HashMap<String, String>();
             parameters.put("title", "Demo Email");
-            parameters.put("name", "arunpatidar02");
+            parameters.put("name", "Rajat Sharma");
             parameters.put("id", "0001");
             parameters.put("host.prefix", "http://localhost");
             parameters.put("faqpath", "/content/AEM63App/faq.html");

@@ -36,7 +36,7 @@ public class SendEmailServletExample extends SlingAllMethodsServlet {
         JSONObject jsonResponse = new JSONObject();
         boolean sent = false;
         try {
-            String[] recipients = { "rajatsharma.suresh@verticurl.com" };
+            String[] recipients = { "rajatsharma.suresh@verticurl.com", "testing.user.8483@gmail.com" };
             sendEmail("This is an test email",
                     "This is the email body", recipients);
             response.setStatus(200);
