@@ -56,10 +56,11 @@ public class SearchResourceServlet extends SlingSafeMethodsServlet {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         logger.info("00000");
-        String keyword = "offering ";
-        String[] paths = {"/content/sitea/us/en/offers", "/content/siteb/us/en/offers"};
+        String keyword = request.getParameter("searchKeyword");
+        String[] paths = request.getParameter("paths").split(",");
+      //  String[] paths = {"/content/sitea/us/en/offers", "/content/siteb/us/en/offers"};
         Map<String, Object> paramMap = new HashMap<String, Object>();
-        paramMap.put(ResourceResolverFactory.SUBSERVICE, "systemUser");
+        paramMap.put(ResourceResolverFactory.SUBSERVICE, "lhgService");
         logger.info("11111");
         ResourceResolver resolver = null;
         try {
@@ -96,30 +97,23 @@ public class SearchResourceServlet extends SlingSafeMethodsServlet {
                     pageProperties.put("title", page.getTitle());
                     pageProperties.put("description", page.getDescription());
                     pageProperties.put("path", page.getPath());
-//                    Node pageNode = page.adaptTo(Node.class);
-//                    logger.info("Image Started {}",pageNode.getPath());
-//
-//                    if (pageNode.hasNode("image")) {
-//                        logger.info("Image1 Found");
-//                        Node imageNode = pageNode.getNode("image");
-//                        logger.info("Image1");
-//                        if (imageNode != null) {
-//                            String fileReference = imageNode.getProperty("fileReference").getString();
-//                            logger.info("Image2");
-//                            pageProperties.put("thumbnail", fileReference);
-//                            logger.info("Image3");
-//                        }
-//                    }
+                    Node pageNode = page.adaptTo(Node.class);
 
-                    String thumbnailFileReference = "";
-                    Resource thumbnailResource = page.getContentResource("image");
-                    if (thumbnailResource != null) {
-                        thumbnailFileReference = (String) thumbnailResource.getValueMap().get("fileReference");
+                    if (pageNode.hasNode("jcr:content/image")) {
+                        logger.info("Image1 Found");
+                        Node imageNode=pageNode.getNode("jcr:content/image");
+                        logger.info("Image node {}",imageNode.getPath());
+                        logger.info("Image node {}",imageNode.getPath());
+                        logger.info("Image1");
+                        if (imageNode != null) {
+                            String fileReference = imageNode.getProperty("fileReference").getString();
+                            logger.info("Image2");
+                            pageProperties.put("thumbnail", fileReference);
+                            logger.info("Image3");
+                        }
                     }
-                    pageProperties.put("thumbnailFileReference", thumbnailFileReference);
-
                     pages.add(pageProperties);
-                    logger.info("Image4");
+
                 }
             }
 
