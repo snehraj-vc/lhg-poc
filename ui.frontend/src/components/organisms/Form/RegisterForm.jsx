@@ -3,6 +3,7 @@ import {getData, postData} from '../../../utils/server'
 import { InputSegment, DatepickerSegment } from '../../molecules';
 import { Button, Label } from '../../atoms';
 import { LJI_URLS } from '../../../utils/constants';
+import crypto from '../../../utils/crypto';
 
 const RegisterForm = (props) => {
   const [inputVals, setInputVals] = useState({});
@@ -30,6 +31,8 @@ const RegisterForm = (props) => {
     countryInputLabel,
     countryInputPlaceholder,
   } = props;
+
+  const cryptoInstance = crypto();
 
   const getLocation = async () => {
     let timeStamp = new Date()
@@ -68,6 +71,7 @@ const RegisterForm = (props) => {
 
   const onRegisteration = (e) => {
     e.preventDefault();
+
     const payload = {
       "user": {
         "email": inputVals.email,
@@ -77,7 +81,7 @@ const RegisterForm = (props) => {
       "salutation": inputVals.salutation,
       "member_name": inputVals.lastName,
       "middle_name": inputVals.middleName,
-      "password": inputVals.password,
+      "password": cryptoInstance.encrpt(inputVals.password),
       "date_of_birth": inputVals.dob,
       "gender": inputVals.gender,
       "mobile": inputVals.mobile,
@@ -120,6 +124,7 @@ const RegisterForm = (props) => {
     <div id={formId} className={className}>
       <h3>{formTitle}</h3>
       <InputSegment
+        id=""
         name={'firstName'}
         inputType="text"
         placeholder={firstNameInputPlaceholder}
@@ -128,6 +133,7 @@ const RegisterForm = (props) => {
         value={inputVals['firstName'] || ""}
       />
       <InputSegment
+        id=""
         name={'middleName'}
         inputType="text"
         placeholder={middleNameInputPlaceholder}
@@ -136,6 +142,7 @@ const RegisterForm = (props) => {
         value={inputVals['middleName'] || ""}
       />
       <InputSegment
+        id=""
         name={'lastName'}
         inputType="text"
         placeholder={lastNameInputPlaceholder}
@@ -144,6 +151,7 @@ const RegisterForm = (props) => {
         value={inputVals['lastName'] || ""}
       />
       <InputSegment
+        id=""
         name={'email'}
         inputType="text"
         placeholder={emailInputPlaceholder}
@@ -152,6 +160,7 @@ const RegisterForm = (props) => {
         value={inputVals['email'] || ""}
       />
       <InputSegment
+        id=""
         name={'password'}
         inputType="password"
         placeholder={passwordInputPlaceholder}
@@ -167,6 +176,7 @@ const RegisterForm = (props) => {
         maxDate={new Date()}
       />
       <InputSegment
+        id=""
         name={'city'}
         inputType="text"
         placeholder={cityInputPlaceholder}
@@ -175,6 +185,7 @@ const RegisterForm = (props) => {
         value={inputVals['city'] || ""}
       />
       <InputSegment
+        id=""
         name={'country'}
         inputType="text"
         placeholder={countryInputPlaceholder}
