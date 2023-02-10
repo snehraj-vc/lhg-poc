@@ -15,33 +15,72 @@
  */
 package com.lhg.lms.aem.core.models;
 
+import javax.inject.Inject;
+import java.util.*;
+import javax.annotation.PostConstruct;
+
+import com.day.cq.i18n.I18n;
 import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.i18n.ResourceBundleProvider;
 import org.apache.sling.models.annotations.Exporter;
 import org.apache.sling.models.annotations.Model;
-import org.apache.sling.models.annotations.injectorspecific.InjectionStrategy;
-import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
+import org.apache.sling.models.annotations.injectorspecific.*;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.models.annotations.DefaultInjectionStrategy;
+import org.apache.sling.models.annotations.injectorspecific.ChildResource;
+import org.apache.sling.models.annotations.injectorspecific.SlingObject;
+import org.apache.sling.settings.SlingSettingsService;
 
 import com.adobe.cq.export.json.ComponentExporter;
 import com.adobe.cq.export.json.ExporterConstants;
+import com.day.cq.wcm.api.Page;
+import com.day.cq.wcm.api.PageManager;
+import org.osgi.service.component.annotations.Reference;
+
+import static org.apache.sling.scripting.jsp.util.TagUtil.getRequest;
+
 
 @Model(adaptables = SlingHttpServletRequest.class,
-adapters = {ComponentExporter.class},
-resourceType = HelloWorldModel.RESOURCE_TYPE)
+        adapters = {ComponentExporter.class},
+        resourceType = HelloWorldModel.RESOURCE_TYPE)
 @Exporter(name = ExporterConstants.SLING_MODEL_EXPORTER_NAME, extensions = ExporterConstants.SLING_MODEL_EXTENSION)
 public class HelloWorldModel implements ComponentExporter {
-
+    @Reference(target="(component.name=org.apache.sling.i18n.impl.JcrResourceBundleProvider)")
+    private ResourceBundleProvider resourceBundleProvider;
+    @Inject
+    SlingHttpServletRequest request;
+    private Page currentpage;
+    @SlingObject
+    private Resource currentResource;
     protected static final String RESOURCE_TYPE = "lhg-lms/components/helloworld";
-    
-    @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
-    protected String text;
 
-    public String getText() {
-        return text;
+    @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
+    protected Dictionary<String,String> text;
+    @SlingObject
+    private ResourceResolver resolver;
+    @Inject
+    public Dictionary<String,String> getText() {
+        Dictionary<String,String> values = new Hashtable<>();
+        PageManager pageManager = resolver.adaptTo(PageManager.class);
+        currentpage = pageManager.getContainingPage(currentResource);
+        if(request != null){
+            ResourceBundle resourceBundle =  request.getResourceBundle(currentpage.getLanguage());
+            I18n i18n = new I18n(resourceBundle);
+            Enumeration<String> enumeration = resourceBundle.getKeys();
+            // print all the keys
+            while (enumeration.hasMoreElements()) {
+                String key = enumeration.nextElement();
+                values.put(key,(String) (resourceBundle.getObject(key)));
+            }
+        }
+        return values;
     }
 
-	@Override
-	public String getExportedType() {
-		return RESOURCE_TYPE;
-	}
+    @Override
+    public String getExportedType() {
+        return RESOURCE_TYPE;
+    }
 
 }
