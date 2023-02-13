@@ -66,16 +66,16 @@
                         sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                         fieldLabel="lastNameInputPlaceholder"
                         name="./lastNameInputPlaceholder"/>
-                    <passwordInputLabel
+                    <phoneNumberInputLabel
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                        fieldLabel="passwordInputLabel"
-                        name="./passwordInputLabel"/>
-                    <passwordInputPlaceholder
+                        fieldLabel="phoneNumberInputLabel"
+                        name="./phoneNumberInputLabel"/>
+                    <phoneNumberInputPlaceholder
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                        fieldLabel="passwordInputPlaceholder"
-                        name="./passwordInputPlaceholder"/>
+                        fieldLabel="phoneNumberInputPlaceholder"
+                        name="./phoneNumberPlaceholder"/>
                     <dobInputLabel
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
