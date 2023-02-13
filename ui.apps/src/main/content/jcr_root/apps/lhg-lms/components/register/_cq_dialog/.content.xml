@@ -129,13 +129,13 @@
                                 <value
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                    fieldLabel="salutationvalue"
-                                    name="./salutationvalue"/>
+                                    fieldLabel="value"
+                                    name="./value"/>
                                 <text
                                     jcr:primaryType="nt:unstructured"
                                     sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                    fieldLabel="salutationtext"
-                                    name="./salutationtext"/>
+                                    fieldLabel="text"
+                                    name="./text"/>
                             </items>
                         </field>
                     </salutations>

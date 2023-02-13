@@ -3,14 +3,12 @@ package com.lhg.lms.aem.core.models;
 
 public class ServiceModelDTO {
 
-    private String salutationvalue;
+    private String value;
 
 
-    private String salutationtext;
+    private String text;
 
-    private String gendervalue;
 
-    private String gendertext;
 
 
     protected void init() {
@@ -18,22 +16,22 @@ public class ServiceModelDTO {
     }
 
 
-    public String getSalutationvalue() {
-        return salutationvalue;
+    public String getValue() {
+        return value;
     }
 
-    public String getSalutationtext() {
-        return salutationtext;
+    public String getText() {
+        return text;
     }
 
 
 
-    public void setSalutationvalue(String value) {
-        salutationvalue = value;
+    public void setValue(String val) {
+        value = val;
     }
 
-    public void setSalutationtext(String value) {
-        salutationtext = value;
+    public void setText(String value) {
+        text = value;
     }
 
 

@@ -120,8 +120,8 @@ public class RegisterModel implements ComponentExporter {
         for (Resource multiResource : multi){
             ValueMap valueMap = multiResource.getValueMap();
             ServiceModelDTO model = new ServiceModelDTO();
-            model.setSalutationvalue(valueMap.get("salutationvalue",String.class));
-            model.setSalutationtext(valueMap.get("salutationtext",String.class));
+            model.setValue(valueMap.get("value",String.class));
+            model.setText(valueMap.get("text",String.class));
             service.add(model);
         }
 
