@@ -35,7 +35,7 @@ import java.util.Map;
 @Component(service= Servlet.class)
 
 @SlingServletResourceTypes(
-        resourceTypes = "lhg-lms/components/page",
+        resourceTypes = "sling/servlet/default",
         selectors ="data",
         methods = HttpConstants.METHOD_GET,
         extensions="json"
