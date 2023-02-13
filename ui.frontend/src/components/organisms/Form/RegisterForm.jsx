@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getData, postData } from '../../../utils/server'
-import { InputSegment, DatepickerSegment } from '../../molecules';
+import { InputSegment, DatepickerSegment, SelectOption } from '../../molecules';
 import { Button, Label } from '../../atoms';
 import { LJI_URLS } from '../../../utils/constants';
 import crypto from '../../../utils/crypto';
@@ -30,6 +30,7 @@ const RegisterForm = (props) => {
     cityInputPlaceholder,
     countryInputLabel,
     countryInputPlaceholder,
+    salutations= [],
   } = props;
 
   const cryptoInstance = crypto();
@@ -123,6 +124,14 @@ const RegisterForm = (props) => {
   return (<>
     <div id={formId} className={className}>
       <h3>{formTitle}</h3>
+      { salutations.length && <SelectOption
+          Withlabel = {false}
+          options = {salutations}
+          fieldName = {"salutation"}
+          value = {inputVals['salutation'] || ""}
+          onChange={onInputChange}
+      />
+      }
       {firstNameInputLabel && <InputSegment
         id=""
         name={'firstName'}
