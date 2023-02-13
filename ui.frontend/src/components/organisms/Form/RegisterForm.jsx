@@ -82,7 +82,7 @@ const RegisterForm = (props) => {
       "salutation": inputVals.salutation,
       "member_name": inputVals.lastName,
       "middle_name": inputVals.middleName,
-      "password": cryptoInstance.encrpt(inputVals.password),
+      "password": inputVals.password ? cryptoInstance.encrpt(inputVals.password) : "",
       "date_of_birth": inputVals.dob,
       "gender": inputVals.gender,
       "mobile": inputVals.mobile,
@@ -124,7 +124,7 @@ const RegisterForm = (props) => {
   return (<>
     <div id={formId} className={className}>
       <h3>{formTitle}</h3>
-      { salutations.length && <SelectOption
+      { salutations.length > 0 && <SelectOption
           Withlabel = {false}
           options = {salutations}
           fieldName = {"salutation"}

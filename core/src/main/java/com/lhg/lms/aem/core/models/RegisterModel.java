@@ -106,9 +106,6 @@ public class RegisterModel implements ComponentExporter {
     @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
     protected String dobLocale;
 
-    @SlingObject
-    private ResourceResolver resourceResolver;
-
     @ChildResource
     @Named("salutations")
     private Resource serviceResource;
