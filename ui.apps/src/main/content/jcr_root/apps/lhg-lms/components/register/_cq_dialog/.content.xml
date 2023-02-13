@@ -75,7 +75,7 @@
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                         fieldLabel="phoneNumberInputPlaceholder"
-                        name="./phoneNumberPlaceholder"/>
+                        name="./phoneNumberInputPlaceholder"/>
                     <dobInputLabel
                         jcr:primaryType="nt:unstructured"
                         sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
