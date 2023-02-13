@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {getData, postData} from '../../../utils/server'
+import { getData, postData } from '../../../utils/server'
 import { InputSegment, DatepickerSegment } from '../../molecules';
 import { Button, Label } from '../../atoms';
 import { LJI_URLS } from '../../../utils/constants';
@@ -7,17 +7,17 @@ import crypto from '../../../utils/crypto';
 
 const RegisterForm = (props) => {
   const [inputVals, setInputVals] = useState({});
-  
+
   const {
     formId,
-    className, 
+    className,
     formTitle,
     xApiKey,
     registerButtonLabel,
     firstNameInputLabel,
     firstNameInputPlaceholder,
     middleNameInputLabel,
-    middleNameInputPlaceholder, 
+    middleNameInputPlaceholder,
     lastNameInputLabel,
     lastNameInputPlaceholder,
     emailInputLabel,
@@ -38,11 +38,11 @@ const RegisterForm = (props) => {
     let timeStamp = new Date()
     timeStamp = timeStamp.getTime();
     let geoLocationTimeStamp = localStorage.getItem('geolocationTimeStamp');
-    if(geoLocationTimeStamp) {
+    if (geoLocationTimeStamp) {
       geoLocationTimeStamp = JSON.parse(geoLocationTimeStamp);
     }
 
-    if(geoLocationTimeStamp && (timeStamp - geoLocationTimeStamp.ts) < 300000) {
+    if (geoLocationTimeStamp && (timeStamp - geoLocationTimeStamp.ts) < 300000) {
       setInputVals({
         ...inputVals,
         city: geoLocationTimeStamp.data.city,
@@ -53,7 +53,7 @@ const RegisterForm = (props) => {
 
     getData("https://ipapi.co/json")
       .then(res => {
-        localStorage.setItem('geolocationTimeStamp',JSON.stringify({
+        localStorage.setItem('geolocationTimeStamp', JSON.stringify({
           ts: timeStamp,
           data: res.data
         }));
@@ -123,7 +123,7 @@ const RegisterForm = (props) => {
   return (<>
     <div id={formId} className={className}>
       <h3>{formTitle}</h3>
-      <InputSegment
+      {firstNameInputLabel && <InputSegment
         id=""
         name={'firstName'}
         inputType="text"
@@ -131,8 +131,8 @@ const RegisterForm = (props) => {
         labelText={firstNameInputLabel}
         onInputChange={onInputChange}
         value={inputVals['firstName'] || ""}
-      />
-      <InputSegment
+      />}
+      {middleNameInputLabel && <InputSegment
         id=""
         name={'middleName'}
         inputType="text"
@@ -140,8 +140,8 @@ const RegisterForm = (props) => {
         labelText={middleNameInputLabel}
         onInputChange={onInputChange}
         value={inputVals['middleName'] || ""}
-      />
-      <InputSegment
+      />}
+      {lastNameInputLabel && <InputSegment
         id=""
         name={'lastName'}
         inputType="text"
@@ -149,8 +149,8 @@ const RegisterForm = (props) => {
         labelText={lastNameInputLabel}
         onInputChange={onInputChange}
         value={inputVals['lastName'] || ""}
-      />
-      <InputSegment
+      />}
+      {emailInputLabel && <InputSegment
         id=""
         name={'email'}
         inputType="text"
@@ -158,8 +158,8 @@ const RegisterForm = (props) => {
         labelText={emailInputLabel}
         onInputChange={onInputChange}
         value={inputVals['email'] || ""}
-      />
-      <InputSegment
+      />}
+      {passwordInputLabel && <InputSegment
         id=""
         name={'password'}
         inputType="password"
@@ -167,15 +167,18 @@ const RegisterForm = (props) => {
         labelText={passwordInputLabel}
         onInputChange={onInputChange}
         value={inputVals['password'] || ""}
-      />
-      <Label text={dobInputLabel} />
-      <DatepickerSegment
-        onDateChange={onInputChange}
-        name={'dob'}
-        locale={dobLocale}
-        maxDate={new Date()}
-      />
-      <InputSegment
+      />}
+      {dobInputLabel && (<>
+        <Label text={dobInputLabel} />
+        <DatepickerSegment
+          onDateChange={onInputChange}
+          name={'dob'}
+          locale={dobLocale}
+          maxDate={new Date()}
+        />
+      </>)
+      }
+      {cityInputLabel && <InputSegment
         id=""
         name={'city'}
         inputType="text"
@@ -183,8 +186,8 @@ const RegisterForm = (props) => {
         labelText={cityInputLabel}
         onInputChange={onInputChange}
         value={inputVals['city'] || ""}
-      />
-      <InputSegment
+      />}
+      {countryInputLabel && <InputSegment
         id=""
         name={'country'}
         inputType="text"
@@ -192,12 +195,12 @@ const RegisterForm = (props) => {
         labelText={countryInputLabel}
         onInputChange={onInputChange}
         value={inputVals['country'] || ""}
-      />
-      <Button
+      />}
+      {registerButtonLabel && <Button
         onClick={onRegisteration}
         type={'submit'}
         text={registerButtonLabel}
-      />
+      />}
     </div>
   </>);
 }
