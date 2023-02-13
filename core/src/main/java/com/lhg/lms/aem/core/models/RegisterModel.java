@@ -77,10 +77,10 @@ public class RegisterModel implements ComponentExporter {
     protected String lastNameInputPlaceholder;
 
     @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
-    protected String passwordInputLabel;
+    protected String phoneNumberInputLabel;
 
     @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
-    protected String passwordInputPlaceholder;
+    protected String phoneNumberInputPlaceholder;
 
     @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
     protected String dobInputLabel;
@@ -155,11 +155,11 @@ public class RegisterModel implements ComponentExporter {
     public String getLastNameInputPlaceholder() {
         return lastNameInputPlaceholder;
     }
-    public String getPasswordInputLabel(){
-        return passwordInputLabel;
+    public String getPhoneNumberInputLabel(){
+        return phoneNumberInputLabel;
     }
-    public String getPasswordInputPlaceholder() {
-        return passwordInputPlaceholder;
+    public String getPhoneNumberInputPlaceholder() {
+        return phoneNumberInputPlaceholder;
     }
     public String getDobInputLabel(){
         return dobInputLabel;

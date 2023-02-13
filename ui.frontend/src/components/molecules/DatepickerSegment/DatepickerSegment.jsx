@@ -9,7 +9,8 @@ const DatepickerSegment = (props) => {
         locale,
         disableCalendar,
         minDate,
-        maxDate
+        maxDate,
+        id=""
     } = props;
 
     return (
@@ -17,6 +18,7 @@ const DatepickerSegment = (props) => {
             <div className={`cp-datepicker-segment`}>
                 {labelText && <Label id={name} text={labelText} />}
                 <Datepicker
+                    id={id}
                     name={name}
                     onDateChange={onDateChange}
                     locale={locale}

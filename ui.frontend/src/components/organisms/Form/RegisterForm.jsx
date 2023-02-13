@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { getData, postData } from '../../../utils/server'
 import { InputSegment, DatepickerSegment, SelectOption } from '../../molecules';
-import { Button, Label } from '../../atoms';
+import { Button } from '../../atoms';
 import { LJI_URLS } from '../../../utils/constants';
-import crypto from '../../../utils/crypto';
 
 const RegisterForm = (props) => {
   const [inputVals, setInputVals] = useState({});
@@ -22,18 +21,16 @@ const RegisterForm = (props) => {
     lastNameInputPlaceholder,
     emailInputLabel,
     emailInputPlaceholder,
-    passwordInputLabel,
-    passwordInputPlaceholder,
+    phoneNumberInputLabel,
+    phoneNumberInputPlaceholder,
     dobInputLabel,
     dobLocale,
     cityInputLabel,
     cityInputPlaceholder,
     countryInputLabel,
     countryInputPlaceholder,
-    salutations= [],
+    salutations = [],
   } = props;
-
-  const cryptoInstance = crypto();
 
   const getLocation = async () => {
     let timeStamp = new Date()
@@ -47,7 +44,7 @@ const RegisterForm = (props) => {
       setInputVals({
         ...inputVals,
         city: geoLocationTimeStamp.data.city,
-        country: geoLocationTimeStamp.data.country_name
+        country: geoLocationTimeStamp.data.country
       });
       return;
     }
@@ -61,7 +58,7 @@ const RegisterForm = (props) => {
         setInputVals({
           ...inputVals,
           city: res.data.city,
-          country: res.data.country_name
+          country: res.data.country
         });
       })
       .catch(err => {
@@ -80,13 +77,13 @@ const RegisterForm = (props) => {
         "last_name": inputVals.lastName
       },
       "salutation": inputVals.salutation,
-      "member_name": inputVals.lastName,
+      "member_name": inputVals.firstName,
+      "country": inputVals.country,
       "middle_name": inputVals.middleName,
-      "password": inputVals.password ? cryptoInstance.encrpt(inputVals.password) : "",
-      "date_of_birth": inputVals.dob,
-      "gender": inputVals.gender,
-      "mobile": inputVals.mobile,
+      "gender": inputVals.gender || 'male',
+      "mobile": inputVals.phoneNumber || '919999900000',
       "address_line1": null,
+      "date_of_birth": inputVals.dob || null,
       "address_line2": null,
       "enrollment_touchpoint": 1,
       "enrolling_sponsor": 4,
@@ -103,7 +100,9 @@ const RegisterForm = (props) => {
 
     postData(LJI_URLS.CREATE_MEMBER, payload, headers)
       .then(resp => {
-        console.log('resp::', resp);
+        if(resp.data && [200,201, 302].indexOf(resp.data.status) > -1) {
+          localStorage.setItem('userDataToken', resp.data.token);
+        }
       })
       .catch(err => {
         console.log('err', err);
@@ -111,6 +110,22 @@ const RegisterForm = (props) => {
   }
 
   const onInputChange = (val, name) => {
+    if (name === 'dob') {
+      const formattedDate = new Date(val);
+      let fullDate = {
+        year: formattedDate.getFullYear()
+      };
+      const month = formattedDate.getMonth();
+      console.log(month, val)
+      fullDate.month = month < 9 ? '0' + (month + 1) : (month + 1);
+      const date = formattedDate.getDate();
+      fullDate.date = date < 10 ? '0' + date : date;
+      setInputVals({
+        ...inputVals,
+        [name]: '' + fullDate.year + '-' + fullDate.month + '-' + fullDate.date
+      });
+      return;
+    }
     setInputVals({
       ...inputVals,
       [name]: val
@@ -124,16 +139,16 @@ const RegisterForm = (props) => {
   return (<>
     <div id={formId} className={className}>
       <h3>{formTitle}</h3>
-      { salutations.length > 0 && <SelectOption
-          Withlabel = {false}
-          options = {salutations}
-          fieldName = {"salutation"}
-          value = {inputVals['salutation'] || ""}
-          onChange={onInputChange}
+      {salutations.length > 0 && <SelectOption
+        Withlabel={false}
+        options={salutations}
+        fieldName={"salutation"}
+        value={inputVals['salutation'] || ""}
+        onChange={onInputChange}
       />
       }
       {firstNameInputLabel && <InputSegment
-        id=""
+        id={`firstName_${Math.floor(Math.random() * 100)}`}
         name={'firstName'}
         inputType="text"
         placeholder={firstNameInputPlaceholder}
@@ -142,7 +157,7 @@ const RegisterForm = (props) => {
         value={inputVals['firstName'] || ""}
       />}
       {middleNameInputLabel && <InputSegment
-        id=""
+        id={`middleName_${Math.floor(Math.random() * 100)}`}
         name={'middleName'}
         inputType="text"
         placeholder={middleNameInputPlaceholder}
@@ -151,7 +166,7 @@ const RegisterForm = (props) => {
         value={inputVals['middleName'] || ""}
       />}
       {lastNameInputLabel && <InputSegment
-        id=""
+        id={`lastName_${Math.floor(Math.random() * 100)}`}
         name={'lastName'}
         inputType="text"
         placeholder={lastNameInputPlaceholder}
@@ -160,7 +175,7 @@ const RegisterForm = (props) => {
         value={inputVals['lastName'] || ""}
       />}
       {emailInputLabel && <InputSegment
-        id=""
+        id={`email_${Math.floor(Math.random() * 100)}`}
         name={'email'}
         inputType="text"
         placeholder={emailInputPlaceholder}
@@ -168,27 +183,27 @@ const RegisterForm = (props) => {
         onInputChange={onInputChange}
         value={inputVals['email'] || ""}
       />}
-      {passwordInputLabel && <InputSegment
-        id=""
-        name={'password'}
-        inputType="password"
-        placeholder={passwordInputPlaceholder}
-        labelText={passwordInputLabel}
+      {phoneNumberInputLabel && <InputSegment
+        id={`phoneNumber_${Math.floor(Math.random() * 100)}`}
+        name={'phpneNumber'}
+        inputType="text"
+        placeholder={phoneNumberInputPlaceholder}
+        labelText={phoneNumberInputLabel}
         onInputChange={onInputChange}
-        value={inputVals['password'] || ""}
+        value={inputVals['email'] || ""}
       />}
-      {dobInputLabel && (<>
-        <Label text={dobInputLabel} />
+      {dobInputLabel && (
         <DatepickerSegment
           onDateChange={onInputChange}
           name={'dob'}
+          id={`dob_${Math.floor(Math.random() * 100)}`}
           locale={dobLocale}
           maxDate={new Date()}
-        />
-      </>)
+          labelText={dobInputLabel}
+        />)
       }
       {cityInputLabel && <InputSegment
-        id=""
+        id={`coty_${Math.floor(Math.random() * 100)}`}
         name={'city'}
         inputType="text"
         placeholder={cityInputPlaceholder}
@@ -197,7 +212,7 @@ const RegisterForm = (props) => {
         value={inputVals['city'] || ""}
       />}
       {countryInputLabel && <InputSegment
-        id=""
+        id={`country_${Math.floor(Math.random() * 100)}`}
         name={'country'}
         inputType="text"
         placeholder={countryInputPlaceholder}
