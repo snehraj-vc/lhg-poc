@@ -100,7 +100,7 @@ const RegisterForm = (props) => {
 
     postData(LJI_URLS.CREATE_MEMBER, payload, headers)
       .then(resp => {
-        if(resp.data && [200,201, 302].indexOf(resp.data.status) > -1) {
+        if(resp.data && [200,201, 302].indexOf(resp.status) > -1) {
           localStorage.setItem('userDataToken', resp.data.token);
         }
       })
@@ -116,7 +116,6 @@ const RegisterForm = (props) => {
         year: formattedDate.getFullYear()
       };
       const month = formattedDate.getMonth();
-      console.log(month, val)
       fullDate.month = month < 9 ? '0' + (month + 1) : (month + 1);
       const date = formattedDate.getDate();
       fullDate.date = date < 10 ? '0' + date : date;
@@ -185,12 +184,12 @@ const RegisterForm = (props) => {
       />}
       {phoneNumberInputLabel && <InputSegment
         id={`phoneNumber_${Math.floor(Math.random() * 100)}`}
-        name={'phpneNumber'}
+        name={'phoneNumber'}
         inputType="text"
         placeholder={phoneNumberInputPlaceholder}
         labelText={phoneNumberInputLabel}
         onInputChange={onInputChange}
-        value={inputVals['email'] || ""}
+        value={inputVals['phoneNumber'] || ""}
       />}
       {dobInputLabel && (
         <DatepickerSegment
