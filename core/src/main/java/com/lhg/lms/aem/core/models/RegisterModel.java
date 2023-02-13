@@ -124,12 +124,7 @@ public class RegisterModel implements ComponentExporter {
             model.setText(valueMap.get("text",String.class));
             service.add(model);
         }
-
-
     }
-
-
-
     public String getFormid(){
         return formid;
     }
