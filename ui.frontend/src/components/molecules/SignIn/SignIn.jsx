@@ -5,19 +5,19 @@ import { Button } from '../../atoms';
 
 const SignIn = (props) => {
     const {
-        signInFormTitle,
-        memberLoginApiEndpoint,
-        signInButtonLabel,
-        passwordInputLabel,
-        passwordInputPlaceholder,
-        userIdLabel,
-        userIdPlaceholder,
-        xApiKey
+        signInFormTitle = "",
+        memberLoginApiEndpoint = "",
+        signInButtonLabel = "",
+        passwordInputLabel = "",
+        passwordInputPlaceholder = "",
+        userIdLabel = "",
+        userIdPlaceholder = "",
+        xApiKey = "",
     } = props;
     const [inputVals, setInputVals] = useState({});
     const [logInInfo, setLoginInfo] = useState({
         loggedIn: false
-    })
+    });
 
     useEffect(() => {
         let currentLS = localStorage.getItem(LS_USER_DATA_TOKEN_KEY);

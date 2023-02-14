@@ -9,14 +9,14 @@ const ChoosePassword = (props) => {
     const [jwt, setJwt] = useState('');
 
     const {
-        choosePasswordFormTitle,
-        passwordInputLabel,
-        passwordInputPlaceholder,
-        onSuccessCallback,
-        choosePasswordWithJWTTokenApiEndPoint,
-        passwordButtonLabel,
-        userIdLabel,
-        xApiKey
+        choosePasswordFormTitle = "",
+        passwordInputLabel = "",
+        passwordInputPlaceholder = "",
+        onSuccessCallback = () => null,
+        choosePasswordWithJWTTokenApiEndPoint = "",
+        passwordButtonLabel = "",
+        userIdLabel = "",
+        xApiKey = "",
     } = props;
 
     const LS_USER_DATA_TOKEN_KEY = 'userDataToken';
