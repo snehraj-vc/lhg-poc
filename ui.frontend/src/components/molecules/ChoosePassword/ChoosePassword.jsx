@@ -71,30 +71,32 @@ const ChoosePassword = (props) => {
     };
 
     return (<>
-        <h3>{choosePasswordFormTitle}</h3>
-        {userIdLabel && <InputSegment
-            id={`memberId_${Math.floor(Math.random() * 100)}`}
-            name={'memberId'}
-            inputType="text"
-            placeholder={""}
-            labelText={userIdLabel}
-            disabled={true}
-            value={inputVals['memberId'] || ""}
-        />}
-        {passwordInputLabel && <InputSegment
-            id={`password_${Math.floor(Math.random() * 100)}`}
-            name={'password'}
-            inputType="password"
-            placeholder={passwordInputPlaceholder}
-            labelText={passwordInputLabel}
-            onInputChange={onInputChange}
-            value={inputVals['password'] || ""}
-        />}
-        {passwordButtonLabel && <Button
-            onClick={setPasswordButtonClick}
-            type={'submit'}
-            text={passwordButtonLabel}
-        />}
+        <div className={'cp-choose-password'}>
+            <h3>{choosePasswordFormTitle}</h3>
+            {userIdLabel && <InputSegment
+                id={`memberId_${Math.floor(Math.random() * 100)}`}
+                name={'memberId'}
+                inputType="text"
+                placeholder={""}
+                labelText={userIdLabel}
+                disabled={true}
+                value={inputVals['memberId'] || ""}
+            />}
+            {passwordInputLabel && <InputSegment
+                id={`password_${Math.floor(Math.random() * 100)}`}
+                name={'password'}
+                inputType="password"
+                placeholder={passwordInputPlaceholder}
+                labelText={passwordInputLabel}
+                onInputChange={onInputChange}
+                value={inputVals['password'] || ""}
+            />}
+            {passwordButtonLabel && <Button
+                onClick={setPasswordButtonClick}
+                type={'submit'}
+                text={passwordButtonLabel}
+            />}
+        </div>
     </>);
 }
 

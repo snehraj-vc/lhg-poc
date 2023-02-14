@@ -141,93 +141,95 @@ const RegisterForm = (props) => {
     };
 
     return (<>
-        <h3>{formTitle}</h3>
-        {salutations.length > 0 && <SelectOption
-            Withlabel={false}
-            options={salutations}
-            fieldName={"salutation"}
-            value={inputVals['salutation'] || ""}
-            onChange={onInputChange}
-        />
-        }
-        {firstNameInputLabel && <InputSegment
-            id={`firstName_${Math.floor(Math.random() * 100)}`}
-            name={'firstName'}
-            inputType="text"
-            placeholder={firstNameInputPlaceholder}
-            labelText={firstNameInputLabel}
-            onInputChange={onInputChange}
-            value={inputVals['firstName'] || ""}
-        />}
-        {middleNameInputLabel && <InputSegment
-            id={`middleName_${Math.floor(Math.random() * 100)}`}
-            name={'middleName'}
-            inputType="text"
-            placeholder={middleNameInputPlaceholder}
-            labelText={middleNameInputLabel}
-            onInputChange={onInputChange}
-            value={inputVals['middleName'] || ""}
-        />}
-        {lastNameInputLabel && <InputSegment
-            id={`lastName_${Math.floor(Math.random() * 100)}`}
-            name={'lastName'}
-            inputType="text"
-            placeholder={lastNameInputPlaceholder}
-            labelText={lastNameInputLabel}
-            onInputChange={onInputChange}
-            value={inputVals['lastName'] || ""}
-        />}
-        {emailInputLabel && <InputSegment
-            id={`email_${Math.floor(Math.random() * 100)}`}
-            name={'email'}
-            inputType="text"
-            placeholder={emailInputPlaceholder}
-            labelText={emailInputLabel}
-            onInputChange={onInputChange}
-            value={inputVals['email'] || ""}
-        />}
-        {phoneNumberInputLabel && <InputSegment
-            id={`phoneNumber_${Math.floor(Math.random() * 100)}`}
-            name={'phoneNumber'}
-            inputType="text"
-            placeholder={phoneNumberInputPlaceholder}
-            labelText={phoneNumberInputLabel}
-            onInputChange={onInputChange}
-            value={inputVals['phoneNumber'] || ""}
-        />}
-        {dobInputLabel && (
-            <DatepickerSegment
-                onDateChange={onInputChange}
-                name={'dob'}
-                id={`dob_${Math.floor(Math.random() * 100)}`}
-                locale={dobLocale}
-                maxDate={new Date()}
-                labelText={dobInputLabel}
-            />)
-        }
-        {cityInputLabel && <InputSegment
-            id={`coty_${Math.floor(Math.random() * 100)}`}
-            name={'city'}
-            inputType="text"
-            placeholder={cityInputPlaceholder}
-            labelText={cityInputLabel}
-            onInputChange={onInputChange}
-            value={inputVals['city'] || ""}
-        />}
-        {countryInputLabel && <InputSegment
-            id={`country_${Math.floor(Math.random() * 100)}`}
-            name={'country'}
-            inputType="text"
-            placeholder={countryInputPlaceholder}
-            labelText={countryInputLabel}
-            onInputChange={onInputChange}
-            value={inputVals['country'] || ""}
-        />}
-        {registerButtonLabel && <Button
-            onClick={onRegisteration}
-            type={'submit'}
-            text={registerButtonLabel}
-        />}
+        <div className="cp-register-form">
+            <h3>{formTitle}</h3>
+            {salutations.length > 0 && <SelectOption
+                Withlabel={false}
+                options={salutations}
+                fieldName={"salutation"}
+                value={inputVals['salutation'] || ""}
+                onChange={onInputChange}
+            />
+            }
+            {firstNameInputLabel && <InputSegment
+                id={`firstName_${Math.floor(Math.random() * 100)}`}
+                name={'firstName'}
+                inputType="text"
+                placeholder={firstNameInputPlaceholder}
+                labelText={firstNameInputLabel}
+                onInputChange={onInputChange}
+                value={inputVals['firstName'] || ""}
+            />}
+            {middleNameInputLabel && <InputSegment
+                id={`middleName_${Math.floor(Math.random() * 100)}`}
+                name={'middleName'}
+                inputType="text"
+                placeholder={middleNameInputPlaceholder}
+                labelText={middleNameInputLabel}
+                onInputChange={onInputChange}
+                value={inputVals['middleName'] || ""}
+            />}
+            {lastNameInputLabel && <InputSegment
+                id={`lastName_${Math.floor(Math.random() * 100)}`}
+                name={'lastName'}
+                inputType="text"
+                placeholder={lastNameInputPlaceholder}
+                labelText={lastNameInputLabel}
+                onInputChange={onInputChange}
+                value={inputVals['lastName'] || ""}
+            />}
+            {emailInputLabel && <InputSegment
+                id={`email_${Math.floor(Math.random() * 100)}`}
+                name={'email'}
+                inputType="text"
+                placeholder={emailInputPlaceholder}
+                labelText={emailInputLabel}
+                onInputChange={onInputChange}
+                value={inputVals['email'] || ""}
+            />}
+            {phoneNumberInputLabel && <InputSegment
+                id={`phoneNumber_${Math.floor(Math.random() * 100)}`}
+                name={'phoneNumber'}
+                inputType="text"
+                placeholder={phoneNumberInputPlaceholder}
+                labelText={phoneNumberInputLabel}
+                onInputChange={onInputChange}
+                value={inputVals['phoneNumber'] || ""}
+            />}
+            {dobInputLabel && (
+                <DatepickerSegment
+                    onDateChange={onInputChange}
+                    name={'dob'}
+                    id={`dob_${Math.floor(Math.random() * 100)}`}
+                    locale={dobLocale}
+                    maxDate={new Date()}
+                    labelText={dobInputLabel}
+                />)
+            }
+            {cityInputLabel && <InputSegment
+                id={`coty_${Math.floor(Math.random() * 100)}`}
+                name={'city'}
+                inputType="text"
+                placeholder={cityInputPlaceholder}
+                labelText={cityInputLabel}
+                onInputChange={onInputChange}
+                value={inputVals['city'] || ""}
+            />}
+            {countryInputLabel && <InputSegment
+                id={`country_${Math.floor(Math.random() * 100)}`}
+                name={'country'}
+                inputType="text"
+                placeholder={countryInputPlaceholder}
+                labelText={countryInputLabel}
+                onInputChange={onInputChange}
+                value={inputVals['country'] || ""}
+            />}
+            {registerButtonLabel && <Button
+                onClick={onRegisteration}
+                type={'submit'}
+                text={registerButtonLabel}
+            />}
+        </div>
     </>);
 }
 

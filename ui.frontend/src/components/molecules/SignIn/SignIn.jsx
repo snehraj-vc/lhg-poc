@@ -64,29 +64,31 @@ const SignIn = (props) => {
     };
 
     return (<>
-        <h3>{signInFormTitle}</h3>
-        {userIdLabel && <InputSegment
-            id={`memberId_${Math.floor(Math.random() * 100)}`}
-            name={'memberId'}
-            inputType="text"
-            placeholder={userIdPlaceholder}
-            labelText={userIdLabel}
-            value={inputVals['memberId'] || ""}
-        />}
-        {passwordInputLabel && <InputSegment
-            id={`password_${Math.floor(Math.random() * 100)}`}
-            name={'password'}
-            inputType="password"
-            placeholder={passwordInputPlaceholder}
-            labelText={passwordInputLabel}
-            onInputChange={onInputChange}
-            value={inputVals['password'] || ""}
-        />}
-        {signInButtonLabel && <Button
-            onClick={signInButtonClick}
-            type={'submit'}
-            text={signInButtonLabel}
-        />}
+        <div className={'cp-sign-in'}>
+            <h3>{signInFormTitle}</h3>
+            {userIdLabel && <InputSegment
+                id={`memberId_${Math.floor(Math.random() * 100)}`}
+                name={'memberId'}
+                inputType="text"
+                placeholder={userIdPlaceholder}
+                labelText={userIdLabel}
+                value={inputVals['memberId'] || ""}
+            />}
+            {passwordInputLabel && <InputSegment
+                id={`password_${Math.floor(Math.random() * 100)}`}
+                name={'password'}
+                inputType="password"
+                placeholder={passwordInputPlaceholder}
+                labelText={passwordInputLabel}
+                onInputChange={onInputChange}
+                value={inputVals['password'] || ""}
+            />}
+            {signInButtonLabel && <Button
+                onClick={signInButtonClick}
+                type={'submit'}
+                text={signInButtonLabel}
+            />}
+        </div>
     </>);
 }
 

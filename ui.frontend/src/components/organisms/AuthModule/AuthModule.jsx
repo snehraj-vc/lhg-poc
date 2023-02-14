@@ -100,7 +100,7 @@ const AuthModule = (props) => {
     };
 
     return (<>
-        <div id={formId} className={className}>
+        <div id={formId} className={`cp-auth-module ${className}`}>
             {authState === 'register' && (<RegisterForm {...registerStepArgs} />)}
             {authState === 'choosePassword' && <ChoosePassword {...choosePasswordStepArgs}/>}
             {authState === 'signIn' && <SignIn {...signInStepArgs} />}
