@@ -139,6 +139,41 @@
                             </items>
                         </field>
                     </salutations>
+                    <passwordInputLabel
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                        fieldLabel="passwordInputLabel"
+                        name="./passwordInputLabel"/>
+                    <passwordInputPlaceholder
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                        fieldLabel="passwordInputPlaceholder"
+                        name="./passwordInputPlaceholder"/>
+                    <createMemberApiEndpoint
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                        fieldLabel="createMemberApiEndpoint"
+                        name="./createMemberApiEndpoint"/>
+                    <choosePasswordWithJWTTokenApiEndPoint
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                        fieldLabel="choosePasswordWithJWTTokenApiEndPoint"
+                        name="./choosePasswordWithJWTTokenApiEndPoint"/>
+                    <memberLoginApiEndpoint
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                        fieldLabel="memberLoginApiEndpoint"
+                        name="./memberLoginApiEndpoint"/>
+                    <choosePasswordFormTitle
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                        fieldLabel="choosePasswordFormTitle"
+                        name="./choosePasswordFormTitle"/>
+                    <signInFormTitle
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                        fieldLabel="signInFormTitle"
+                        name="./signInFormTitle"/>
                 </items>
             </column>
         </items>

@@ -53,6 +53,12 @@ public class RegisterModel implements ComponentExporter {
     protected String formTitle;
 
     @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
+    protected String choosePasswordFormTitle;
+
+    @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
+    protected String signInFormTitle;
+
+    @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
     protected String xApiKey;
 
     @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
@@ -105,6 +111,21 @@ public class RegisterModel implements ComponentExporter {
 
     @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
     protected String dobLocale;
+
+    @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
+    protected String passwordInputPlaceholder;
+
+    @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
+    protected String createMemberApiEndpoint;
+
+    @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
+    protected String choosePasswordWithJWTTokenApiEndPoint;
+    
+    @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
+    protected String memberLoginApiEndpoint;
+
+    @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
+    protected String passwordInputLabel;
 
     @ChildResource
     @Named("salutations")
@@ -184,6 +205,27 @@ public class RegisterModel implements ComponentExporter {
     }
     public String getDobLocale() {
         return dobLocale;
+    }
+    public String getPasswordInputLabel() {
+        return passwordInputLabel;
+    }
+    public String getPasswordInputPlaceholder(){
+        return passwordInputPlaceholder;
+    }
+    public String getCreateMemberApiEndpoint() {
+        return createMemberApiEndpoint;
+    }
+    public String getChoosePasswordWithJWTTokenApiEndPoint(){
+        return choosePasswordWithJWTTokenApiEndPoint;
+    }
+    public String getMemberLoginApiEndpoint() {
+        return memberLoginApiEndpoint;
+    }
+    public String getChoosePasswordFormTitle(){
+        return choosePasswordFormTitle;
+    }
+    public String getSignInFormTitle() {
+        return signInFormTitle;
     }
     public ArrayList<ServiceModelDTO> getSalutations(){
         return service;
