@@ -4,6 +4,9 @@ import ButtonGroup from './ButtonGroup/ButtonGroup';
 import SelectOption from './SelectOption/SelectOption';
 import DatepickerSegment from './DatepickerSegment/DatepickerSegment';
 import CheckInDateRangePicker from './CheckInDateRangePicker/CheckInDateRangePicker';
+import RegisterForm from './RegisterForm/RegisterForm';
+import ChoosePassword from './ChoosePassword/ChoosePassword';
+import SignIn from './SignIn/SignIn';
 
 export {
     SelectOption,
@@ -11,5 +14,8 @@ export {
     InputSegment,
     Sso,
     DatepickerSegment,
-    CheckInDateRangePicker
+    CheckInDateRangePicker,
+    SignIn,
+    ChoosePassword,
+    RegisterForm
 };
