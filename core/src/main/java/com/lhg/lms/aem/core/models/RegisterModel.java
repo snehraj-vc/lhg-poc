@@ -127,6 +127,18 @@ public class RegisterModel implements ComponentExporter {
     @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
     protected String passwordInputLabel;
 
+    @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
+    protected String signInButtonLabel;
+
+    @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
+    protected String passwordButtonLabel;
+    
+    @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
+    protected String userIdLabel;
+
+    @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
+    protected String userIdPlaceholder;
+
     @ChildResource
     @Named("salutations")
     private Resource serviceResource;
@@ -226,6 +238,18 @@ public class RegisterModel implements ComponentExporter {
     }
     public String getSignInFormTitle() {
         return signInFormTitle;
+    }
+    public String getSignInButtonLabel(){
+        return signInButtonLabel;
+    }
+    public String getPasswordButtonLabel() {
+        return passwordButtonLabel;
+    }
+    public String getUserIdLabel(){
+        return userIdLabel;
+    }
+    public String getUserIdPlaceholder() {
+        return userIdPlaceholder;
     }
     public ArrayList<ServiceModelDTO> getSalutations(){
         return service;

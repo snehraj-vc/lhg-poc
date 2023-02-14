@@ -1,17 +1,17 @@
 import React from 'react';
-import RegisterForm from './RegisterForm';
+import AuthModule from './AuthModule';
 
 export default {
-    title: 'organism/RegisterForm',
-    component: RegisterForm,
+    title: 'organism/AuthModule',
+    component: AuthModule,
     argsTypes: {}
 }
 
-const Template = (args) => <RegisterForm {...args} />
+const Template = (args) => <AuthModule {...args} />
 
-export const RegisterFormValues = Template.bind({});
+export const AuthModuleValues = Template.bind({});
 
-RegisterFormValues.args = {
+AuthModuleValues.args = {
     formId: 'register-form',
     className: '',
     formTitle: 'Registration Form',
