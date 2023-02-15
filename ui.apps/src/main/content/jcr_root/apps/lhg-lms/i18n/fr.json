@@ -1,3 +1,6 @@
 {
-  "&amp;copy; {0} LHG LMS Site. All rights reserved." : "&amp;copy; {0} LHG LMS Site. Tous droits réservés."
+  "&amp;copy; {0} LHG Project Site. All rights reserved." : "&amp;copy; {0} LHG Project Site. Tous droits réservés.",
+    "throttled" : "La demande a été limitée, devrait être disponible dans 86390 secondes",
+    "page_not_found" : "page ou ressource introuvable"
+     "Hello" : "Salut"
 }
