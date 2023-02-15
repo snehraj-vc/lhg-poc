@@ -69,7 +69,7 @@ const RegisterForm = (props) => {
                 if (resp.data && [200, 201, 302].indexOf(resp.status) > -1) {
                     localStorage.setItem('userDataToken', JSON.stringify({
                         token: resp.data.token,
-                        step: 'register',
+                        step: 'choosePassword',
                         memberId: resp.data.member_id
                     }));
                     onSuccessCallback();

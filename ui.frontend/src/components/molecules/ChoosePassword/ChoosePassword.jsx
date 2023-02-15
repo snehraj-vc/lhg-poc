@@ -36,7 +36,8 @@ const ChoosePassword = (props) => {
                 currentUserTokenLS = JSON.parse(currentUserTokenLS);
                 currentUserTokenLS = {
                     ...currentUserTokenLS,
-                    token: resp.data.token
+                    token: resp.data.token,
+                    step: 'signIn'
                 }
                 localStorage.setItem(LS_USER_DATA_TOKEN_KEY, JSON.stringify(currentUserTokenLS));
                 onSuccessCallback();
