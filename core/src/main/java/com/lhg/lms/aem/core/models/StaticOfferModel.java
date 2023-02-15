@@ -47,7 +47,6 @@ public class StaticOfferModel implements ComponentExporter {
         LOG.info("hellotest");
     }
     public String getTitle() {
-
         return title;
     }
     public String getDescription() {
