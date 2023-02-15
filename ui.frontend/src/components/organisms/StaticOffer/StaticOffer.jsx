@@ -1,4 +1,7 @@
 const StaticOffer = (props) => {
+  const {
+
+  }=props
     return ( <div>
       
       <h1>title</h1>
