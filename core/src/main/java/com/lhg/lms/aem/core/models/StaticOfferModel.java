@@ -27,6 +27,7 @@ import org.apache.sling.models.annotations.injectorspecific.ChildResource;
 import org.apache.sling.models.annotations.injectorspecific.InjectionStrategy;
 import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
+import org.apache.xmlbeans.impl.xb.xsdschema.Public;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -42,6 +43,8 @@ public class StaticOfferModel implements ComponentExporter {
     private static final Logger LOG = LoggerFactory.getLogger(StaticOfferModel.class);
 
     protected static final String RESOURCE_TYPE = "lhg-lms/components/staticoffer";
+    @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
+    protected String text;
 
     @ChildResource
     @Named("offers")
@@ -63,7 +66,9 @@ public class StaticOfferModel implements ComponentExporter {
     public ArrayList<StaticOfferDTO> getOffers(){
         return service;
     }
-
+public String getText(){
+        return text;
+    }
 
   //  @Override
     public String getExportedType() {
