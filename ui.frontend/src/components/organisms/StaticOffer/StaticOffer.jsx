@@ -1,14 +1,21 @@
+import React from "react";
+import { StaticOfferTemplate } from "../../molecules";
 const StaticOffer = (props) => {
   const {
 
-  }=props
-    return ( <div>
-      
-      <h1>title</h1>
-      <p>description</p>
-      <img src=""/>
-      
-    </div> );
+    offers=[]
+
+  }=props;
+
+    return ( <>
+   {  offers.map((res)=>{
+         return (<StaticOfferTemplate title={res.title} description={res.description} source={res.image}/>);
+              })
+  
+    }
+    </> );
 }
  
 export default StaticOffer;
+
+
