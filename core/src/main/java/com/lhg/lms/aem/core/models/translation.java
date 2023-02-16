@@ -50,14 +50,14 @@ public class translation implements ComponentExporter {
     private Page currentpage;
     @SlingObject
     private Resource currentResource;
-    protected static final String RESOURCE_TYPE = "lhg-lms/components/helloworld";
+    protected static final String RESOURCE_TYPE = "lhg-lms/components/intl";
 
     @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
-    protected Dictionary<String,String> text;
+    protected Dictionary<String,String> intl;
     @SlingObject
     private ResourceResolver resolver;
     @Inject
-    public Dictionary<String,String> getText() {
+    public Dictionary<String,String> getIntl() {
         Dictionary<String,String> values = new Hashtable<>();
         PageManager pageManager = resolver.adaptTo(PageManager.class);
         currentpage = pageManager.getContainingPage(currentResource);

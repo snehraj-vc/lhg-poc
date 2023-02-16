@@ -131,6 +131,11 @@ const customCompsSettings = [{
     feCompPath: import(`../components/organisms/AuthModule/AuthModule`),
     aemCompMap: 'lhg-lms/components/register',
     compName: 'RegisterForm'
+}, {
+    feCompPath: import(`../components/helperComponents/Intl/Intl`),
+    aemCompMap: 'lhg-lms/components/intl',
+    compName: 'Internationalization',
+    customPropCheck: (props) => (!props || !props.intl)
 }
 ];
 
