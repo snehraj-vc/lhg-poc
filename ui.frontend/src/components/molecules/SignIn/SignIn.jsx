@@ -57,7 +57,8 @@ const SignIn = (props) => {
                 currentUserTokenLS = {
                     ...currentUserTokenLS,
                     token: resp.data.token,
-                    memberId: resp.data.member_id
+                    memberId: resp.data.member_id,
+                    step: 'loggedIn'
                 };
                 localStorage.setItem(LS_USER_DATA_TOKEN_KEY, JSON.stringify(currentUserTokenLS));
                 setLoginInfo({
