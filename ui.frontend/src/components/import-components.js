@@ -132,7 +132,7 @@ const customCompsSettings = [{
     aemCompMap: 'lhg-lms/components/register',
     compName: 'RegisterForm'
 },{
-    feCompPath: import(`../components/organisms/staticoffer/staticoffer`),
+    feCompPath: import(`../components/organisms/StaticOffer/StaticOffer`),
     aemCompMap: 'lhg-lms/components/staticoffer',
     compName: 'StaticOffer'
 }
