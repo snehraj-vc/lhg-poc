@@ -8,10 +8,7 @@ const Intl = (props) => {
 
     useEffect(() => {
         if (intl) {
-            const intlItemSS = getIntl();
-            if (!intlItemSS) {
-                setIntl(intl);
-            }
+            setIntl(intl);
         }
     }, [intl]);
 
