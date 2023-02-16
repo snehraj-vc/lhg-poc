@@ -1,20 +1,17 @@
 package com.lhg.lms.aem.core.models;
 
 
+
+
 public class StaticOfferDTO {
+
 
     private String title;
     private String description;
     private String image;
-
-    protected void init() {
-    }
-
-
     public String getTitle() {
         return title;
     }
-
     public String getDescription() {
         return description;
     }
