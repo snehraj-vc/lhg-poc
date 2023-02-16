@@ -45,21 +45,14 @@ public class StaticOfferModel implements ComponentExporter {
     private static final Logger LOG = LoggerFactory.getLogger(StaticOfferModel.class);
 
     protected static final String RESOURCE_TYPE = "lhg-lms/components/staticoffer";
-    @ValueMapValue
-    protected String text;
-
     @ChildResource
     @Named("offers")
     private Resource serviceResource;
-
     private ArrayList<StaticOfferDTO> service = new ArrayList<>();
     @PostConstruct
     protected void init() {
-        LOG.info("test");
         if (serviceResource!= null){
       Iterable<Resource> multi = serviceResource.getChildren();
-
-        LOG.info("multi:{} ", multi);
         for (Resource multiResource : multi){
             ValueMap valueMap = multiResource.getValueMap();
             StaticOfferDTO model = new StaticOfferDTO();
@@ -71,9 +64,6 @@ public class StaticOfferModel implements ComponentExporter {
     }
     public ArrayList<StaticOfferDTO> getOffers(){
         return service;
-    }
-public String getText(){
-        return text;
     }
 
   //  @Override

@@ -1,11 +1,6 @@
 package com.lhg.lms.aem.core.models;
 
-
-
-
 public class StaticOfferDTO {
-
-
     private String title;
     private String description;
     private String image;
@@ -18,11 +13,8 @@ public class StaticOfferDTO {
     public String getImage() {
         return image;
     }
-
-
-
-    public void setTitle(String val) {
-        title = val;
+    public void setTitle(String value) {
+        title = value;
     }
 
     public void setDescription(String value) {
