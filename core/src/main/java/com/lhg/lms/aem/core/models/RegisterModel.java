@@ -146,6 +146,7 @@ public class RegisterModel implements ComponentExporter {
     private ArrayList<ServiceModelDTO> service = new ArrayList<>();
     @PostConstruct
     protected void init() {
+        if (serviceResource!= null){
         Iterable<Resource> multi = serviceResource.getChildren();
         for (Resource multiResource : multi){
             ValueMap valueMap = multiResource.getValueMap();
@@ -153,7 +154,7 @@ public class RegisterModel implements ComponentExporter {
             model.setValue(valueMap.get("value",String.class));
             model.setText(valueMap.get("text",String.class));
             service.add(model);
-        }
+        }}
     }
     public String getFormid(){
         return formid;
