@@ -18,14 +18,21 @@ package com.lhg.lms.aem.core.models;
 import com.adobe.cq.export.json.ComponentExporter;
 import com.adobe.cq.export.json.ExporterConstants;
 import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Exporter;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.ChildResource;
 import org.apache.sling.models.annotations.injectorspecific.InjectionStrategy;
+import org.apache.sling.models.annotations.injectorspecific.SlingObject;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
+import javax.inject.Named;
+import java.util.ArrayList;
 
 @Model(adaptables = SlingHttpServletRequest.class,
         adapters = {ComponentExporter.class},
@@ -36,26 +43,27 @@ public class StaticOfferModel implements ComponentExporter {
 
     protected static final String RESOURCE_TYPE = "lhg-lms/components/staticoffer";
 
-    @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
-    protected String title;
-    @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
-    protected String description;
-    @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
-    protected String image;
+    @ChildResource
+    @Named("offers")
+    private Resource serviceResource;
+
+    private ArrayList<StaticOfferDTO> service = new ArrayList<>();
     @PostConstruct
     protected void init() {
-        LOG.info("hellotest");
+        Iterable<Resource> multi = serviceResource.getChildren();
+        for (Resource multiResource : multi){
+            ValueMap valueMap = multiResource.getValueMap();
+            StaticOfferDTO model = new StaticOfferDTO();
+            model.setTitle(valueMap.get("title",String.class));
+            model.setDescription(valueMap.get("description",String.class));
+            model.setImage(valueMap.get("image",String.class));
+            service.add(model);
+        }
     }
-    public String getTitle() {
+    public ArrayList<StaticOfferDTO> getOffers(){
+        return service;
+    }
 
-        return title;
-    }
-    public String getDescription() {
-        return description;
-    }
-    public String getImage() {
-        return image;
-    }
 
   //  @Override
     public String getExportedType() {
