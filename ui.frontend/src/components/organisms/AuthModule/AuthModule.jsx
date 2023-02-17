@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { RegisterForm, SignIn, ChoosePassword } from '../../molecules';
 
 const AuthModule = (props) => {
@@ -98,6 +98,18 @@ const AuthModule = (props) => {
         userIdPlaceholder,
         xApiKey
     };
+
+    useEffect(() => {
+        let userDataTokenLS = localStorage.getItem('userDataToken');
+        if(userDataTokenLS) {
+            userDataTokenLS = JSON.parse(userDataTokenLS);
+            if(userDataTokenLS.step === 'choosePassword') {
+                setAuthState('choosePassword');
+            } else if(userDataTokenLS.step === 'signIn' || userDataTokenLS.step === 'loggedIn') {
+                setAuthState('signIn');
+            }
+        }
+    });
 
     return (<>
         <div id={formId} className={`cp-auth-module ${className}`}>
