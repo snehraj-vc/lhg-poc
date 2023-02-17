@@ -128,7 +128,7 @@ const customCompsSettings = [{
     aemCompMap: 'lhg-lms/components/searchother',
     compName: 'NestedSearch'
 }, {
-    feCompPath: import(`../components/organisms/Form/RegisterForm`),
+    feCompPath: import(`../components/organisms/AuthModule/AuthModule`),
     aemCompMap: 'lhg-lms/components/register',
     compName: 'RegisterForm'
 },{

@@ -11,7 +11,8 @@ const Input = (props) => {
         name="",
         value="",
         onChange = () => null,
-        onBlur = () => null
+        onBlur = () => null,
+        disabled=false
     } = props;
 
     return (
@@ -26,6 +27,7 @@ const Input = (props) => {
                 value={value}
                 onChange={(e) => onChange(e.target.value, name)}
                 onBlur={(e) => onBlur(e.target.value, name)}
+                disabled={disabled}
             />
         </>
     )

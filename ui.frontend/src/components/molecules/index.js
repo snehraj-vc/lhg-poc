@@ -5,6 +5,9 @@ import SelectOption from './SelectOption/SelectOption';
 import DatepickerSegment from './DatepickerSegment/DatepickerSegment';
 import CheckInDateRangePicker from './CheckInDateRangePicker/CheckInDateRangePicker';
 import StaticOfferTemplate from './StaticOfferTemplate/StaticOfferTemplate';
+import RegisterForm from './RegisterForm/RegisterForm';
+import ChoosePassword from './ChoosePassword/ChoosePassword';
+import SignIn from './SignIn/SignIn';
 
 export {
     StaticOfferTemplate,
@@ -13,5 +16,8 @@ export {
     InputSegment,
     Sso,
     DatepickerSegment,
-    CheckInDateRangePicker
+    CheckInDateRangePicker,
+    SignIn,
+    ChoosePassword,
+    RegisterForm
 };
