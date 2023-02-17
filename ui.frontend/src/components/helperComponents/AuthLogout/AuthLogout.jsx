@@ -38,18 +38,24 @@ const AuthLogout = (props) => {
     // each time any of the event is triggered, i.e on mouse move, click, scroll, keypress etc, the timer to logout user after 10 secs of inactivity resets.
     // However, if none of the event is triggered within 10 secs, that is app is inactive, the app automatically logs out.
     useEffect(() => {
-        let userInfoLS = localStorage.getItem('userDataToken');
-        if(userInfoLS) {
-            userInfoLS = JSON.parse(userInfoLS);
-            if(userInfoLS.step === 'loggedIn') {
-                Object.values(events).forEach((item) => {
-                    window.addEventListener(item, () => {
-                        resetTimer();
-                        handleLogoutTimer();
+        const startTimer = () => {
+            let userInfoLS = localStorage.getItem('userDataToken');
+            if(userInfoLS) {
+                userInfoLS = JSON.parse(userInfoLS);
+                if(userInfoLS.step === 'loggedIn') {
+                    Object.values(events).forEach((item) => {
+                        window.addEventListener(item, () => {
+                            resetTimer();
+                            handleLogoutTimer();
+                        });
                     });
-                });
+                }
             }
         }
+        window.addEventListener('loggedIn', () => {
+            startTimer();
+        });
+        startTimer();
     }, []);
 
     // logs out user by clearing out auth token in localStorage and redirecting url to /signin page.
