@@ -14,14 +14,41 @@ export const getSession = (key) => {
     return sessionStorage.getItem(key);
 }
 
+let sessionVars = {
+    sessionSet: false,
+    attemptCount: 0,
+    intlVals: {}
+};
+
+const updateIntlVals = () => {
+    const intls = getSession('intl');
+    sessionVars.intlVals = {
+        ...JSON.parse(intls)
+    };
+};
+
+window.addEventListener('updateIntl', () => {
+    updateIntlVals();
+});
+
 export const setIntl = (intlVals) => {
     setSession('intl', JSON.stringify(intlVals));
+    sessionVars.sessionSet = true;
 }
 
-export const getIntl = () => {
-    const intlVals = getSession('intl');
-    if(intlVals) {
-        return JSON.parse(intlVals);
-    }
-    return false;
+export async function getIntl() {
+    return new Promise((res, rej) => {
+        const session = setInterval(() => {
+            if(sessionVars.attemptCount > 50) {
+                clearInterval(session)
+                console.log('**** No Translation Component Found *****');
+                rej();
+            }
+            if (sessionVars.sessionSet) {
+                clearInterval(session)
+                res(sessionVars.intlVals)
+            }
+            sessionVars.attemptCount++;
+        }, 100);
+    });
 }

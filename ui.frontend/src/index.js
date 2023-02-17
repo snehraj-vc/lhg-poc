@@ -26,16 +26,16 @@ const renderApp = () => {
         render(
             <Router history={history}>
                 <ApolloProvider client={client}>
-                <AuthLogout>
-                    <App
-                        history={history}
-                        cqChildren={pageModel[Constants.CHILDREN_PROP]}
-                        cqItems={pageModel[Constants.ITEMS_PROP]}
-                        cqItemsOrder={pageModel[Constants.ITEMS_ORDER_PROP]}
-                        cqPath={pageModel[Constants.PATH_PROP]}
-                        locationPathname={window.location.pathname}
-                    />
-                </AuthLogout>
+                    <AuthLogout>
+                        <App
+                            history={history}
+                            cqChildren={pageModel[Constants.CHILDREN_PROP]}
+                            cqItems={pageModel[Constants.ITEMS_PROP]}
+                            cqItemsOrder={pageModel[Constants.ITEMS_ORDER_PROP]}
+                            cqPath={pageModel[Constants.PATH_PROP]}
+                            locationPathname={window.location.pathname}
+                        />
+                    </AuthLogout>
                 </ApolloProvider>
             </Router>,
             document.getElementById('spa-root')

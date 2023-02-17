@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { setIntl, getIntl } from '../../../utils';
+import { setIntl } from '../../../utils';
 
 const Intl = (props) => {
     const {
@@ -9,6 +9,7 @@ const Intl = (props) => {
     useEffect(() => {
         if (intl) {
             setIntl(intl);
+            window.dispatchEvent(new Event("updateIntl"));
         }
     }, [intl]);
 
