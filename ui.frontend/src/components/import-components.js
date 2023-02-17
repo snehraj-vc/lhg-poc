@@ -135,6 +135,10 @@ const customCompsSettings = [{
     feCompPath: import(`../components/organisms/StaticOffer/StaticOffer`),
     aemCompMap: 'lhg-lms/components/staticoffer',
     compName: 'StaticOffer'
+},{
+    feCompPath: import(`../components/organisms/AutoSuggestion/AutoSuggestion`),
+    aemCompMap: 'lhg-lms/components/autosuggest',
+    compName: 'AutoSuggestion'
 }
 ];
 

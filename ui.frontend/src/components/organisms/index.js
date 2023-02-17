@@ -5,8 +5,10 @@ import HeaderSearch from './HeaderSearch/HeaderSearch';
 import RegisterForm from './Form/RegisterForm';
 import Olapic from './Olapic/Olapic';
 import StaticOffer from './StaticOffer/StaticOffer';
+import AutoSuggestion from './AutoSuggestion/AutoSuggestion';
 
 export {
+    AutoSuggestion,
     StaticOffer,
     RegisterForm,
     HelloWorld,
