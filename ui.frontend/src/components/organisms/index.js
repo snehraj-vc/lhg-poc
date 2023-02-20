@@ -3,9 +3,13 @@ import LanguageNavigation from './LanguageNavigation/LanguageNavigation';
 import Navigation from './Navigation/Navigation';
 import HeaderSearch from './HeaderSearch/HeaderSearch';
 import Olapic from './Olapic/Olapic';
-import AuthModule from './AuthModule/AuthModule'
+import StaticOffer from './StaticOffer/StaticOffer';
+import AutoSuggestion from './AutoSuggestion/AutoSuggestion';
+import AuthModule from './AuthModule/AuthModule';
 
 export {
+    AutoSuggestion,
+    StaticOffer,
     HelloWorld,
     LanguageNavigation,
     Navigation,

@@ -131,6 +131,14 @@ const customCompsSettings = [{
     feCompPath: import(`../components/organisms/AuthModule/AuthModule`),
     aemCompMap: 'lhg-lms/components/register',
     compName: 'RegisterForm'
+},{
+    feCompPath: import(`../components/organisms/StaticOffer/StaticOffer`),
+    aemCompMap: 'lhg-lms/components/staticoffer',
+    compName: 'StaticOffer'
+},{
+    feCompPath: import(`../components/organisms/AutoSuggestion/AutoSuggestion`),
+    aemCompMap: 'lhg-lms/components/autosuggest',
+    compName: 'AutoSuggestion'
 }, {
     feCompPath: import(`../components/helperComponents/Intl/Intl`),
     aemCompMap: 'lhg-lms/components/intl',

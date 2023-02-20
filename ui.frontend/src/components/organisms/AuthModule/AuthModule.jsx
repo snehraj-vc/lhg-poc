@@ -109,7 +109,7 @@ const AuthModule = (props) => {
                 setAuthState('signIn');
             }
         }
-    });
+    }, [setAuthState]);
 
     return (<>
         <div id={formId} className={`cp-auth-module ${className}`}>
