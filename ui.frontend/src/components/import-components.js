@@ -139,6 +139,11 @@ const customCompsSettings = [{
     feCompPath: import(`../components/organisms/AutoSuggestion/AutoSuggestion`),
     aemCompMap: 'lhg-lms/components/autosuggest',
     compName: 'AutoSuggestion'
+}, {
+    feCompPath: import(`../components/helperComponents/Intl/Intl`),
+    aemCompMap: 'lhg-lms/components/intl',
+    compName: 'Internationalization',
+    customPropCheck: (props) => (!props || !props.intl)
 }
 ];
 

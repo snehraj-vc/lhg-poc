@@ -2,7 +2,9 @@ import React, {useState, useEffect} from 'react';
 import { Datepicker } from '../../atoms';
 
 const CheckInDateRangePicker = (props) => {
-    const {} = props;
+    const {
+        totalNightsText = "Total Nights:"
+    } = props;
     const DAY_SECONDS = (1000 * 60 * 60 * 24);
     const startDate = new Date();
     let endDate = new Date();
@@ -45,7 +47,7 @@ const CheckInDateRangePicker = (props) => {
             onDateChange={selectCheckInDate}
         />
 
-        Total Nights: {getNightCount()}
+        {totalNightsText} {getNightCount()}
 
         <Datepicker
             minDate={minCheckOutDate}
