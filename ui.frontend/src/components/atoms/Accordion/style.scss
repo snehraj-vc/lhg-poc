@@ -1,0 +1,7 @@
+.cp-accordion {
+    &.accordion-close {
+        .accordion-children {
+            display: none;
+        }
+    }
+}

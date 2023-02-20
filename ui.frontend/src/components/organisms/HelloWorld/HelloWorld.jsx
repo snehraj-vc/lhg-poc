@@ -6,10 +6,18 @@ import {
   SelectOption,
   CheckInDateRangePicker
 } from '../../molecules';
+import { getIntl } from '../../../utils';
 
 const Helloworld = (props) => {
   const [currencies, setCurrencies] = useState([]);
   const [onDemandCurrency, setOnDemandCurrency] = useState(null);
+
+  //Setting up translation for file
+  const [tl, setTl] = useState({});
+  useEffect(() => {
+    (async () => setTl(await getIntl()))();
+  }, []);
+  //-----------------------------
 
   const { data, loading, error } = useQuery(EXCHANGE_RATES, {
     variables: {
@@ -103,6 +111,8 @@ const Helloworld = (props) => {
       <div className="helloWorld">{props.text}</div>
       <hr />
       <CheckInDateRangePicker />
+      <hr />
+      Translated: {tl.throttled}
       <hr />
       <div className="exchange-rates">{getExchangeRates()}</div>
       <div className="exchange-rate-ondemand">{getExchangeRatesOnDemand()}</div>

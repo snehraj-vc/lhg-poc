@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import DatePicker from 'react-date-picker';
-// import DatePicker from 'react-date-picker/dist/entry.nostyle';
 
 const Datepicker = (props) => {
     const {
@@ -11,6 +10,7 @@ const Datepicker = (props) => {
         locale="en",
         disableCalendar = false,
         minDate,
+        id="",
         maxDate,
     } = props;
     const [startDate, setStartDate] = useState(new Date());
@@ -22,6 +22,7 @@ const Datepicker = (props) => {
     return (<>
         <div className={`cp-datepicker`} date-name={name}>
             <DatePicker
+                id={id}
                 value={startDate}
                 onChange={(d) => setDate(d)}
                 className={className}
