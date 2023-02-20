@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Input, Accordion } from "../../atoms";
 import { setLocal, getLocal } from '../../../utils';
-import {LOCAL_STORAGE_KEYS} from '../../../utils/constants';
+import { LOCAL_STORAGE_KEYS } from '../../../utils/constants';
 
 const AutoSuggestion = (props) => {
   const {
@@ -21,20 +21,20 @@ const AutoSuggestion = (props) => {
     const val = value.trim().toLowerCase();
     let filteredResults = {};
     resetModifiedHotelsFullList();
-    if(val) {
-      for(let cont in modifiedHotelsList) {
-        if(cont.toLowerCase().indexOf(val) > -1) {
-          filteredResults[cont] = {...modifiedHotelsList[cont]};
+    if (val) {
+      for (let cont in modifiedHotelsList) {
+        if (cont.toLowerCase().indexOf(val) > -1) {
+          filteredResults[cont] = { ...modifiedHotelsList[cont] };
         } else {
-          for(let country in modifiedHotelsList[cont]) {
-            if(country.toLowerCase().indexOf(val) > -1) {
-              filteredResults[cont] = filteredResults[cont] ? {...filteredResults[cont]} : {};
+          for (let country in modifiedHotelsList[cont]) {
+            if (country.toLowerCase().indexOf(val) > -1) {
+              filteredResults[cont] = filteredResults[cont] ? { ...filteredResults[cont] } : {};
               filteredResults[cont][country] = [...modifiedHotelsList[cont][country]];
             } else {
-              filteredResults[cont] = filteredResults[cont] ? {...filteredResults[cont]} : {};
+              filteredResults[cont] = filteredResults[cont] ? { ...filteredResults[cont] } : {};
               modifiedHotelsList[cont][country].forEach(hotel => {
-                if(hotel.toLowerCase().indexOf(val) > -1) {
-                  if(filteredResults[cont][country]) {
+                if (hotel.toLowerCase().indexOf(val) > -1) {
+                  if (filteredResults[cont][country]) {
                     filteredResults[cont][country] = [...filteredResults[cont][country], hotel];
                   } else {
                     filteredResults[cont][country] = [hotel];
@@ -45,19 +45,19 @@ const AutoSuggestion = (props) => {
           }
         }
       }
-      setModifiedHotelsList({...filteredResults});
+      setModifiedHotelsList({ ...filteredResults });
     }
   };
 
   const highLightSelection = val => {
     let quer = query.trim();
-    if(!quer) {
+    if (!quer) {
       return (<>{val}</>)
     }
     var regex = new RegExp("(" + query + ")", "gi");
     let updatedSearch = val.replace(regex, "<b>$1</b>");
-    
-    return (<span dangerouslySetInnerHTML={{__html: updatedSearch}}></span>);
+
+    return (<span dangerouslySetInnerHTML={{ __html: updatedSearch }}></span>);
   }
 
   const handleSearchClick = (hotelName) => {
@@ -80,11 +80,11 @@ const AutoSuggestion = (props) => {
   });
 
   const resetModifiedHotelsFullList = () => {
-    if(hotels && hotels.length) {
+    if (hotels && hotels.length) {
       const modHotel = {};
       hotels.forEach(hotel => {
-        if(modHotel[hotel.continent]) {
-          if(modHotel[hotel.continent][hotel.country]) {
+        if (modHotel[hotel.continent]) {
+          if (modHotel[hotel.continent][hotel.country]) {
             modHotel[hotel.continent][hotel.country].push(hotel.name);
           } else {
             modHotel[hotel.continent][hotel.country] = [hotel.name];
@@ -95,7 +95,7 @@ const AutoSuggestion = (props) => {
 
         }
       });
-      setModifiedHotelsList({...modHotel});
+      setModifiedHotelsList({ ...modHotel });
     }
   }
 
@@ -123,18 +123,22 @@ const AutoSuggestion = (props) => {
       )}
       {
         showResults && Object.keys(modifiedHotelsList).length > 0 && Object.keys(modifiedHotelsList).map((cont, idx) => {
-          return (<Accordion title={cont} key={idx} isDefaultOpen={idx === 0}>
-            {Object.keys(modifiedHotelsList[cont]).map((country, countryIdx) => {
-              return (
-               <div key={countryIdx}>
-                  {country}
-                  {modifiedHotelsList[cont][country].map((hot, hotIdx) => {
-                    return (<p key={hotIdx} onClick={() => handleSearchClick(hot)}>{highLightSelection(hot)}</p>)
-                  })}
-               </div> 
-              )
-            })}
-          </Accordion>)
+          {
+            return Object.keys(modifiedHotelsList[cont]).length > 0 ?
+              (<Accordion title={cont} key={idx} isDefaultOpen={idx === 0}>
+                {Object.keys(modifiedHotelsList[cont]).map((country, countryIdx) => {
+                  return (
+                    <div key={countryIdx}>
+                      {country}
+                      {modifiedHotelsList[cont][country].map((hot, hotIdx) => {
+                        return (<p key={hotIdx} onClick={() => handleSearchClick(hot)}>{highLightSelection(hot)}</p>)
+                      })}
+                    </div>
+                  )
+                })}
+              </Accordion>)
+              : null
+          }
         })
       }
     </div>
