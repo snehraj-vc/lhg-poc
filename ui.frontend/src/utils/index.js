@@ -42,10 +42,10 @@ export async function getIntl() {
             if(sessionVars.attemptCount > 50) {
                 clearInterval(session)
                 console.log('**** No Translation Component Found *****');
-                rej();
+                rej({});
             }
             if (sessionVars.sessionSet) {
-                clearInterval(session)
+                clearInterval(session);
                 res(sessionVars.intlVals)
             }
             sessionVars.attemptCount++;
