@@ -56,7 +56,7 @@ const AuthLogout = (props) => {
             startTimer();
         });
         startTimer();
-    }, []);
+    });
 
     // logs out user by clearing out auth token in localStorage and redirecting url to /signin page.
     const logoutAction = () => {

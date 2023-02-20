@@ -38,7 +38,7 @@ const SignIn = (props) => {
                 loggedIn: true
             });
         }
-    }, []);
+    });
 
     const onInputChange = (val, name) => {
         setInputVals({

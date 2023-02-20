@@ -6,11 +6,15 @@ const LJI_URLS = {
 };
 const AEM_URLS = {
     SEARCH_OFFERS: "/content/sitea/us/en/offers/content/offers.data.json"
+};
+const LOCAL_STORAGE_KEYS = {
+    RECENT_SEARCH: 'autoSuggestRecentSearch'
 }
 export {
     MOCK_GRAPHQL_CLIENT_URL,
     X_API_KEY,
     LJI_URLS,
     ENCRYPTION_KEY,
-    AEM_URLS
+    AEM_URLS,
+    LOCAL_STORAGE_KEYS
 };
