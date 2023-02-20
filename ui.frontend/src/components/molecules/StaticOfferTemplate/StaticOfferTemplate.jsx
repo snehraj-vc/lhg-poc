@@ -1,19 +1,19 @@
+import React from 'react';
+
 const StaticOfferTemplate = (props) => {
+    const {
+        title = "",
+        description = "",
+        source = "",
+    } = props;
 
-  const {
-        title="",
-        description="",
-        source="",
-
-    } = props
-
-    return (  <>
-            <div>
-                <h1>{props.title}</h1>
-                <p>{props.description}</p>
-                <img src={props.source}/>
-            </div>
-             </>);
+    return (<>
+        <div className="cp-static-offer-template">
+            {title && <h3>{title}</h3>}
+            {description && <p>{description}</p>}
+            {source && <img src={source} alt={description} />}
+        </div>
+    </>);
 }
- 
+
 export default StaticOfferTemplate;

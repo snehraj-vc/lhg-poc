@@ -108,7 +108,7 @@ const AutoSuggestion = (props) => {
       {searchFormTitle && (
         <h3>{searchFormTitle}</h3>
       )}
-      <Input placeholder={props.inputPlaceholder}
+      <Input
         value={query}
         onChange={onInputChange}
         onFocus={onInputFocus}
@@ -123,22 +123,20 @@ const AutoSuggestion = (props) => {
       )}
       {
         showResults && Object.keys(modifiedHotelsList).length > 0 && Object.keys(modifiedHotelsList).map((cont, idx) => {
-          {
-            return Object.keys(modifiedHotelsList[cont]).length > 0 ?
-              (<Accordion title={cont} key={idx} isDefaultOpen={idx === 0}>
-                {Object.keys(modifiedHotelsList[cont]).map((country, countryIdx) => {
-                  return (
-                    <div key={countryIdx}>
-                      {country}
-                      {modifiedHotelsList[cont][country].map((hot, hotIdx) => {
-                        return (<p key={hotIdx} onClick={() => handleSearchClick(hot)}>{highLightSelection(hot)}</p>)
-                      })}
-                    </div>
-                  )
-                })}
-              </Accordion>)
-              : null
-          }
+          return Object.keys(modifiedHotelsList[cont]).length > 0 ?
+            (<Accordion title={cont} key={idx} isDefaultOpen={idx === 0}>
+              {Object.keys(modifiedHotelsList[cont]).map((country, countryIdx) => {
+                return (
+                  <div key={countryIdx}>
+                    {country}
+                    {modifiedHotelsList[cont][country].map((hot, hotIdx) => {
+                      return (<p key={hotIdx} onClick={() => handleSearchClick(hot)}>{highLightSelection(hot)}</p>)
+                    })}
+                  </div>
+                )
+              })}
+            </Accordion>)
+            : null
         })
       }
     </div>
