@@ -19,6 +19,7 @@ const SignIn = (props) => {
         loggedIn: false
     });
 
+    const LS_USER_DATA_TOKEN_KEY = 'userDataToken';
     useEffect(() => {
         let currentLS = localStorage.getItem(LS_USER_DATA_TOKEN_KEY);
         if (!currentLS) {
@@ -31,7 +32,13 @@ const SignIn = (props) => {
                 memberId: currentLS.memberId
             });
         }
-    }, []);
+        if(currentLS.step === 'loggedIn') {
+            setLoginInfo({
+                ...logInInfo,
+                loggedIn: true
+            });
+        }
+    });
 
     const onInputChange = (val, name) => {
         setInputVals({
@@ -39,7 +46,6 @@ const SignIn = (props) => {
             [name]: val
         });
     };
-    const LS_USER_DATA_TOKEN_KEY = 'userDataToken';
 
     const signInButtonClick = (e) => {
         e.preventDefault();
@@ -57,7 +63,8 @@ const SignIn = (props) => {
                 currentUserTokenLS = {
                     ...currentUserTokenLS,
                     token: resp.data.token,
-                    memberId: resp.data.member_id
+                    memberId: resp.data.member_id,
+                    step: 'loggedIn'
                 };
                 localStorage.setItem(LS_USER_DATA_TOKEN_KEY, JSON.stringify(currentUserTokenLS));
                 setLoginInfo({
@@ -66,7 +73,8 @@ const SignIn = (props) => {
                         firstName: resp.data.member_data.user.first_name,
                         lastName: resp.data.member_data.user.last_name
                     }
-                })
+                });
+                window.dispatchEvent(new Event("loggedIn"));
             })
             .catch(err => {
                 console.log('err on sign in', err)
@@ -102,7 +110,7 @@ const SignIn = (props) => {
                     />}
                 </>
             )}
-            {logInInfo.loggedIn && (
+            {logInInfo.loggedIn && logInInfo.userData && (
                 <>
                     {`Welcome ${logInInfo.userData.firstName} ${logInInfo.userData.lastName}`}
                 </>

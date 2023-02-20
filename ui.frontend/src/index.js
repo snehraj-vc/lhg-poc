@@ -13,6 +13,7 @@ import App from './App';
 import LocalDevModelClient from './LocalDevModelClient';
 import './components/import-components';
 import './index.css';
+import AuthLogout from './components/helperComponents/AuthLogout/AuthLogout';
 
 const modelManagerOptions = {};
 if (process.env.REACT_APP_PROXY_ENABLED) {
@@ -25,14 +26,16 @@ const renderApp = () => {
         render(
             <Router history={history}>
                 <ApolloProvider client={client}>
-                    <App
-                        history={history}
-                        cqChildren={pageModel[Constants.CHILDREN_PROP]}
-                        cqItems={pageModel[Constants.ITEMS_PROP]}
-                        cqItemsOrder={pageModel[Constants.ITEMS_ORDER_PROP]}
-                        cqPath={pageModel[Constants.PATH_PROP]}
-                        locationPathname={window.location.pathname}
-                    />
+                    <AuthLogout>
+                        <App
+                            history={history}
+                            cqChildren={pageModel[Constants.CHILDREN_PROP]}
+                            cqItems={pageModel[Constants.ITEMS_PROP]}
+                            cqItemsOrder={pageModel[Constants.ITEMS_ORDER_PROP]}
+                            cqPath={pageModel[Constants.PATH_PROP]}
+                            locationPathname={window.location.pathname}
+                        />
+                    </AuthLogout>
                 </ApolloProvider>
             </Router>,
             document.getElementById('spa-root')

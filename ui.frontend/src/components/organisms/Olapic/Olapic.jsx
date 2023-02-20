@@ -1,8 +1,8 @@
-import React, {useEffect, useRef} from 'react';
+import React, { useEffect, useRef } from 'react';
 
 const Olapic = (props) => {
     const {
-        html=""
+        html = ""
     } = props;
 
     const olapicRef = useRef(null);
