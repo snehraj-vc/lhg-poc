@@ -29,13 +29,13 @@ import org.slf4j.LoggerFactory;
 import javax.annotation.PostConstruct;
 
 @Model(adaptables = SlingHttpServletRequest.class,
-adapters = {ComponentExporter.class},
-resourceType = HelloWorldModel.RESOURCE_TYPE)
+        adapters = {ComponentExporter.class},
+        resourceType = HelloWorldModel.RESOURCE_TYPE)
 @Exporter(name = ExporterConstants.SLING_MODEL_EXPORTER_NAME, extensions = ExporterConstants.SLING_MODEL_EXTENSION)
 public class HelloWorldModel implements ComponentExporter {
     private static final Logger logger = LoggerFactory.getLogger(HelloWorldModel.class);
     protected static final String RESOURCE_TYPE = "lhg-lms/components/helloworld";
-    
+
     @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
     protected String text;
 
@@ -48,9 +48,9 @@ public class HelloWorldModel implements ComponentExporter {
         logger.info("Inner Multifield");
     }
 
-	@Override
-	public String getExportedType() {
-		return RESOURCE_TYPE;
-	}
+    @Override
+    public String getExportedType() {
+        return RESOURCE_TYPE;
+    }
 
 }
