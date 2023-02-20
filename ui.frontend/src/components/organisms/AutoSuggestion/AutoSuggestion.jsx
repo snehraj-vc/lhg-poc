@@ -5,12 +5,12 @@ import { LOCAL_STORAGE_KEYS } from '../../../utils/constants';
 
 const AutoSuggestion = (props) => {
   const {
-    hotels = [],
-    inputPlaceholder,
-    searchFormTitle,
-    recentSearchText,
+    json,
+    placeholderText: inputPlaceholder,
+    title: searchFormTitle,
+    recentSearchText = "Recent Search:",
   } = props;
-
+  const hotels = typeof json === 'string' ? JSON.parse(json) : json;
   const [query, setQuery] = useState("");
   const [recentSearch, setRecentSearch] = useState("");
   const [modifiedHotelsList, setModifiedHotelsList] = useState({});
@@ -101,7 +101,7 @@ const AutoSuggestion = (props) => {
 
   useEffect(() => {
     resetModifiedHotelsFullList();
-  }, [hotels]);
+  }, [json]);
 
   return (<>
     <div className={"cp-auto-suggest"}>

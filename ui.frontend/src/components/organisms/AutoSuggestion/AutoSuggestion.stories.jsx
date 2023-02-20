@@ -12,11 +12,11 @@ const Template = (args) => <AutoSuggestion {...args} />
 export const AutoSuggestionData = Template.bind({});
 
 AutoSuggestionData.args = {
-    "inputPlaceholder": "Search ...",
-    "searchFormTitle": "Search Hotels",
+    "placeholderText": "Search ...",
+    "title": "Search Hotels",
     "recentSearchText": "Recent searches",
     "value": "",
-    "hotels": [
+    "json": [
         {
             "name": "Langham Hotel, Mumbai",
             "country": "India",
