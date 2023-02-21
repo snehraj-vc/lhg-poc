@@ -38,6 +38,9 @@ const AuthModule = (props) => {
         // passwordButtonLabel = "",
         userIdLabel = "",
         userIdPlaceholder = "",
+        passwordValidAtLeast8Chars = "At least 8 Characters",
+        passwordValidAlphaNumeric = "A mixture of letters and numbers",
+        passwordValidSpecialChar = "Inclusion of atleast one special character"
     } = props;
 
 
@@ -77,7 +80,10 @@ const AuthModule = (props) => {
         passwordInputLabel,
         passwordInputPlaceholder,
         choosePasswordWithJWTTokenApiEndPoint,
-        onSuccessCallback: () => stepSuccessCallback('register')
+        onSuccessCallback: () => stepSuccessCallback('register'),
+        passwordValidAtLeast8Chars,
+        passwordValidAlphaNumeric,
+        passwordValidSpecialChar
     };
 
     // const choosePasswordStepArgs = {

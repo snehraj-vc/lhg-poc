@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { getData, postData } from '../../../utils/server';
 import { InputSegment, DatepickerSegment, SelectOption } from '../../molecules';
 import { Button } from '../../atoms';
-import { LJI_URLS } from '../../../utils/constants';
+import { LJI_URLS, REGEX } from '../../../utils/constants';
+import './style.scss';
 
 
 const RegisterForm = (props) => {
@@ -32,10 +33,19 @@ const RegisterForm = (props) => {
         passwordInputLabel = "",
         passwordInputPlaceholder = "",
         choosePasswordWithJWTTokenApiEndPoint = "",
-
+        passwordValidAtLeast8Chars = "",
+        passwordValidAlphaNumeric = "",
+        passwordValidSpecialChar = "",
     } = props;
 
     const [inputVals, setInputVals] = useState({});
+    const [validPass, setValidPass] = useState({
+        charNum: false,
+        alphaNumeric: false,
+        splChar: false
+    });
+    const [invalidForm, setInvalidForm] = useState(true);
+    const passValidEl = useRef(null);
 
     const onRegisteration = (e) => {
         e.preventDefault();
@@ -93,6 +103,37 @@ const RegisterForm = (props) => {
             })
     }
 
+    const passwordValidation = (val) => {
+        let validState = {
+            charNum: false,
+            alphaNumeric: false,
+            splChar: false
+        };
+        const trimmedVal = val.trim();
+        if(trimmedVal.match(REGEX.SPL_CHAR)) {
+            validState.splChar = true;
+        }
+        if(trimmedVal.match(REGEX.CHAR_MIN_8)) {
+            validState.charNum = true;
+        }
+        if(trimmedVal.match(REGEX.ALPHA_NUMERIC)) {
+            validState.alphaNumeric = true;
+        }
+        setValidPass({
+            splChar: validState.splChar,
+            alphaNumeric: validState.alphaNumeric,
+            charNum: validState.charNum
+        });
+
+        if(validState.charNum && validState.alphaNumeric && validState.splChar) {
+            setInvalidForm(false);
+            return true;
+        } else {
+            setInvalidForm(true);
+            return false;
+        }
+    }
+
     const onInputChange = (val, name) => {
         if (name === 'dob') {
             const formattedDate = new Date(val);
@@ -109,11 +150,21 @@ const RegisterForm = (props) => {
             });
             return;
         }
+        if(name === 'password') {
+            passwordValidation(val);
+        }
         setInputVals({
             ...inputVals,
             [name]: val
         });
     };
+
+    const onPasswordFocus = () => {
+        passValidEl.current.style.display = 'block';
+    }
+    const onPasswordBlur = () => {
+        passValidEl.current.style.display = 'none';
+    }
 
     useEffect(() => {
         getLocation();
@@ -152,6 +203,18 @@ const RegisterForm = (props) => {
                 console.error("There is some problem", err)
             });
     };
+
+    const renderRuntimePassCheck = () => {
+        if(passwordValidAtLeast8Chars || passwordValidAlphaNumeric || passwordValidSpecialChar) {
+            return (<>
+                <div className={'password-valid-check'} ref={passValidEl}>
+                    {passwordValidAtLeast8Chars && <p className={`${validPass.charNum ? 'valid': ''}`}>{passwordValidAtLeast8Chars}</p>}
+                    {passwordValidAlphaNumeric && <p className={`${validPass.alphaNumeric ? 'valid': ''}`}>{passwordValidAlphaNumeric}</p>}
+                    {passwordValidSpecialChar && <p className={`${validPass.splChar ? 'valid': ''}`}>{passwordValidSpecialChar}</p>}
+                </div>
+            </>)
+        }
+    }
 
     return (<>
         <div className="cp-register-form">
@@ -208,7 +271,10 @@ const RegisterForm = (props) => {
                 labelText={passwordInputLabel}
                 onInputChange={onInputChange}
                 value={inputVals['password'] || ""}
+                onInputFocus={onPasswordFocus}
+                onInputBlur={onPasswordBlur}
             />}
+            {renderRuntimePassCheck()}
             {phoneNumberInputLabel && <InputSegment
                 id={`phoneNumber_${Math.floor(Math.random() * 100)}`}
                 name={'phoneNumber'}
@@ -250,6 +316,7 @@ const RegisterForm = (props) => {
                 onClick={onRegisteration}
                 type={'submit'}
                 text={registerButtonLabel}
+                disabled={invalidForm}
             />}
         </div>
     </>);
