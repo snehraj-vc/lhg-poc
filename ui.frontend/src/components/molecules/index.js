@@ -8,6 +8,7 @@ import StaticOfferTemplate from './StaticOfferTemplate/StaticOfferTemplate';
 import RegisterForm from './RegisterForm/RegisterForm';
 import ChoosePassword from './ChoosePassword/ChoosePassword';
 import SignIn from './SignIn/SignIn';
+import InfiniteScrollList from './InfiniteScrollList/InfiniteScrollList';
 
 export {
     StaticOfferTemplate,
@@ -19,5 +20,6 @@ export {
     CheckInDateRangePicker,
     SignIn,
     ChoosePassword,
-    RegisterForm
+    RegisterForm,
+    InfiniteScrollList
 };
