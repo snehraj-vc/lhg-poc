@@ -194,6 +194,21 @@
                         sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                         fieldLabel="userIdPlaceholder"
                         name="./userIdPlaceholder"/>
+                    <passwordValidAtLeast8Chars
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                        fieldLabel="passwordValidAtLeast8Chars"
+                        name="./passwordValidAtLeast8Chars"/>
+                    <passwordValidAlphaNumeric
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                        fieldLabel="passwordValidAlphaNumeric"
+                        name="./passwordValidAlphaNumeric"/>
+                    <passwordValidSpecialChar
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                        fieldLabel="passwordValidSpecialChar"
+                        name="./passwordValidSpecialChar"/>
                 </items>
             </column>
         </items>

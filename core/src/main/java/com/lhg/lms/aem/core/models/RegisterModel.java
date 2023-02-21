@@ -139,6 +139,15 @@ public class RegisterModel implements ComponentExporter {
     @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
     protected String userIdPlaceholder;
 
+    @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
+    protected String passwordValidAtLeast8Chars;
+
+    @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
+    protected String passwordValidAlphaNumeric;
+
+    @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
+    protected String passwordValidSpecialChar;
+
     @ChildResource
     @Named("salutations")
     private Resource serviceResource;
@@ -251,6 +260,15 @@ public class RegisterModel implements ComponentExporter {
     }
     public String getUserIdPlaceholder() {
         return userIdPlaceholder;
+    }
+    public String getPasswordValidAlphaNumeric() {
+        return passwordValidAlphaNumeric;
+    }
+    public String getPasswordValidAtLeast8Chars(){
+        return passwordValidAtLeast8Chars;
+    }
+    public String getPasswordValidSpecialChar() {
+        return passwordValidSpecialChar;
     }
     public ArrayList<ServiceModelDTO> getSalutations(){
         return service;

@@ -9,6 +9,11 @@ const AEM_URLS = {
 };
 const LOCAL_STORAGE_KEYS = {
     RECENT_SEARCH: 'autoSuggestRecentSearch'
+};
+const REGEX = {
+    CHAR_MIN_8: /^[a-zA-Z0-9@$!%*#?&]{8,}$/g,
+    SPL_CHAR: /[@$!%*#?&]/g,
+    ALPHA_NUMERIC: /^(?=.*[0-9])(?=.*[a-zA-Z])([a-zA-Z0-9@$!%*#?&]+)$/g
 }
 export {
     MOCK_GRAPHQL_CLIENT_URL,
@@ -16,5 +21,6 @@ export {
     LJI_URLS,
     ENCRYPTION_KEY,
     AEM_URLS,
-    LOCAL_STORAGE_KEYS
+    LOCAL_STORAGE_KEYS,
+    REGEX
 };
