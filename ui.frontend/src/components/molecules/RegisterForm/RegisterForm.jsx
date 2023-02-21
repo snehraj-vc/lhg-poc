@@ -29,6 +29,10 @@ const RegisterForm = (props) => {
         salutations = [],
         createMemberApiEndpoint = "",
         onSuccessCallback = () => null,
+        passwordInputLabel = "",
+        passwordInputPlaceholder = "",
+        choosePasswordWithJWTTokenApiEndPoint = "",
+
     } = props;
 
     const [inputVals, setInputVals] = useState({});
@@ -67,12 +71,21 @@ const RegisterForm = (props) => {
         postData(createMemberApiEndpoint ? createMemberApiEndpoint : LJI_URLS.CREATE_MEMBER, payload, headers)
             .then(resp => {
                 if (resp.data && [200, 201, 302].indexOf(resp.status) > -1) {
-                    localStorage.setItem('userDataToken', JSON.stringify({
-                        token: resp.data.token,
-                        step: 'choosePassword',
-                        memberId: resp.data.member_id
-                    }));
-                    onSuccessCallback();
+                    const memberId = resp.data.member_id;
+                    postData(choosePasswordWithJWTTokenApiEndPoint, {
+                        password: inputVals.password
+                    },
+                    {
+                        ...headers,
+                        Authorization: `JWT ${resp.data.token}`
+                    }).then(resp => {
+                        localStorage.setItem('userDataToken', JSON.stringify({
+                            token: resp.data.token,
+                            step: 'signIn',
+                            memberId: memberId
+                        }));
+                        onSuccessCallback();
+                    })
                 }
             })
             .catch(err => {
@@ -186,6 +199,15 @@ const RegisterForm = (props) => {
                 labelText={emailInputLabel}
                 onInputChange={onInputChange}
                 value={inputVals['email'] || ""}
+            />}
+            {passwordInputLabel && <InputSegment
+                id={`password_${Math.floor(Math.random() * 100)}`}
+                name={'password'}
+                inputType="password"
+                placeholder={passwordInputPlaceholder}
+                labelText={passwordInputLabel}
+                onInputChange={onInputChange}
+                value={inputVals['password'] || ""}
             />}
             {phoneNumberInputLabel && <InputSegment
                 id={`phoneNumber_${Math.floor(Math.random() * 100)}`}
