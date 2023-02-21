@@ -144,6 +144,11 @@ const customCompsSettings = [{
     aemCompMap: 'lhg-lms/components/intl',
     compName: 'Internationalization',
     customPropCheck: (props) => (!props || !props.intl)
+},
+{
+    feCompPath: import(`../components/organisms/SsoLji/SsoLji`),
+    aemCompMap: 'lhg-lms/components/ssolji',
+    compName: 'SsoLji'
 }
 ];
 
