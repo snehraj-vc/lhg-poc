@@ -38,9 +38,9 @@ const AuthModule = (props) => {
         // passwordButtonLabel = "",
         userIdLabel = "",
         userIdPlaceholder = "",
-        passwordValidAtLeast8Chars = "At least 8 Characters",
-        passwordValidAlphaNumeric = "A mixture of letters and numbers",
-        passwordValidSpecialChar = "Inclusion of atleast one special character"
+        passwordValidAtLeast8Chars = "",
+        passwordValidAlphaNumeric = "",
+        passwordValidSpecialChar = ""
     } = props;
 
 
