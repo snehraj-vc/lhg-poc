@@ -142,19 +142,19 @@ public class UnpublishNotificationScheduledTask implements Runnable  {
         myParameter = config.myParameter();
     }
 
-    protected void sendUnpublishAlert() {
+    protected void sendUnpublishAlert(String pagePath, String userId, ResourceResolver resolver, MessageGateway<HtmlEmail> messageGateway) {
         logger.info("Entering Service Implementation");
         Value[] email = null;
-        Map<String, Object> paramMap = new HashMap<String, Object>();
+      /*  Map<String, Object> paramMap = new HashMap<String, Object>();
 
         paramMap.put(ResourceResolverFactory.SUBSERVICE, "UnpublishAlertSchedulerSubService");
-        ResourceResolver resolver = null;
+        ResourceResolver resolver = null;*/
 
-        try {
+       /* try {
             resolver = resourceResolverFactory.getServiceResourceResolver(paramMap);
         } catch (LoginException e) {
             throw new RuntimeException(e);
-        }
+        }*/
         //logger.info("Try block executed ");
 
         //logger.info("resolver"  + resolver);
@@ -163,7 +163,7 @@ public class UnpublishNotificationScheduledTask implements Runnable  {
 
         try {
             //logger.info("Inside Try Block");
-            Authorizable auth = userManager.getAuthorizable("test1");
+            Authorizable auth = userManager.getAuthorizable(userId);
             email = auth.getProperty("./profile/email");
             logger.info("\n--- User email = "+ Arrays.stream(email).findFirst().toString());
             //logger.info("\n--- User, Principal="+auth.getID()+","+auth.getPrincipal().getName());
@@ -171,7 +171,7 @@ public class UnpublishNotificationScheduledTask implements Runnable  {
             throw new RuntimeException(e);
         }
 
-        MessageGateway<HtmlEmail> messageGateway = messageService.getGateway(HtmlEmail.class);
+        messageGateway = messageService.getGateway(HtmlEmail.class);
         try {
 
             String userEmail = Arrays.stream(email).findFirst().get().getString();
@@ -180,16 +180,16 @@ public class UnpublishNotificationScheduledTask implements Runnable  {
                 logger.info("3");
                 return;
             }
-            logger.info("userEmail");
+            /*  logger.info("userEmail");
             logger.info(userEmail);
-           /* HtmlEmail htmlEmail = new HtmlEmail();
+            HtmlEmail htmlEmail = new HtmlEmail();
             htmlEmail.setCharset(CharEncoding.UTF_8);
             htmlEmail.addTo(userEmail);
             htmlEmail.setSubject("Scheduler Unpublish Alert Mail Sent");
             htmlEmail.setMsg("Scheduler Unpublish Alert Body");
-            htmlEmail.setHtmlMsg("<!DOCTYPE html><html><head></head><body><p>Content AEM Path : /content/lhg-lms/us/en/home/jcr:content </p></body></html>");
-            messageGateway.send(htmlEmail);
-            logger.info("Mail Sent ");*/
+            htmlEmail.setHtmlMsg("<!DOCTYPE html><html><head></head><body><p>Content AEM Path : "+pagePath +"</p></body></html>");
+            messageGateway.send(htmlEmail);*/
+            logger.info("Mail Sent ");
         } catch(Exception e) {
             // cannot send email. print some error
             logger.info("cannot send email. print some error:::::::::" + e.toString());
@@ -200,8 +200,11 @@ public class UnpublishNotificationScheduledTask implements Runnable  {
     protected void getPagesWithProperties() throws RepositoryException, ParseException {
         Map<String, Object> paramMap = new HashMap<String, Object>();
         String reminderDays = null;
+        String pagePath = null;
+        String userId = null;
         paramMap.put(ResourceResolverFactory.SUBSERVICE, "UnpublishAlertSchedulerSubService");
         ResourceResolver resolver = null;
+        MessageGateway<HtmlEmail> messageGateway = null;
         try {
             resolver = resourceResolverFactory.getServiceResourceResolver(paramMap);
         } catch (LoginException e) {
@@ -215,58 +218,59 @@ public class UnpublishNotificationScheduledTask implements Runnable  {
         //logger.info("33333 :::: ");
         QueryBuilder queryBuilder = resolver.adaptTo(QueryBuilder.class);
         //logger.info("44444 :::: ");
-        List<Map<String, String>> pages = new ArrayList<>();
+        //List<Map<String, String>> pages = new ArrayList<>();
         //logger.info("55555 :::: ");
         for (String path : paths) {
             //logger.info("66666 :::: ");
             Map<String, String> map = new HashMap<>();
 
+            map.put("type", "cq:Page");
             map.put("path", path);
-            map.put("type", "cq:page");
+            map.put("property", "jcr:content/@offTime");
+            map.put("property.operation", "exists");
             map.put("p.limit", "-1");
-            map.put("p.nodedepth", "2");
-            map.put("p.hits", "full");
-            map.put("p.guessTotal", "true");
 
-            //logger.info("77777 :::: ");
             Query query = queryBuilder.createQuery(PredicateGroup.create(map), session);
             SearchResult result = query.getResult();
-            //logger.info("result: "+result);
-            //logger.info("result Hits:: "+result.getTotalMatches());
 
+            logger.info("result Hits:: "+result.getTotalMatches());
             for (Hit hit : result.getHits()) {
                 Resource resource = null;
                 try {
                     resource = hit.getResource();
-                    //logger.info("resource hit:: "+resource);
+                    logger.info("resource hit:: "+resource);
+                    logger.info("resource.getResourceType():: "+resource.getResourceType());
                 } catch (RepositoryException e) {
                     throw new RuntimeException(e);
                 }
-                Page page = resource.adaptTo(Page.class);
-                //logger.info("page:::::::: "+page);
-                Map<String, String> pageProperties = new HashMap<>();
-                pageProperties.put("title", page.getTitle());
-                //logger.info("title:::::::::: " + page.getTitle());
-                pageProperties.put("description", page.getDescription());
-                //logger.info("description: " + page.getDescription());
-                pageProperties.put("path", page.getPath());
-                logger.info("path::::::::::::::: " + page.getPath());
-                //logger.info("path Property reminderDays:::::: " + page.getProperties("reminderDays").values().toString());
-                //logger.info("getLastModifiedBy::::::::::::::: " + page.getLastModifiedBy().toString());
-                logger.info("getOffTime::::::::::::::: " + page.getOffTime().toString());
+                if(resource.getResourceType().equals("cq:Page")){
+                    Page page = resource.adaptTo(Page.class);
+                    //logger.info("page:::::::: "+page);
+                    Map<String, String> pageProperties = new HashMap<>();
+                    pageProperties.put("title", page.getTitle());
+                    //logger.info("title:::::::::: " + page.getTitle());
+                    pageProperties.put("description", page.getDescription());
+                    //logger.info("description: " + page.getDescription());
+                    pageProperties.put("path", page.getPath());
+                    pagePath=page.getPath();
+                    logger.info("path::::::::::::::: " + page.getPath());
+
+                    logger.info("getLastModifiedBy::::::::::::::: " + page.getLastModifiedBy().toString());
+                    userId=page.getLastModifiedBy().toString();
+                    logger.info("getOffTime::::::::::::::: " + page.getOffTime().toString());
 
 
-                pages.add(pageProperties);
 
+                    //pages.add(pageProperties);
                 Node pageNode = page.adaptTo(Node.class);
                 if (pageNode.hasNode("jcr:content")) {
-                    logger.info("jcr:content");
+                    //logger.info("jcr:content");
                     Node contentNode=pageNode.getNode("jcr:content");
                   //  logger.info("Image node {}",contentNode.getPath());
 
                     if (contentNode != null) {
                         reminderDays = contentNode.getProperty("reminderDays").getValue().toString();
-                        logger.info("reminderDays:::::: " + reminderDays);
+                        //logger.info("reminderDays:::::: " + reminderDays);
                     }
                 }
 
@@ -275,25 +279,35 @@ public class UnpublishNotificationScheduledTask implements Runnable  {
                 int daysToRemind = Integer.parseInt(reminderDays);
 
                 Date getOffTime = page.getOffTime().getTime();
-                logger.info("Parsed GetTime getOffTime::::::::::::::: " + getOffTime);
+                //logger.info("Parsed GetTime getOffTime::::::::::::::: " + getOffTime);
                 Date currentDate = Calendar.getInstance().getTime();
-                logger.info("currentDate ::::::::::::::: " + currentDate );
+                //logger.info("currentDate ::::::::::::::: " + currentDate );
                 Calendar cal = Calendar.getInstance();
                 cal.setTime(getOffTime);
                 cal.add(Calendar.DATE, -daysToRemind);
                 Date dateBeforeDaysToRemind = cal.getTime();
 
-                logger.info("getOffTime - reminderDays::::::::::::::: " +  dateBeforeDaysToRemind);
-if(getOffTime.after(currentDate) || getOffTime.equals(currentDate))
-{
-    if(dateBeforeDaysToRemind.before(currentDate) || dateBeforeDaysToRemind.equals(currentDate)){
-        logger.info("Send Reminder Mail:::::: ");
-        sendUnpublishAlert();
-    }else{
-        logger.info("Don't Send Reminder Mail:::::: ");
-    }
-}
+                    //logger.info("getOffTime - reminderDays::::::::::::::: " +  dateBeforeDaysToRemind);
+                    if(getOffTime.after(currentDate) || getOffTime.equals(currentDate))
+                    {
+                        if(dateBeforeDaysToRemind.before(currentDate) || dateBeforeDaysToRemind.equals(currentDate)){
+                            //logger.info("Send Reminder Mail:::::: ");
+                            sendUnpublishAlert(pagePath, userId, resolver, messageGateway);
+                        }else{
+                            logger.info("Don't Send Reminder Mail:::::: ");
+                        }
+                    }
+                }else{
+                    logger.info("Not A Page ::::::::::::::: " + resource.getResourceType());
+                }
+
             }
         }
+
+        paramMap = null;
+        resolver = null;
+        session = null;
+        queryBuilder = null;
+        messageGateway = null;
     }
 }
