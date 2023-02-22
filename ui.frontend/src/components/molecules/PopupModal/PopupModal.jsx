@@ -18,8 +18,21 @@ const PopupModal = props => {
     useEffect(() => {
         closeBtn.current.addEventListener('click', closePopupCallback);
         document.body.style.overflow = 'hidden';
+        document.addEventListener('keydown', (evt) => {
+            evt = evt || window.event;
+            let isEscape = false;
+            if ("key" in evt) {
+                isEscape = (evt.key === "Escape" || evt.key === "Esc");
+            } else {
+                isEscape = (evt.keyCode === 27);
+            }
+            if (isEscape) {
+                closePopupCallback();
+            }
+        })
         return () => {
             document.body.style.overflow = 'visible';
+            document.removeEventListener('keydown', () => null)
         }
     }, []);
 
