@@ -94,7 +94,7 @@ public class TagSearchServlet extends SlingSafeMethodsServlet {
                     Map<String, String> pageProperties = new HashMap<>();
                     pageProperties.put("title", page.getTitle());
                     pageProperties.put("description", page.getDescription());
-                    pageProperties.put("path", page.getPath());
+                    pageProperties.put("path", page.getPath().concat(".html"));
                     Node pageNode = page.adaptTo(Node.class);
 
                     if (pageNode.hasNode("jcr:content/image")) {
