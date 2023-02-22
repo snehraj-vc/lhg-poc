@@ -1,43 +1,50 @@
 import React, { useState } from 'react';
 import FacebookLogin from 'react-facebook-login';
 import { postData } from '../../../utils/server';
+import { LJI_URLS } from '../../../utils/constants';
 
 const SsoFacebook = (props) => {
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState(null);
   const {
     fbAppId = "",
     fbFields = "name,email,id",
-    xApiKey = "",
+
   } = props;
 
   const responseFacebook = (response) => {
-    
-    setUser(response);
-    console.log(`hi${response}`);
-    console.log(user.id)
+
+    // setUser(response);
+    // console.log(user);  
 
     const payload = {
-      id: user.id,
-      access_token: user.accessToken 
-  };
+      facebook_id: response.id,
+      access_token: response.accessToken,
+      enrolling_sponsor: 4
+    };
 
-    const headers = {
-      ['x-api-key']: xApiKey
-  };
 
-    postData(payload, headers)
-    .then(resp => {
-    })
-}
+    postData(LJI_URLS.SSO_FB_SIGN_UP, payload)
+      //success 
+      .then(resp => {
+        console.log(resp)
+        localStorage.setItem(LS_USER_DATA_TOKEN_KEY, JSON.stringify(currentUserTokenLS));
+      })
+      //error handling
+      .catch(err => {
+        console.log('err on sign in', err)
+      });
 
+      
+  }
+  console.log(fbAppId);
   return (
     <div>
-  
+
       {
         user ?
           <div>
-          {console.log(user)}
-          {console.log(user.accessToken)}
+            {console.log(user)}
+            {console.log(user.accessToken)}
             <h2>Welcome, {user.name}</h2>
             <p>Email: {user.email}</p>
             <p>ID: {user.id}</p>
@@ -45,7 +52,8 @@ const SsoFacebook = (props) => {
           :
           <FacebookLogin
             // appId="878025543243819"
-            appId={fbAppId}            
+            appId={fbAppId}
+
             autoLoad={false}
             fields={fbFields}
             onClick={responseFacebook}
