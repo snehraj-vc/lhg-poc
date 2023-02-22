@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import FacebookLogin from 'react-facebook-login';
 
 const SsoFacebook = (props) => {
+  {console.log(props)}
   const [user, setUser] = useState(null);
   const {
-    fbappid = "",
+    fbAppId = "",
     fbFields = "name,email,id"
   } = props;
 
@@ -25,7 +26,7 @@ const SsoFacebook = (props) => {
           :
           <FacebookLogin
             // appId="878025543243819"
-            appId={fbappid}
+            appId={fbAppId}
             autoLoad={false}
             fields={fbFields}
             onClick={responseFacebook}
