@@ -9,6 +9,7 @@ import RegisterForm from './RegisterForm/RegisterForm';
 import ChoosePassword from './ChoosePassword/ChoosePassword';
 import SignIn from './SignIn/SignIn';
 import InfiniteScrollList from './InfiniteScrollList/InfiniteScrollList';
+import PopupModal from './PopupModal/PopupModal';
 
 export {
     StaticOfferTemplate,
@@ -21,5 +22,6 @@ export {
     SignIn,
     ChoosePassword,
     RegisterForm,
-    InfiniteScrollList
+    InfiniteScrollList,
+    PopupModal
 };
