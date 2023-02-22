@@ -5,8 +5,10 @@ import { EXCHANGE_RATES } from '../../../utils/graphqlQueries';
 import {
   SelectOption,
   CheckInDateRangePicker,
-  InfiniteScrollList
+  InfiniteScrollList,
+  PopupModal,
 } from '../../molecules';
+import { Button } from '../../atoms';
 import { getIntl } from '../../../utils';
 import json from './mockJson';
 
@@ -16,6 +18,7 @@ const Helloworld = (props) => {
   const [hasMorePages, setHasMorePages] = useState(true);
   const [scrollItems, setScrollItems] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
 
   //Setting up translation for file
   const [tl, setTl] = useState({});
@@ -110,11 +113,11 @@ const Helloworld = (props) => {
       </div>)}
     </div>)
   };
-  
+
   const infScrollList = useRef(null);
 
   const fetchData = (currentPage) => {
-    if(scrollItems.length >= json.length) {
+    if (scrollItems.length >= json.length) {
       setHasMorePages(false);
       return;
     } else {
@@ -122,7 +125,7 @@ const Helloworld = (props) => {
       setTimeout(() => {
         let initialLength = (json.length <= (10 * (currentPage + 1))) ? json.length : (10 * (currentPage + 1));
         let firstJson = [...scrollItems];
-        for(let i = (10*currentPage); i < initialLength; i++) {
+        for (let i = (10 * currentPage); i < initialLength; i++) {
           firstJson.push(json[i]);
         }
         setIsLoading(false);
@@ -134,11 +137,23 @@ const Helloworld = (props) => {
   useEffect(() => {
     let initialLength = 10;
     let firstJson = [];
-    for(let i = 0; i<initialLength; i++) {
+    for (let i = 0; i < initialLength; i++) {
       firstJson.push(json[i]);
     }
     setScrollItems(firstJson);
   }, [json]);
+
+  const displayPopup = (show) => {
+    setShowPopup(show);
+  };
+  const primaryBtnAction = () => {
+    console.log('pruimary action to be performed');
+    displayPopup(false);
+  }
+  const secondaryBtnAction = () => {
+    console.log('seconday btn action to be performed');
+    displayPopup(false);
+  }
 
   return (
     <>
@@ -169,6 +184,22 @@ const Helloworld = (props) => {
           {!hasMorePages && (<div>***** No More Results *****</div>)}
         </InfiniteScrollList>
       </div>
+      <hr />
+      <h3>PopupModal Demo</h3>
+      <Button text="click to open popup" onClick={() => displayPopup(true)} />
+      {showPopup && (<PopupModal
+        closePopupCallback={() => displayPopup(false)}
+        primaryBtnLabel="OK"
+        secondaryBtnLabel="Cancel"
+        primaryBtnCallback={primaryBtnAction}
+        secondaryBtnCallback={secondaryBtnAction}
+        popupTitle={"Popup Title"}
+      >
+        <div>
+          This is popup modal content
+        </div>
+      </PopupModal>)
+      }
     </>
   );
 }
