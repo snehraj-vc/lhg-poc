@@ -9,8 +9,12 @@ const AEM_URLS = {
 };
 const LOCAL_STORAGE_KEYS = {
     RECENT_SEARCH: 'autoSuggestRecentSearch'
-}
+};
+const LJI_SSO_LOG = {
+    SSO_FB_DATA: "https://api.aps20.gravty.io/v1/members/social/facebook/"
+};
 export {
+    LJI_SSO_LOG,
     MOCK_GRAPHQL_CLIENT_URL,
     X_API_KEY,
     LJI_URLS,

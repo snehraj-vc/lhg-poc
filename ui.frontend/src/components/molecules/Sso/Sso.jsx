@@ -14,21 +14,23 @@ const Sso = (props) => {
         gglSso=true,
         appleSso=true,
         // weSso=true,
-        fbappid="",
+        fbAppId="",
         fbFields="",
-        gglclientid = ""
+        gglClientId= ""
     } = props;
 
     const fbProps = {
-        fbappid,
+        fbAppId,
         fbFields
     }
     const gglProps = {
-        gglclientid
+        gglClientId
+
     };
 
     return (
         <div className={`sso-segment ${className}`} id={id}>
+           { console.log(props)}
             { gglSso && <SsoGoogle {...gglProps } /> }
             { fbSso && <SsoFacebook {...fbProps} /> }
             { appleSso && <SsoApple /> }
