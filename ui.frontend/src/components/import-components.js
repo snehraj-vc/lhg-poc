@@ -139,7 +139,12 @@ const customCompsSettings = [{
     feCompPath: import(`../components/organisms/AutoSuggestion/AutoSuggestion`),
     aemCompMap: 'lhg-lms/components/autosuggest',
     compName: 'AutoSuggestion'
-}, {
+}, 
+,{
+    feCompPath: import(`../components/organisms/CircularCrop/CircularCrop`),
+    aemCompMap: '/apps/lhg-lms/components/circularcrop',
+    compName: 'CircularCrop'
+},{
     feCompPath: import(`../components/helperComponents/Intl/Intl`),
     aemCompMap: 'lhg-lms/components/intl',
     compName: 'Internationalization',
