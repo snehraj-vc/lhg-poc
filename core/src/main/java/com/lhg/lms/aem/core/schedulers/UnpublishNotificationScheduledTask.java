@@ -93,7 +93,7 @@ public class UnpublishNotificationScheduledTask implements Runnable  {
     public static @interface Config {
 
         @AttributeDefinition(name = "Cron-job expression")
-        String scheduler_expression() default "0 0 * * *";  //0 * * * * ?
+        String scheduler_expression() default "0 * * * * ?";  //0 0 0 * * ? - everyday at midnight, 0 */5 * ? * * - every 5 min
 
         @AttributeDefinition(name = "Concurrent task",
                 description = "Whether or not to schedule this task concurrently")
