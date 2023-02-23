@@ -42,7 +42,7 @@ export async function getIntl() {
             if(sessionVars.attemptCount > 50) {
                 clearInterval(session)
                 console.log('**** No Translation Component Found *****');
-                rej({});
+                res({});
             }
             if (sessionVars.sessionSet) {
                 clearInterval(session);

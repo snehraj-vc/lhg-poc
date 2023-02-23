@@ -28,23 +28,26 @@ const AuthModule = (props) => {
         countryInputPlaceholder = "",
         salutations = [],
         signInFormTitle = "",
-        choosePasswordFormTitle = "",
+        // choosePasswordFormTitle = "",
         memberLoginApiEndpoint = "",
         choosePasswordWithJWTTokenApiEndPoint = "",
         createMemberApiEndpoint = "",
         passwordInputPlaceholder = "",
         passwordInputLabel = "",
         signInButtonLabel = "",
-        passwordButtonLabel = "",
+        // passwordButtonLabel = "",
         userIdLabel = "",
         userIdPlaceholder = "",
+        passwordValidAtLeast8Chars = "",
+        passwordValidAlphaNumeric = "",
+        passwordValidSpecialChar = ""
     } = props;
 
 
 
     const stepSuccessCallback = (lastStep) => {
         if (lastStep === 'register') {
-            setAuthState('choosePassword');
+            setAuthState('signIn');
             return;
         }
         if (lastStep === 'choosePassword') {
@@ -74,19 +77,25 @@ const AuthModule = (props) => {
         countryInputPlaceholder,
         salutations,
         createMemberApiEndpoint,
-        onSuccessCallback: () => stepSuccessCallback('register')
-    };
-
-    const choosePasswordStepArgs = {
-        choosePasswordFormTitle,
         passwordInputLabel,
         passwordInputPlaceholder,
-        onSuccessCallback: () => stepSuccessCallback('choosePassword'),
         choosePasswordWithJWTTokenApiEndPoint,
-        passwordButtonLabel,
-        userIdLabel,
-        xApiKey
+        onSuccessCallback: () => stepSuccessCallback('register'),
+        passwordValidAtLeast8Chars,
+        passwordValidAlphaNumeric,
+        passwordValidSpecialChar
     };
+
+    // const choosePasswordStepArgs = {
+    //     choosePasswordFormTitle,
+    //     passwordInputLabel,
+    //     passwordInputPlaceholder,
+    //     onSuccessCallback: () => stepSuccessCallback('choosePassword'),
+    //     choosePasswordWithJWTTokenApiEndPoint,
+    //     passwordButtonLabel,
+    //     userIdLabel,
+    //     xApiKey
+    // };
 
     const signInStepArgs = {
         signInFormTitle,
@@ -114,7 +123,7 @@ const AuthModule = (props) => {
     return (<>
         <div id={formId} className={`cp-auth-module ${className}`}>
             {authState === 'register' && (<RegisterForm {...registerStepArgs} />)}
-            {authState === 'choosePassword' && <ChoosePassword {...choosePasswordStepArgs}/>}
+            {/* {authState === 'choosePassword' && <ChoosePassword {...choosePasswordStepArgs}/>} */}
             {authState === 'signIn' && <SignIn {...signInStepArgs} />}
         </div>
     </>);

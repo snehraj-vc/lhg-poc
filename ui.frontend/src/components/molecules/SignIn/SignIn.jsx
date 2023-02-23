@@ -35,10 +35,11 @@ const SignIn = (props) => {
         if(currentLS.step === 'loggedIn') {
             setLoginInfo({
                 ...logInInfo,
+                userData: currentLS.userData,
                 loggedIn: true
             });
         }
-    });
+    }, []);
 
     const onInputChange = (val, name) => {
         setInputVals({
@@ -64,7 +65,11 @@ const SignIn = (props) => {
                     ...currentUserTokenLS,
                     token: resp.data.token,
                     memberId: resp.data.member_id,
-                    step: 'loggedIn'
+                    step: 'loggedIn',
+                    userData: {
+                        firstName: resp.data.member_data.user.first_name,
+                        lastName: resp.data.member_data.user.last_name
+                    }
                 };
                 localStorage.setItem(LS_USER_DATA_TOKEN_KEY, JSON.stringify(currentUserTokenLS));
                 setLoginInfo({
@@ -87,7 +92,7 @@ const SignIn = (props) => {
                 <>
                     <h3>{signInFormTitle}</h3>
                     {userIdLabel && <InputSegment
-                        id={`memberId_${Math.floor(Math.random() * 100)}`}
+                        id={`memberId_label`}
                         name={'memberId'}
                         inputType="text"
                         placeholder={userIdPlaceholder}
@@ -95,7 +100,7 @@ const SignIn = (props) => {
                         value={inputVals['memberId'] || ""}
                     />}
                     {passwordInputLabel && <InputSegment
-                        id={`password_${Math.floor(Math.random() * 100)}`}
+                        id={`password_label`}
                         name={'password'}
                         inputType="password"
                         placeholder={passwordInputPlaceholder}

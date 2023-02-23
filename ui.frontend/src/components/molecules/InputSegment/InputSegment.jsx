@@ -17,7 +17,8 @@ const InputSegment = (props) => {
         value="",
         onInputChange= () => null,
         onInputBlur = () => null,
-        disabled = false
+        disabled = false,
+        onInputFocus = () => null,
     } = props;
 
     return (
@@ -34,6 +35,7 @@ const InputSegment = (props) => {
                 onChange={onInputChange}
                 onBlur={onInputBlur}
                 disabled={disabled}
+                onFocus={onInputFocus}
             />
         </div>
     )
