@@ -7,8 +7,8 @@ const CircularCrop = (props) => {
         altertext=""
     } = props;
     return (<div className="CircularCrop-img-container">
-        {title && <h1>{text}</h1>}
-        <div className="Circular-image-card"> {source && <img className="Circular-image" src={image} alt={altertext}/>}</div>
+        {text && <h1>{text}</h1>}
+        <div className="Circular-image-card"> {image && <img className="Circular-image" src={image} alt={altertext}/>}</div>
        
     </div>);
 }
