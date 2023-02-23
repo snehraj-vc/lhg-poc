@@ -5,7 +5,6 @@ import { LJI_URLS } from '../../../utils/constants';
 import { getLocal, setLocal } from '../../../utils';
 
 const SsoFacebook = (props) => {
-  {console.log(props)}
   const [user, setUser] = useState(null);
   const {
     fbAppId = "",
@@ -13,10 +12,6 @@ const SsoFacebook = (props) => {
   } = props;
 
   const responseFacebook = (response) => {
-
-    // setUser(response);
-    // console.log(user);  
-
     let payload = {
       facebook_id: response.id,
       access_token: response.accessToken,
@@ -56,7 +51,6 @@ const SsoFacebook = (props) => {
             email: email,
             id: member_id
           });
-          console.log(first_name, last_name, token, currentUserLS)
           setLocal(LS_USER_DATA_TOKEN_KEY, JSON.stringify(currentUserLS));
 
         })
@@ -66,13 +60,10 @@ const SsoFacebook = (props) => {
     }
 
     postData(LJI_URLS.SSO_FB_SIGN_UP, payload)
-      //success 
       .then(resp => {
-        console.log(resp);
         facebookSignIn();
-        // localStorage.setItem(LS_USER_DATA_TOKEN_KEY, JSON.stringify(currentUserTokenLS));
+        
       })
-      //error handling
       .catch(err => {
         console.log('err on sign in', err)
         const checkUnique = (allErr) => {
@@ -107,7 +98,6 @@ const SsoFacebook = (props) => {
           </div>
           :
           <FacebookLogin
-            // appId="878025543243819"
             appId={fbAppId}
             autoLoad={false}
             fields={fbFields}
