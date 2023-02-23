@@ -54,9 +54,9 @@ public class TagSearchServlet extends SlingSafeMethodsServlet {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         logger.info("00000");
-        String tagId = request.getParameter("tagId");
+        String[] tagIds = request.getParameter("tagId").split(",");
         String[] paths = request.getParameter("paths").split(",");
-//          String[] paths = {"/content/lhg-lms/us/en/home"};
+
         Map<String, Object> paramMap = new HashMap<String, Object>();
         paramMap.put(ResourceResolverFactory.SUBSERVICE, "lhgService");
         logger.info("11111");
@@ -73,45 +73,61 @@ public class TagSearchServlet extends SlingSafeMethodsServlet {
 
             List<Map<String, String>> pages = new ArrayList<>();
             for (String path : paths) {
-                Map<String, String> map = new HashMap<>();
-                map.put("path", path);
-                map.put("type", "cq:Page");
-                map.put("1_property", "jcr:content/@cq:tags");
-                map.put("1_property.value", tagId);
-                logger.info("33333");
-                Query query = queryBuilder.createQuery(PredicateGroup.create(map), session);
-                SearchResult result = query.getResult();
+                for (String tagId : tagIds) {
+                    Map<String, String> map = new HashMap<>();
+                    map.put("path", path);
+                    map.put("type", "cq:Page");
+                    map.put("1_property", "jcr:content/@cq:tags");
+                    map.put("1_property.value", tagId);
+                    logger.info("33333");
+                    Query query = queryBuilder.createQuery(PredicateGroup.create(map), session);
+                    SearchResult result = query.getResult();
 
-                for (Hit hit : result.getHits()) {
-                    Resource resource = null;
-                    try {
-                        resource = hit.getResource();
-                    } catch (RepositoryException e) {
-                        throw new RuntimeException(e);
-                    }
-                    logger.info("4444");
-                    Page page = resource.adaptTo(Page.class);
-                    Map<String, String> pageProperties = new HashMap<>();
-                    pageProperties.put("title", page.getTitle());
-                    pageProperties.put("description", page.getDescription());
-                    pageProperties.put("path", page.getPath().concat(".html"));
-                    Node pageNode = page.adaptTo(Node.class);
-
-                    if (pageNode.hasNode("jcr:content/image")) {
-                        logger.info("Image1 Found");
-                        Node imageNode=pageNode.getNode("jcr:content/image");
-                        logger.info("Image node {}",imageNode.getPath());
-                        logger.info("Image node {}",imageNode.getPath());
-                        logger.info("Image1");
-                        if (imageNode != null) {
-                            String fileReference = imageNode.getProperty("fileReference").getString();
-                            logger.info("Image2");
-                            pageProperties.put("thumbnail", fileReference);
-                            logger.info("Image3");
+                    for (Hit hit : result.getHits()) {
+                        Resource resource = null;
+                        try {
+                            resource = hit.getResource();
+                        } catch (RepositoryException e) {
+                            throw new RuntimeException(e);
                         }
-                    }
-                    pages.add(pageProperties);
+                        logger.info("4444");
+                        Page page = resource.adaptTo(Page.class);
+                        Map<String, String> pageProperties = new HashMap<>();
+                        pageProperties.put("tagId", tagId);
+                        pageProperties.put("title", page.getTitle());
+                        pageProperties.put("description", page.getDescription());
+                        pageProperties.put("path", page.getPath().concat(".html"));
 
+                        if (page.getProperties().containsKey("location")) {
+                            String locationId = page.getProperties().get("location", String.class);
+                            pageProperties.put("locationId", locationId);
+                        }
+                        if (page.getProperties().containsKey("membersonly")) {
+                            boolean membersOnly = page.getProperties().get("membersonly", Boolean.class);
+                            pageProperties.put("membersonly", String.valueOf(membersOnly));
+                        } else {
+                            pageProperties.put("membersonly", "false");
+                        }
+
+
+                        Node pageNode = page.adaptTo(Node.class);
+
+                        if (pageNode.hasNode("jcr:content/image")) {
+                            logger.info("Image1 Found");
+                            Node imageNode = pageNode.getNode("jcr:content/image");
+                            logger.info("Image node {}", imageNode.getPath());
+                            logger.info("Image node {}", imageNode.getPath());
+                            logger.info("Image1");
+                            if (imageNode != null) {
+                                String fileReference = imageNode.getProperty("fileReference").getString();
+                                logger.info("Image2");
+                                pageProperties.put("thumbnail", fileReference);
+                                logger.info("Image3");
+                            }
+                        }
+                        pages.add(pageProperties);
+
+                    }
                 }
             }
 
