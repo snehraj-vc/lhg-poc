@@ -20,6 +20,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.*;
+
+import com.day.cq.commons.Externalizer;
 import com.day.cq.mailer.MessageGateway;
 import com.day.cq.mailer.MessageGatewayService;
 import com.fasterxml.jackson.databind.ser.std.CalendarSerializer;
@@ -72,6 +74,7 @@ import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
+import static javax.servlet.jsp.PageContext.PAGE;
 
 
 /**
@@ -90,7 +93,7 @@ public class UnpublishNotificationScheduledTask implements Runnable  {
     public static @interface Config {
 
         @AttributeDefinition(name = "Cron-job expression")
-        String scheduler_expression() default "0 * * * * ?";
+        String scheduler_expression() default "0 0 * * *";  //0 * * * * ?
 
         @AttributeDefinition(name = "Concurrent task",
                 description = "Whether or not to schedule this task concurrently")
@@ -142,7 +145,7 @@ public class UnpublishNotificationScheduledTask implements Runnable  {
         myParameter = config.myParameter();
     }
 
-    protected void sendUnpublishAlert(String pagePath, String userId, ResourceResolver resolver, MessageGateway<HtmlEmail> messageGateway) {
+    protected void sendUnpublishAlert(String pageTitle, String pagePath, String userId, ResourceResolver resolver, MessageGateway<HtmlEmail> messageGateway) {
         logger.info("Entering Service Implementation");
         Value[] email = null;
       /*  Map<String, Object> paramMap = new HashMap<String, Object>();
@@ -159,6 +162,7 @@ public class UnpublishNotificationScheduledTask implements Runnable  {
 
         //logger.info("resolver"  + resolver);
         UserManager userManager =resolver.adaptTo(UserManager.class);
+
         //logger.info("userManager: "  + userManager);
 
         try {
@@ -180,15 +184,15 @@ public class UnpublishNotificationScheduledTask implements Runnable  {
                 logger.info("3");
                 return;
             }
-            /*  logger.info("userEmail");
+              logger.info("userEmail");
             logger.info(userEmail);
             HtmlEmail htmlEmail = new HtmlEmail();
             htmlEmail.setCharset(CharEncoding.UTF_8);
             htmlEmail.addTo(userEmail);
             htmlEmail.setSubject("Scheduler Unpublish Alert Mail Sent");
             htmlEmail.setMsg("Scheduler Unpublish Alert Body");
-            htmlEmail.setHtmlMsg("<!DOCTYPE html><html><head></head><body><p>Content AEM Path : "+pagePath +"</p></body></html>");
-            messageGateway.send(htmlEmail);*/
+            htmlEmail.setHtmlMsg("<!DOCTYPE html><html><head></head><body><p>Page Title :"+pageTitle +"</p><p>Content AEM Path : "+pagePath +"</p></body></html>");
+            messageGateway.send(htmlEmail);
             logger.info("Mail Sent ");
         } catch(Exception e) {
             // cannot send email. print some error
@@ -201,6 +205,7 @@ public class UnpublishNotificationScheduledTask implements Runnable  {
         Map<String, Object> paramMap = new HashMap<String, Object>();
         String reminderDays = null;
         String pagePath = null;
+        String pageTitle = null;
         String userId = null;
         paramMap.put(ResourceResolverFactory.SUBSERVICE, "UnpublishAlertSchedulerSubService");
         ResourceResolver resolver = null;
@@ -228,6 +233,8 @@ public class UnpublishNotificationScheduledTask implements Runnable  {
             map.put("path", path);
             map.put("property", "jcr:content/@offTime");
             map.put("property.operation", "exists");
+            map.put("relativedaterange.property", "jcr:content/offTime");
+            map.put("relativedaterange.lowerBound", "1d");
             map.put("p.limit", "-1");
 
             Query query = queryBuilder.createQuery(PredicateGroup.create(map), session);
@@ -248,13 +255,19 @@ public class UnpublishNotificationScheduledTask implements Runnable  {
                     //logger.info("page:::::::: "+page);
                     Map<String, String> pageProperties = new HashMap<>();
                     pageProperties.put("title", page.getTitle());
+                    pageTitle = page.getTitle();
                     //logger.info("title:::::::::: " + page.getTitle());
                     pageProperties.put("description", page.getDescription());
                     //logger.info("description: " + page.getDescription());
                     pageProperties.put("path", page.getPath());
-                    pagePath=page.getPath();
-                    logger.info("path::::::::::::::: " + page.getPath());
+                    //pagePath=page.getContentResource().getPath();
+                    logger.info("path Content path::::::::::::::: " + page.getPath());
+                    //logger.info("page.getContentResource().getPath()::::::::::::::: " + page.getContentResource().getPath());
 
+                    Externalizer externalizer = resolver.adaptTo(Externalizer.class);
+                   // String myExternalizedUrl = externalizer.authorLink(resolver, page.getPath()) + ".html";
+                    pagePath=externalizer.authorLink(resolver, page.getPath()) + ".html";
+                    logger.info("externalizer pagePath::::::::::::::: " + pagePath);
                     logger.info("getLastModifiedBy::::::::::::::: " + page.getLastModifiedBy().toString());
                     userId=page.getLastModifiedBy().toString();
                     logger.info("getOffTime::::::::::::::: " + page.getOffTime().toString());
@@ -292,7 +305,7 @@ public class UnpublishNotificationScheduledTask implements Runnable  {
                     {
                         if(dateBeforeDaysToRemind.before(currentDate) || dateBeforeDaysToRemind.equals(currentDate)){
                             //logger.info("Send Reminder Mail:::::: ");
-                            sendUnpublishAlert(pagePath, userId, resolver, messageGateway);
+                            sendUnpublishAlert(pageTitle,pagePath, userId, resolver, messageGateway);
                         }else{
                             logger.info("Don't Send Reminder Mail:::::: ");
                         }
@@ -305,9 +318,15 @@ public class UnpublishNotificationScheduledTask implements Runnable  {
         }
 
         paramMap = null;
-        resolver = null;
-        session = null;
         queryBuilder = null;
         messageGateway = null;
+        if (session != null && session.isLive()) {
+            session.logout();
+        }
+
+        if (resolver != null && resolver.isLive()) {
+            resolver.close();
+        }
+
     }
 }
