@@ -5,11 +5,11 @@ import { LJI_URLS } from '../../../utils/constants';
 import { getLocal, setLocal } from '../../../utils';
 
 const SsoFacebook = (props) => {
+  {console.log(props)}
   const [user, setUser] = useState(null);
   const {
     fbAppId = "",
-    fbFields = "name,email,id",
-
+    fbFields = "name,email,id"
   } = props;
 
   const responseFacebook = (response) => {
@@ -109,7 +109,6 @@ const SsoFacebook = (props) => {
           <FacebookLogin
             // appId="878025543243819"
             appId={fbAppId}
-
             autoLoad={false}
             fields={fbFields}
             onClick={responseFacebook}

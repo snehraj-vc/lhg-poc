@@ -7,6 +7,7 @@ import {
 } from '../../atoms';
 
 const Sso = (props) => {
+    {console.log(props)}
     const {
         className="",
         id="",
@@ -16,7 +17,7 @@ const Sso = (props) => {
         // weSso=true,
         fbAppId="",
         fbFields="",
-        gglClientId= ""
+        gglClientId = ""
     } = props;
 
     const fbProps = {
@@ -25,7 +26,6 @@ const Sso = (props) => {
     }
     const gglProps = {
         gglClientId
-
     };
 
     return (

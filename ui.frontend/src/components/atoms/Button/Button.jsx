@@ -5,13 +5,14 @@ const Button = (props) => {
         id="",
         className="",
         text="",
-        type="",
+        type="button",
         onClick = () => null,
+        disabled=false
     } = props;
 
     return (
         <>
-            <button id={id} className={`cp-button ${className}`} onClick={(e) => onClick(e)} type={type}>
+            <button id={id} className={`cp-button ${className}`} disabled={disabled} onClick={(e) => onClick(e)} type={type}>
                 {text}
             </button>
         </>
