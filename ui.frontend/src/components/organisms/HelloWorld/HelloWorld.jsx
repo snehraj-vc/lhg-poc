@@ -7,6 +7,7 @@ import {
   CheckInDateRangePicker,
   InfiniteScrollList,
   PopupModal,
+  Carousel,
 } from '../../molecules';
 import { Button } from '../../atoms';
 import { getIntl } from '../../../utils';
@@ -153,6 +154,23 @@ const Helloworld = (props) => {
   const secondaryBtnAction = () => {
     console.log('seconday btn action to be performed');
     displayPopup(false);
+  };
+
+  const getCarouselItems = () => {
+    const lessJSON = [json[0], json[1], json[2], json[3], json[4], json[5]];
+    
+    const items = lessJSON.map((item, idx) => {
+      return (
+        <div className={'person-item-wrapper'} key={idx} style={{
+          backgroundImage: `url(${item.picture})`
+        }}>
+            <div className="person-name">{item.name}</div>
+            <div className="person-age">Age: {item.age}</div>
+            <div className="person-balance">Balance: {item.balance}</div>
+        </div>
+      )
+    })
+    return items;
   }
 
   return (
@@ -200,6 +218,15 @@ const Helloworld = (props) => {
         </div>
       </PopupModal>)
       }
+      <hr />
+      <h3>Carousel Demo</h3>
+      <Carousel
+        autoplay={true}
+        autoPlayWithProgressBar={true}
+        secondsPerSlide={5}
+      >
+        {getCarouselItems()}
+      </Carousel>
     </>
   );
 }

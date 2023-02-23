@@ -11,3 +11,14 @@
   overflow-y: auto;
   border: 1px solid $black;
 }
+
+.person-item-wrapper {
+  background: pink;
+  padding: 20px;
+  background-position: center center;
+  background-size: cover;
+  & > div {
+    color: white;
+    text-shadow: 0 0 2px black;
+  }
+}
