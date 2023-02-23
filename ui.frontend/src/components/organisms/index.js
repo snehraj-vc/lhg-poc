@@ -6,7 +6,6 @@ import Olapic from './Olapic/Olapic';
 import StaticOffer from './StaticOffer/StaticOffer';
 import AutoSuggestion from './AutoSuggestion/AutoSuggestion';
 import AuthModule from './AuthModule/AuthModule';
-import SsoLji from './SsoLji/SsoLji';
 
 export {
     AutoSuggestion,
@@ -16,6 +15,5 @@ export {
     Navigation,
     HeaderSearch,
     Olapic,
-    AuthModule,
-    SsoLji
+    AuthModule
 };
