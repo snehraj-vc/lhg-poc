@@ -33,7 +33,7 @@ import javax.annotation.PostConstruct;
 @Exporter(name = ExporterConstants.SLING_MODEL_EXPORTER_NAME, extensions = ExporterConstants.SLING_MODEL_EXTENSION)
 public class CircularCrop implements ComponentExporter {
     private static final Logger logger = LoggerFactory.getLogger(CircularCrop.class);
-    protected static final String RESOURCE_TYPE = "lhg-lms/components/helloworld";
+    protected static final String RESOURCE_TYPE = "lhg-lms/components/circularcrop";
 
     @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
     protected String text;
@@ -41,12 +41,19 @@ public class CircularCrop implements ComponentExporter {
     @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
     protected String image;
 
+    @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
+    protected String altertext;
+
     public String getText() {
         return text;
     }
 
     public String getImage() {
         return image;
+    }
+
+    public String getAltertext() {
+        return altertext;
     }
 
     @PostConstruct

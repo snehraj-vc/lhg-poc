@@ -142,7 +142,7 @@ const customCompsSettings = [{
 }, 
 ,{
     feCompPath: import(`../components/organisms/CircularCrop/CircularCrop`),
-    aemCompMap: '/apps/lhg-lms/components/circularcrop',
+    aemCompMap: 'lhg-lms/components/circularcrop',
     compName: 'CircularCrop'
 },{
     feCompPath: import(`../components/helperComponents/Intl/Intl`),
