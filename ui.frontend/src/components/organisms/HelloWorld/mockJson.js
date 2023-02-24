@@ -9,7 +9,7 @@ export default [
   {
     "_id": "63f467049a165b987d5b7345",
     "balance": "$2,469.60",
-    "picture": "https://picsum.photos/200",
+    "picture": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
     "age": 22,
     "name": "Haley Wallace"
   },
@@ -23,14 +23,14 @@ export default [
   {
     "_id": "63f467045217b52f45b86c92",
     "balance": "$1,110.41",
-    "picture": "https://picsum.photos/200",
+    "picture": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
     "age": 25,
     "name": "Tammy Hogan"
   },
   {
     "_id": "63f46704d3d1d62eb0a138d7",
     "balance": "$3,630.39",
-    "picture": "https://picsum.photos/200",
+    "picture": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
     "age": 28,
     "name": "Ashlee Finley"
   },

@@ -7,6 +7,7 @@ const Carousel = props => {
         autoplay = false,
         autoPlayWithProgressBar = false,
         secondsPerSlide = 0,
+        onSlideChangeCallback = () => null,
         children
     } = props;
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -23,13 +24,19 @@ const Carousel = props => {
 
     const next = () => {
         if (currentIndex < (length - 1)) {
-            setCurrentIndex(prevState => prevState + 1)
+            setCurrentIndex(prevState => {
+                onSlideChangeCallback(prevState + 1);
+                return prevState + 1;
+            });
         }
     }
 
     const prev = () => {
         if (currentIndex > 0) {
-            setCurrentIndex(prevState => prevState - 1)
+            setCurrentIndex(prevState => {
+                onSlideChangeCallback(prevState - 1);
+                return prevState - 1;
+            });
         }
     }
 
