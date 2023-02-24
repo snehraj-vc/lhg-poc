@@ -6,7 +6,7 @@ const SliderImage = ((props) => {
         slides = []
     } = props;
     return (<>
-        <div>
+        <div className="slider-image"> 
             {slides.map((res, idx) => {
                 return <img src={res.url}></img>
             })
