@@ -13,12 +13,30 @@
 }
 
 .person-item-wrapper {
-  background: pink;
+  background: black;
   padding: 20px;
-  background-position: center center;
-  background-size: cover;
+  position: relative;
+  height: 300px;
   & > div {
     color: white;
     text-shadow: 0 0 2px black;
+  }
+  .picture-wrapper {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    left: 0;
+    img {
+      width: 100%;
+      object-fit: cover;
+    }
+    video {
+      width: 100%;
+      height: auto;
+      transform: translateY(50%) translateY(-35px);
+    }
+  }
+  .content-wrapper {
+    position: relative;
   }
 }

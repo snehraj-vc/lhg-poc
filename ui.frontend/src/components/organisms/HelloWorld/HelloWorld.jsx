@@ -20,6 +20,7 @@ const Helloworld = (props) => {
   const [scrollItems, setScrollItems] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
+  const videosRef = useRef([]);
 
   //Setting up translation for file
   const [tl, setTl] = useState({});
@@ -158,19 +159,44 @@ const Helloworld = (props) => {
 
   const getCarouselItems = () => {
     const lessJSON = [json[0], json[1], json[2], json[3], json[4], json[5]];
-    
+    const videoExtns = ['mp4', 'wmv'];
+
+    const checkVideo = (fileName) => {
+      const extn = fileName.split('.').pop();
+      return videoExtns.indexOf(extn) > -1;
+    }
+
     const items = lessJSON.map((item, idx) => {
       return (
-        <div className={'person-item-wrapper'} key={idx} style={{
-          backgroundImage: `url(${item.picture})`
-        }}>
+        <div className={'person-item-wrapper'} key={idx}>
+          <div className="picture-wrapper">
+            {checkVideo(item.picture) ?
+              (<video ref={cont => {
+                videosRef.current[idx] = cont;
+              }} id={`person-item-video-${idx}`} muted="muted">
+                <source src={item.picture} type="video/mp4" />
+              </video>) : <img src={item.picture} alt={item.name} />}
+          </div>
+          <div className="content-wrapper">
             <div className="person-name">{item.name}</div>
             <div className="person-age">Age: {item.age}</div>
             <div className="person-balance">Balance: {item.balance}</div>
+          </div>
         </div>
       )
-    })
+    });
     return items;
+  };
+
+  const slideShift = (slideNo) => {
+    videosRef.current.forEach(vid => {
+      if(vid) {
+        vid.pause();
+      }
+    })
+    if(videosRef.current[slideNo]) {
+      videosRef.current[slideNo].play();
+    }
   }
 
   return (
@@ -223,7 +249,8 @@ const Helloworld = (props) => {
       <Carousel
         autoplay={true}
         autoPlayWithProgressBar={true}
-        secondsPerSlide={5}
+        secondsPerSlide={4}
+        onSlideChangeCallback={slideShift}
       >
         {getCarouselItems()}
       </Carousel>
