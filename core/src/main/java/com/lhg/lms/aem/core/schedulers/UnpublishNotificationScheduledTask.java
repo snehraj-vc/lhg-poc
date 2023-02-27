@@ -25,6 +25,8 @@ import com.day.cq.commons.Externalizer;
 import com.day.cq.mailer.MessageGateway;
 import com.day.cq.mailer.MessageGatewayService;
 import com.fasterxml.jackson.databind.ser.std.CalendarSerializer;
+import com.lhg.lms.aem.core.services.config.UnpublishNotificationSchedulerTaskConfig;
+import com.lhg.lms.aem.core.services.config.UnpublishSchedulerVariablesConfig;
 import org.apache.commons.lang.CharEncoding;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.mail.Email;
@@ -54,6 +56,7 @@ import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.metatype.annotations.AttributeDefinition;
+import org.osgi.service.metatype.annotations.AttributeType;
 import org.osgi.service.metatype.annotations.Designate;
 import org.osgi.service.metatype.annotations.ObjectClassDefinition;
 import org.slf4j.Logger;
@@ -82,37 +85,30 @@ import static javax.servlet.jsp.PageContext.PAGE;
  * It also demonstrates how property values can be set. Users can
  * set the property values in /system/console/configMgr
  */
-@Designate(ocd=UnpublishNotificationScheduledTask.Config.class)
+@Designate(ocd=UnpublishNotificationSchedulerTaskConfig.class)
 @Component(service=Runnable.class, immediate = true)
 public class UnpublishNotificationScheduledTask implements Runnable  {
 
     private Value[] email;
-
-    @ObjectClassDefinition(name="UnpublishNotificationScheduledTask",
-            description = "Simple demo for cron-job like task with properties")
-    public static @interface Config {
-
-        @AttributeDefinition(name = "Cron-job expression")
-        String scheduler_expression() default "0 * * * * ?";  //0 0 0 * * ? - everyday at midnight, 0 */5 * ? * * - every 5 min
-
-        @AttributeDefinition(name = "Concurrent task",
-                description = "Whether or not to schedule this task concurrently")
-        boolean scheduler_concurrent() default false;
-
-        @AttributeDefinition(name = "A parameter",
-                description = "Can be configured in /system/console/configMgr")
-        String myParameter() default "";
-    }
-
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
     private String myParameter;
-
+    private String schedulerExpression;
+    private String resourceResolverFactorySubService;
+    private String getEmailProperty;
     @Reference
     private ResourceResolverFactory resourceResolverFactory;
 
     @Reference
     private MessageGatewayService messageService;
+
+    @Activate
+    protected void activate(UnpublishNotificationSchedulerTaskConfig config, UnpublishSchedulerVariablesConfig schedulerConfig) {
+        myParameter = config.myParameter();
+        schedulerExpression = config.scheduler_expression();
+        resourceResolverFactorySubService = schedulerConfig.resourceResolverFactorySubService();
+        getEmailProperty=schedulerConfig.getEmailProperty();
+    }
 
     @Override
     public void run() {
@@ -124,43 +120,11 @@ public class UnpublishNotificationScheduledTask implements Runnable  {
         } catch (RepositoryException | ParseException e) {
             throw new RuntimeException(e);
         }
-
-       /* logger.info("000000 :::: ");
-        Map<String, Object> param = new HashMap<>();
-        logger.info("11111 :::: ");
-        param.put(ResourceResolverFactory.SUBSERVICE, "UnpublishAlertSchedulerSubService");
-        logger.info("2222222 :::: ");
-        try {
-            logger.info("333333 :::: ");
-            ResourceResolver resolver = resourceResolverFactory.getServiceResourceResolver(param);
-            logger.info("resolver :::: {}", resolver);
-        } catch (LoginException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }*/
-    }
-
-    @Activate
-    protected void activate(final Config config) {
-        myParameter = config.myParameter();
     }
 
     protected void sendUnpublishAlert(String pageTitle, String pagePath, String userId, ResourceResolver resolver, MessageGateway<HtmlEmail> messageGateway) {
         logger.info("Entering Service Implementation");
         Value[] email = null;
-      /*  Map<String, Object> paramMap = new HashMap<String, Object>();
-
-        paramMap.put(ResourceResolverFactory.SUBSERVICE, "UnpublishAlertSchedulerSubService");
-        ResourceResolver resolver = null;*/
-
-       /* try {
-            resolver = resourceResolverFactory.getServiceResourceResolver(paramMap);
-        } catch (LoginException e) {
-            throw new RuntimeException(e);
-        }*/
-        //logger.info("Try block executed ");
-
-        //logger.info("resolver"  + resolver);
         UserManager userManager =resolver.adaptTo(UserManager.class);
 
         //logger.info("userManager: "  + userManager);
@@ -168,7 +132,7 @@ public class UnpublishNotificationScheduledTask implements Runnable  {
         try {
             //logger.info("Inside Try Block");
             Authorizable auth = userManager.getAuthorizable(userId);
-            email = auth.getProperty("./profile/email");
+            email = auth.getProperty(getEmailProperty);
             logger.info("\n--- User email = "+ Arrays.stream(email).findFirst().toString());
             //logger.info("\n--- User, Principal="+auth.getID()+","+auth.getPrincipal().getName());
         } catch (RepositoryException e) {
@@ -185,7 +149,7 @@ public class UnpublishNotificationScheduledTask implements Runnable  {
                 return;
             }
               logger.info("userEmail");
-            logger.info(userEmail);
+         /*   logger.info(userEmail);
             HtmlEmail htmlEmail = new HtmlEmail();
             htmlEmail.setCharset(CharEncoding.UTF_8);
             htmlEmail.addTo(userEmail);
@@ -193,7 +157,7 @@ public class UnpublishNotificationScheduledTask implements Runnable  {
             htmlEmail.setMsg("Scheduler Unpublish Alert Body");
             htmlEmail.setHtmlMsg("<!DOCTYPE html><html><head></head><body><p>Page Title :"+pageTitle +"</p><p>Content AEM Path : "+pagePath +"</p></body></html>");
             messageGateway.send(htmlEmail);
-            logger.info("Mail Sent ");
+            logger.info("Mail Sent ");*/
         } catch(Exception e) {
             // cannot send email. print some error
             logger.info("cannot send email. print some error:::::::::" + e.toString());
@@ -207,7 +171,7 @@ public class UnpublishNotificationScheduledTask implements Runnable  {
         String pagePath = null;
         String pageTitle = null;
         String userId = null;
-        paramMap.put(ResourceResolverFactory.SUBSERVICE, "UnpublishAlertSchedulerSubService");
+        paramMap.put(ResourceResolverFactory.SUBSERVICE, resourceResolverFactorySubService);//
         ResourceResolver resolver = null;
         MessageGateway<HtmlEmail> messageGateway = null;
         try {
@@ -217,7 +181,7 @@ public class UnpublishNotificationScheduledTask implements Runnable  {
         }
 
         logger.info("11111 :::: ");
-        String[] paths = { "/content/lhg-lms/us/en" };
+        String[] paths = { "/content/lhg-lms/us/en" , "/content/lhg-lms/us/fr" };
         //logger.info("22222 :::: ");
         Session session = resolver.adaptTo(Session.class);
         //logger.info("33333 :::: ");
@@ -225,12 +189,23 @@ public class UnpublishNotificationScheduledTask implements Runnable  {
         //logger.info("44444 :::: ");
         //List<Map<String, String>> pages = new ArrayList<>();
         //logger.info("55555 :::: ");
-        for (String path : paths) {
-            //logger.info("66666 :::: ");
-            Map<String, String> map = new HashMap<>();
+        Map<String, String> map = new HashMap<>();
+        int Count=1;
+        for (int i=0; i< paths.length;i++) {
+            String groupPathKey = Count+"_group."+i+"_path";
+            String groupPathValue = paths[i].toString();
+            map.put(groupPathKey, groupPathValue);
+        }
 
+        //for (String path : paths) {
+            //logger.info("66666 :::: ");
+           // Map<String, String> map = new HashMap<>();
+
+          /*  map.put("1_group.1_path", "/content/lhg-lms/us/en");
+            map.put("1_group.2_path", "/content/lhg-lms/us/fr");*/
+            map.put("1_group.p.or", "true");
             map.put("type", "cq:Page");
-            map.put("path", path);
+            //map.put("path", path);
             map.put("property", "jcr:content/@offTime");
             map.put("property.operation", "exists");
             map.put("relativedaterange.property", "jcr:content/offTime");
@@ -315,7 +290,7 @@ public class UnpublishNotificationScheduledTask implements Runnable  {
                 }
 
             }
-        }
+        //}
 
         paramMap = null;
         queryBuilder = null;
