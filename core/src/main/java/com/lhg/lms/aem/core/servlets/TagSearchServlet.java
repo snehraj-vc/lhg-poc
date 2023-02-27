@@ -5,6 +5,8 @@ import com.day.cq.search.Query;
 import com.day.cq.search.QueryBuilder;
 import com.day.cq.search.result.Hit;
 import com.day.cq.search.result.SearchResult;
+import com.day.cq.tagging.Tag;
+import com.day.cq.tagging.TagManager;
 import com.day.cq.wcm.api.Page;
 import com.google.gson.Gson;
 import org.apache.sling.api.SlingHttpServletRequest;
@@ -109,7 +111,6 @@ public class TagSearchServlet extends SlingSafeMethodsServlet {
                             pageProperties.put("membersonly", "false");
                         }
 
-
                         Node pageNode = page.adaptTo(Node.class);
 
                         if (pageNode.hasNode("jcr:content/image")) {
@@ -124,6 +125,12 @@ public class TagSearchServlet extends SlingSafeMethodsServlet {
                                 pageProperties.put("thumbnail", fileReference);
                                 logger.info("Image3");
                             }
+                        }
+                        TagManager tagManager = resolver.adaptTo(TagManager.class);
+                        Tag tag = tagManager.resolve(tagId);
+                        if (tag != null) {
+                            String tagTitle = tag.getTitle();
+                            pageProperties.put("tagTitle", tagTitle);
                         }
                         pages.add(pageProperties);
 
