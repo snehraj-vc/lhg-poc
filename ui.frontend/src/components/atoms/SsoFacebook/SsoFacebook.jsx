@@ -44,7 +44,8 @@ const SsoFacebook = (props) => {
           currentUserLS = {
             ...currentUserLS,
             token: token,
-            memberId: member_id
+            memberId: member_id,
+            step: 'loggedIn',
           }
           setUser({
             name: `${first_name} ${last_name}`,

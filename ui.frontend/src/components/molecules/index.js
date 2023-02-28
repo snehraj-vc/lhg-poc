@@ -10,6 +10,7 @@ import ChoosePassword from './ChoosePassword/ChoosePassword';
 import SignIn from './SignIn/SignIn';
 import InfiniteScrollList from './InfiniteScrollList/InfiniteScrollList';
 import PopupModal from './PopupModal/PopupModal';
+import Carousel from './Carousel/Carousel';
 
 export {
     StaticOfferTemplate,
@@ -23,5 +24,6 @@ export {
     ChoosePassword,
     RegisterForm,
     InfiniteScrollList,
-    PopupModal
+    PopupModal,
+    Carousel
 };
