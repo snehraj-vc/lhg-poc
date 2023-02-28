@@ -39,9 +39,9 @@ import java.util.ArrayList;
 public class CustomCarousel implements ComponentExporter {
     private static final Logger LOG = LoggerFactory.getLogger(CustomCarousel.class);
 
-    protected static final String RESOURCE_TYPE = "lhg-lms/components/customcarousel";
+    protected static final String RESOURCE_TYPE = "lhg-lms/components/peekcarousel";
     @ChildResource
-    @Named("customcarousel")
+    @Named("peekcarousel")
     private Resource serviceResource;
     private ArrayList<CustomCarouselDTO> service = new ArrayList<>();
     @PostConstruct
@@ -57,7 +57,7 @@ public class CustomCarousel implements ComponentExporter {
             service.add(model);
         }}
     }
-    public ArrayList<CustomCarouselDTO> getCustomcarousel(){
+    public ArrayList<CustomCarouselDTO> getpeekcarousel(){
         return service;
     }
 

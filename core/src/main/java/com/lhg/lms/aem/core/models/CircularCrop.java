@@ -39,6 +39,9 @@ public class CircularCrop implements ComponentExporter {
     protected String text;
 
     @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
+    protected String description;
+
+    @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
     protected String image;
 
     @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
@@ -55,6 +58,11 @@ public class CircularCrop implements ComponentExporter {
     public String getAltertext() {
         return altertext;
     }
+
+    public String getDescription() {
+        return description;
+    }
+
 
     @PostConstruct
     protected void init(){

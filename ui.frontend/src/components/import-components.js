@@ -151,7 +151,7 @@ const customCompsSettings = [{
     customPropCheck: (props) => (!props || !props.intl)
 },{
     feCompPath: import(`./organisms/PeekCarousel/PeekCarousel`),
-    aemCompMap: 'lhg-lms/components/customcarousel',
+    aemCompMap: 'lhg-lms/components/peekcarousel',
     compName: 'Peek Carousel'
 }
 ];

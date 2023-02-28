@@ -4,7 +4,7 @@ import './style.scss';
 
 const PeekCarousel = props => {
     const {
-        customcarousel = []
+        peekcarousel = []
     } = props;
 
     const videosRef = useRef([]);
@@ -17,7 +17,7 @@ const PeekCarousel = props => {
             return videoExtns.indexOf(extn) > -1;
         }
 
-        const items = customcarousel.map((item, idx) => {
+        const items = peekcarousel.map((item, idx) => {
             const {
                 title,
                 description,
