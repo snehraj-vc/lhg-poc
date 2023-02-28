@@ -7,7 +7,8 @@ const LJI_URLS = {
     SSO_FB_SIGN_IN: "https://api.aps20.gravty.io/v1/members/social/facebook/login"
 };
 const AEM_URLS = {
-    SEARCH_OFFERS: "/content/sitea/us/en/offers/content/offers.data.json"
+    SEARCH_OFFERS: "/content/sitea/us/en/offers/content/offers.data.json",
+    EXCLUSIVE_OFFERS: "/content/lhg-lms/us/en/home.tag.tagjson?tagId=lhg:africa,lhg:asia&paths=/content/offers"
 };
 const LOCAL_STORAGE_KEYS = {
     RECENT_SEARCH: 'autoSuggestRecentSearch'

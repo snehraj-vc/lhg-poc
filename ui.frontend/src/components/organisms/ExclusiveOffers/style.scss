@@ -1,0 +1,33 @@
+.tag{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 50px;
+}
+
+.tag-search{
+    display: flex;
+    width:100%;
+    margin-top: 30px;
+}
+.tag-search-item{
+    width:100%;
+    margin-left: 15px;
+    border: 2px solid red;
+    border-radius: 7px;
+    padding: 5px;
+}
+.tag-thumbnail{
+    background:no-repeat;
+    object-fit: cover;
+    object-position: center;
+    background:no-repeat;
+    width:100%;
+    z-index: -1;
+}
+.members{
+    position: absolute;
+    font-weight: bolder;
+    margin-left: 57px;
+    
+}

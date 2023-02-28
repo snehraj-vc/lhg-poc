@@ -17,7 +17,7 @@
                             jcr:primaryType="nt:unstructured"
                             sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
                             fieldLabel="Location"
-                            name="./jcr:location"
+                            name="./location"
                             renderReadOnly="{Boolean}true">
                             <granite:data
                                 jcr:primaryType="nt:unstructured"
