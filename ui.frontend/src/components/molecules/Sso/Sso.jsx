@@ -14,7 +14,6 @@ const Sso = (props) => {
         fbSso=true,
         gglSso=true,
         appleSso=true,
-        // weSso=true,
         fbAppId="",
         fbFields="",
         gglClientId = ""
@@ -33,8 +32,6 @@ const Sso = (props) => {
             { gglSso && <SsoGoogle {...gglProps } /> }
             { fbSso && <SsoFacebook {...fbProps} /> }
             { appleSso && <SsoApple /> }
-            {/* { weSso && <SsoWeChat /> } */}
-            
         </div>
     );
 };

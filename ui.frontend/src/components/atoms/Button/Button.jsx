@@ -5,7 +5,7 @@ const Button = (props) => {
         id="",
         className="",
         text="",
-        type="",
+        type="button",
         onClick = () => null,
         disabled=false
     } = props;
