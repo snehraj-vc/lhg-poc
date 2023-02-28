@@ -3,12 +3,7 @@ import { useState, useEffect } from 'react';
 import { getData } from '../../../utils/server';
 import { AEM_URLS } from '../../../utils/constants';
 import './style.scss';
-// const ExclusiveOffers = (props)=>{
-//     return(<>
-//     <div>Tag Based Search</div>
-//     </>)
 
-// };
 
 function ExclusiveOffers(props) {
     const {
