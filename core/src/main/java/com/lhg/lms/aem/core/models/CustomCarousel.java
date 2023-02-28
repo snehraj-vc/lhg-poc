@@ -39,7 +39,7 @@ import java.util.ArrayList;
 public class CustomCarousel implements ComponentExporter {
     private static final Logger LOG = LoggerFactory.getLogger(CustomCarousel.class);
 
-    protected static final String RESOURCE_TYPE = "lhg-lms/components/staticoffer";
+    protected static final String RESOURCE_TYPE = "lhg-lms/components/customcarousel";
     @ChildResource
     @Named("customcarousel")
     private Resource serviceResource;
