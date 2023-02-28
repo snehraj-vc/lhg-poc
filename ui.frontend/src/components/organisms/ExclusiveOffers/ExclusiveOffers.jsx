@@ -34,9 +34,12 @@ function ExclusiveOffers(props) {
           {data.map((item,idx) => (
             
             <div className="tag-search-item" key={idx}>
+
+            <div class="img-group">
             {item.membersonly==="true" ? <h4 className="members">Members Only</h4> : ""}
-          
-            <img src={item.thumbnail} className="tag-thumbnail"/>
+          <img src={item.thumbnail} className="tag-thumbnail"/>
+            </div>
+            
             <h3 className="tag-title">{item.tagTitle}</h3>
             <a href={`${item.path}`}>{item.title}</a>
             <h3 className="description">{item.description}</h3>
@@ -45,7 +48,6 @@ function ExclusiveOffers(props) {
             </div>
           ))}
           
-        
       </div>
     </>);
   }

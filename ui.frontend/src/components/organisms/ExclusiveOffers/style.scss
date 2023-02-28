@@ -25,9 +25,11 @@
     width:100%;
     z-index: -1;
 }
+.img-group{
+    position: relative;
+}
 .members{
     position: absolute;
     font-weight: bolder;
-    margin-left: 57px;
     
 }
