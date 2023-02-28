@@ -35,7 +35,7 @@ function ExclusiveOffers(props) {
             
             <div className="tag-search-item" key={idx}>
 
-            <div class="img-group">
+            <div className="img-group">
             {item.membersonly==="true" ? <h4 className="members">Members Only</h4> : ""}
           <img src={item.thumbnail} className="tag-thumbnail"/>
             </div>
