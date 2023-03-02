@@ -7,9 +7,12 @@ const Carousel = props => {
         autoplay = false,
         autoPlayWithProgressBar = false,
         secondsPerSlide = 0,
+        progressBarType = "none",
         onSlideChangeCallback = () => null,
+        isInfinite = false,
         children
     } = props;
+    const pgBar = ['grpSlider', 'indSlider'].indexOf(progressBarType) > -1 ? progressBarType : 'none';
     const [currentIndex, setCurrentIndex] = useState(0);
     const [touchPosition, setTouchPosition] = useState(null);
     const [autoplayStarted, setAutoplayStarted] = useState(false);
@@ -81,17 +84,21 @@ const Carousel = props => {
                         runTimer(currIndex + 1);
                     } else {
                         //REPEATING CYCLE
-                        setCurrentIndex(0);
-                        progressBarRef.current.forEach(ref => {
-                            ref.current.style.width = `0%`;
-                        });
-                        runTimer(0);
+                        if(isInfinite) {
+                            setCurrentIndex(0);
+                            if(pgBar === 'indSlider') {
+                                progressBarRef.current.forEach(ref => {
+                                    ref.current.style.width = `0%`;
+                                });
+                            }
+                            runTimer(0);
+                        }
 
                     }
                     return;
                 }
                 initTime += 100;
-                if (autoPlayWithProgressBar) {
+                if (autoPlayWithProgressBar && pgBar === 'indSlider') {
                     progressBarRef.current[currIndex].current.style.width = `${parseInt(initTime / targetTime * 100)}%`;
                 }
             }, 100);
@@ -124,7 +131,7 @@ const Carousel = props => {
                         &gt;
                     </button>} */}
                 </div>
-                {autoplay && autoPlayWithProgressBar && <div className={"progress-bar-wrapper"}>
+                {autoplay && autoPlayWithProgressBar && progressBarType === 'indSlider' && <div className={"progress-bar-wrapper"}>
                     {
                         children.map((el, idx) => {
                             return (
@@ -136,6 +143,17 @@ const Carousel = props => {
                             )
                         })
                     }
+                </div>}
+                {autoplay 
+                    && autoPlayWithProgressBar
+                    && pgBar === 'grpSlider' 
+                    && <div className={"progress-bar-wrapper"}>
+                        {currentIndex + 1}/{children.length}
+                        <div className="slider-bar">
+                            <span className="slider-bar-filled" style={{
+                                width: `${(currentIndex + 1) / children.length * 100}%`
+                            }}></span>
+                        </div>
                 </div>}
             </div>
         </>

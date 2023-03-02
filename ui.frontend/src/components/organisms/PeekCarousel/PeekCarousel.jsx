@@ -57,10 +57,12 @@ const PeekCarousel = props => {
     return (<>
         <div className="cp-peek-carousel">
             <Carousel
-                autoplay={false}
-                autoPlayWithProgressBar={false}
-                secondsPerSlide={0}
+                autoplay={true}
+                autoPlayWithProgressBar={true}
+                secondsPerSlide={3}
                 onSlideChangeCallback={slideShift}
+                isInfinite={false}
+                progressBarType="grpSlider"
             >
                 {getCarouselItems()}
             </Carousel>
