@@ -16,8 +16,11 @@
 package com.lhg.lms.aem.core.models;
 
 import org.apache.sling.api.SlingHttpServletRequest;
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Exporter;
 import org.apache.sling.models.annotations.Model;
+import org.apache.sling.models.annotations.injectorspecific.ChildResource;
 import org.apache.sling.models.annotations.injectorspecific.InjectionStrategy;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
@@ -25,6 +28,11 @@ import com.adobe.cq.export.json.ComponentExporter;
 import com.adobe.cq.export.json.ExporterConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import javax.annotation.PostConstruct;
+import javax.inject.Named;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Model(adaptables = SlingHttpServletRequest.class,
@@ -54,9 +62,40 @@ public class ExclusiveOffers implements ComponentExporter {
         return viewalltextlink;
     }
 
+    @ChildResource
+    @Named("tagpath")
+    private Resource tagpath;
+    private ArrayList<ExclusiveOffersPaths> exclusiveOffersPaths=new ArrayList<>();
+    @PostConstruct
+    protected void init() {
+        if (tagpath!= null){
+            Iterable<Resource> multi = tagpath.getChildren();
+            for (Resource multiResource : multi){
+                ValueMap valueMap = multiResource.getValueMap();
+                ExclusiveOffersPaths model=new ExclusiveOffersPaths();
+                model.setTagPath(valueMap.get("path",String.class));
+                exclusiveOffersPaths.add(model);
+            }}
+    }
+
+    public ArrayList<ExclusiveOffersPaths> getExclusiveOffersPaths() {
+        return exclusiveOffersPaths;
+    }
+
     @Override
     public String getExportedType() {
         return RESOURCE_TYPE;
     }
 
+}
+class ExclusiveOffersPaths {
+    private String tagPath;
+
+    public String getTagPath() {
+        return tagPath;
+    }
+
+    public void setTagPath(String tagPath) {
+        this.tagPath = tagPath;
+    }
 }
