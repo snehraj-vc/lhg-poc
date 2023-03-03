@@ -93,7 +93,7 @@ const SsoGoogle = (props) => {
                     alert("Sign up successful");
                 })
                 .catch(err => {
-                    console.log('err.error.email[0].code::', err.response.data.error)
+                  
                     if (err.response.data.error.code === 'member_exists' || err.response.data.error.email[0].code === 'unique') {
                         alert("user aready exist");
                     } else {
