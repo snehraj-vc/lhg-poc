@@ -6,6 +6,7 @@ import Olapic from './Olapic/Olapic';
 import StaticOffer from './StaticOffer/StaticOffer';
 import AutoSuggestion from './AutoSuggestion/AutoSuggestion';
 import AuthModule from './AuthModule/AuthModule';
+import BrilliantHeader from './BrilliantHeader/BrilliantHeader';
 
 export {
     AutoSuggestion,
@@ -15,5 +16,7 @@ export {
     Navigation,
     HeaderSearch,
     Olapic,
-    AuthModule
+    AuthModule,
+    BrilliantHeader
+
 };
