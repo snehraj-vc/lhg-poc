@@ -27,7 +27,7 @@ public @interface UnpublishSchedulerVariablesConfig {
     @AttributeDefinition(name = "ResourceResolverFactorySubService",
             description = "",
             type = AttributeType.STRING)
-    String resourceResolverFactorySubService() default "UnpublishAlertSchedulerSubService";
+    String resourceResolverFactorySubService() default "lhgService";//UnpublishAlertSchedulerSubService
 
     @AttributeDefinition(name = "Get Email Property",
             description = "",

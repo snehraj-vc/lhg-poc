@@ -54,6 +54,7 @@ import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.ConfigurationPolicy;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.metatype.annotations.AttributeDefinition;
 import org.osgi.service.metatype.annotations.AttributeType;
@@ -86,8 +87,8 @@ import static javax.servlet.jsp.PageContext.PAGE;
  * set the property values in /system/console/configMgr
  */
 @Designate(ocd=UnpublishNotificationSchedulerTaskConfig.class)
-@Component(service=Runnable.class, immediate = true)
-public class UnpublishNotificationScheduledTask implements Runnable  {
+@Component(service=Runnable.class, immediate = true, configurationPolicy = ConfigurationPolicy.REQUIRE)
+public class UnpublishNotificationScheduledTask implements Runnable {
 
     private Value[] email;
     private final Logger logger = LoggerFactory.getLogger(getClass());
@@ -107,7 +108,7 @@ public class UnpublishNotificationScheduledTask implements Runnable  {
         myParameter = config.myParameter();
         schedulerExpression = config.scheduler_expression();
         resourceResolverFactorySubService = schedulerConfig.resourceResolverFactorySubService();
-        getEmailProperty=schedulerConfig.getEmailProperty();
+        getEmailProperty = schedulerConfig.getEmailProperty();
     }
 
     @Override
@@ -125,7 +126,7 @@ public class UnpublishNotificationScheduledTask implements Runnable  {
     protected void sendUnpublishAlert(String pageTitle, String pagePath, String userId, ResourceResolver resolver, MessageGateway<HtmlEmail> messageGateway) {
         logger.info("Entering Service Implementation");
         Value[] email = null;
-        UserManager userManager =resolver.adaptTo(UserManager.class);
+        UserManager userManager = resolver.adaptTo(UserManager.class);
 
         //logger.info("userManager: "  + userManager);
 
@@ -133,7 +134,7 @@ public class UnpublishNotificationScheduledTask implements Runnable  {
             //logger.info("Inside Try Block");
             Authorizable auth = userManager.getAuthorizable(userId);
             email = auth.getProperty(getEmailProperty);
-            logger.info("\n--- User email = "+ Arrays.stream(email).findFirst().toString());
+            logger.info("\n--- User email = " + Arrays.stream(email).findFirst().toString());
             //logger.info("\n--- User, Principal="+auth.getID()+","+auth.getPrincipal().getName());
         } catch (RepositoryException e) {
             throw new RuntimeException(e);
@@ -144,11 +145,11 @@ public class UnpublishNotificationScheduledTask implements Runnable  {
 
             String userEmail = Arrays.stream(email).findFirst().get().getString();
 
-            if(StringUtils.isBlank(userEmail)) {
+            if (StringUtils.isBlank(userEmail)) {
                 logger.info("3");
                 return;
             }
-              logger.info("userEmail");
+            logger.info("userEmail");
          /*   logger.info(userEmail);
             HtmlEmail htmlEmail = new HtmlEmail();
             htmlEmail.setCharset(CharEncoding.UTF_8);
@@ -158,7 +159,7 @@ public class UnpublishNotificationScheduledTask implements Runnable  {
             htmlEmail.setHtmlMsg("<!DOCTYPE html><html><head></head><body><p>Page Title :"+pageTitle +"</p><p>Content AEM Path : "+pagePath +"</p></body></html>");
             messageGateway.send(htmlEmail);
             logger.info("Mail Sent ");*/
-        } catch(Exception e) {
+        } catch (Exception e) {
             // cannot send email. print some error
             logger.info("cannot send email. print some error:::::::::" + e.toString());
             e.printStackTrace();
@@ -171,17 +172,23 @@ public class UnpublishNotificationScheduledTask implements Runnable  {
         String pagePath = null;
         String pageTitle = null;
         String userId = null;
+        logger.info("ResourceResolverFactory.SUBSERVICE :::: " + ResourceResolverFactory.SUBSERVICE);
         paramMap.put(ResourceResolverFactory.SUBSERVICE, resourceResolverFactorySubService);//
+
         ResourceResolver resolver = null;
         MessageGateway<HtmlEmail> messageGateway = null;
         try {
+            logger.info("resourceResolverFactorySubService :::: " + resourceResolverFactorySubService);
+            logger.info("resourceResolverFactory.getServiceResourceResolver(paramMap) :::: " + resourceResolverFactory.getServiceResourceResolver(paramMap));
             resolver = resourceResolverFactory.getServiceResourceResolver(paramMap);
+            logger.info("resolver :::: " + resolver);
         } catch (LoginException e) {
+            logger.info("Exception :::: " + e.getMessage());
             throw new RuntimeException(e);
         }
 
         logger.info("11111 :::: ");
-        String[] paths = { "/content/lhg-lms/us/en" , "/content/lhg-lms/us/fr" };
+        String[] paths = {"/content/lhg-lms/us/en", "/content/lhg-lms/us/fr"};
         //logger.info("22222 :::: ");
         Session session = resolver.adaptTo(Session.class);
         //logger.info("33333 :::: ");
@@ -190,71 +197,71 @@ public class UnpublishNotificationScheduledTask implements Runnable  {
         //List<Map<String, String>> pages = new ArrayList<>();
         //logger.info("55555 :::: ");
         Map<String, String> map = new HashMap<>();
-        int Count=1;
-        for (int i=0; i< paths.length;i++) {
-            String groupPathKey = Count+"_group."+i+"_path";
+        int Count = 1;
+        for (int i = 0; i < paths.length; i++) {
+            String groupPathKey = Count + "_group." + i + "_path";
             String groupPathValue = paths[i].toString();
             map.put(groupPathKey, groupPathValue);
         }
 
         //for (String path : paths) {
-            //logger.info("66666 :::: ");
-           // Map<String, String> map = new HashMap<>();
+        //logger.info("66666 :::: ");
+        // Map<String, String> map = new HashMap<>();
 
           /*  map.put("1_group.1_path", "/content/lhg-lms/us/en");
             map.put("1_group.2_path", "/content/lhg-lms/us/fr");*/
-            map.put("1_group.p.or", "true");
-            map.put("type", "cq:Page");
-            //map.put("path", path);
-            map.put("property", "jcr:content/@offTime");
-            map.put("property.operation", "exists");
-            map.put("relativedaterange.property", "jcr:content/offTime");
-            map.put("relativedaterange.lowerBound", "1d");
-            map.put("p.limit", "-1");
+        map.put("1_group.p.or", "true");
+        map.put("type", "cq:Page");
+        //map.put("path", path);
+        map.put("property", "jcr:content/@offTime");
+        map.put("property.operation", "exists");
+        map.put("relativedaterange.property", "jcr:content/offTime");
+        //map.put("relativedaterange.lowerBound", "1d");
+        map.put("relativedaterange.upperBound", myParameter + "d");
+        map.put("p.limit", "-1");
 
-            Query query = queryBuilder.createQuery(PredicateGroup.create(map), session);
-            SearchResult result = query.getResult();
+        Query query = queryBuilder.createQuery(PredicateGroup.create(map), session);
+        SearchResult result = query.getResult();
 
-            logger.info("result Hits:: "+result.getTotalMatches());
-            for (Hit hit : result.getHits()) {
-                Resource resource = null;
-                try {
-                    resource = hit.getResource();
-                    logger.info("resource hit:: "+resource);
-                    logger.info("resource.getResourceType():: "+resource.getResourceType());
-                } catch (RepositoryException e) {
-                    throw new RuntimeException(e);
-                }
-                if(resource.getResourceType().equals("cq:Page")){
-                    Page page = resource.adaptTo(Page.class);
-                    //logger.info("page:::::::: "+page);
-                    Map<String, String> pageProperties = new HashMap<>();
-                    pageProperties.put("title", page.getTitle());
-                    pageTitle = page.getTitle();
-                    //logger.info("title:::::::::: " + page.getTitle());
-                    pageProperties.put("description", page.getDescription());
-                    //logger.info("description: " + page.getDescription());
-                    pageProperties.put("path", page.getPath());
-                    //pagePath=page.getContentResource().getPath();
-                    logger.info("path Content path::::::::::::::: " + page.getPath());
-                    //logger.info("page.getContentResource().getPath()::::::::::::::: " + page.getContentResource().getPath());
+        logger.info("result Hits:: " + result.getTotalMatches());
+        for (Hit hit : result.getHits()) {
+            Resource resource = null;
+            try {
+                resource = hit.getResource();
+                logger.info("resource hit:: " + resource);
+                logger.info("resource.getResourceType():: " + resource.getResourceType());
+            } catch (RepositoryException e) {
+                throw new RuntimeException(e);
+            }
+            if (resource.getResourceType().equals("cq:Page")) {
+                Page page = resource.adaptTo(Page.class);
+                //logger.info("page:::::::: "+page);
+                Map<String, String> pageProperties = new HashMap<>();
+                pageProperties.put("title", page.getTitle());
+                pageTitle = page.getTitle();
+                //logger.info("title:::::::::: " + page.getTitle());
+                pageProperties.put("description", page.getDescription());
+                //logger.info("description: " + page.getDescription());
+                pageProperties.put("path", page.getPath());
+                //pagePath=page.getContentResource().getPath();
+                logger.info("path Content path::::::::::::::: " + page.getPath());
+                //logger.info("page.getContentResource().getPath()::::::::::::::: " + page.getContentResource().getPath());
 
-                    Externalizer externalizer = resolver.adaptTo(Externalizer.class);
-                   // String myExternalizedUrl = externalizer.authorLink(resolver, page.getPath()) + ".html";
-                    pagePath=externalizer.authorLink(resolver, page.getPath()) + ".html";
-                    logger.info("externalizer pagePath::::::::::::::: " + pagePath);
-                    logger.info("getLastModifiedBy::::::::::::::: " + page.getLastModifiedBy().toString());
-                    userId=page.getLastModifiedBy().toString();
-                    logger.info("getOffTime::::::::::::::: " + page.getOffTime().toString());
+                Externalizer externalizer = resolver.adaptTo(Externalizer.class);
+                // String myExternalizedUrl = externalizer.authorLink(resolver, page.getPath()) + ".html";
+                pagePath = externalizer.authorLink(resolver, page.getPath()) + ".html";
+                logger.info("externalizer pagePath::::::::::::::: " + pagePath);
+                logger.info("getLastModifiedBy::::::::::::::: " + page.getLastModifiedBy().toString());
+                userId = page.getLastModifiedBy().toString();
+                logger.info("getOffTime::::::::::::::: " + page.getOffTime().toString());
 
 
-
-                    //pages.add(pageProperties);
+                //pages.add(pageProperties);
                 Node pageNode = page.adaptTo(Node.class);
                 if (pageNode.hasNode("jcr:content")) {
                     //logger.info("jcr:content");
-                    Node contentNode=pageNode.getNode("jcr:content");
-                  //  logger.info("Image node {}",contentNode.getPath());
+                    Node contentNode = pageNode.getNode("jcr:content");
+                    //  logger.info("Image node {}",contentNode.getPath());
 
                     if (contentNode != null) {
                         reminderDays = contentNode.getProperty("reminderDays").getValue().toString();
@@ -262,8 +269,9 @@ public class UnpublishNotificationScheduledTask implements Runnable  {
                     }
                 }
 
-                //logic
-
+                sendUnpublishAlert(pageTitle, pagePath, userId, resolver, messageGateway);
+                //Reminder Days Logic Start
+                /*
                 int daysToRemind = Integer.parseInt(reminderDays);
 
                 Date getOffTime = page.getOffTime().getTime();
@@ -288,20 +296,21 @@ public class UnpublishNotificationScheduledTask implements Runnable  {
                 }else{
                     logger.info("Not A Page ::::::::::::::: " + resource.getResourceType());
                 }
-
+                */
+                //Reminder Days Logic END
             }
-        //}
-
-        paramMap = null;
-        queryBuilder = null;
-        messageGateway = null;
-        if (session != null && session.isLive()) {
-            session.logout();
         }
 
-        if (resolver != null && resolver.isLive()) {
-            resolver.close();
-        }
+            paramMap = null;
+            queryBuilder = null;
+            messageGateway = null;
+            if (session != null && session.isLive()) {
+                session.logout();
+            }
 
+            if (resolver != null && resolver.isLive()) {
+                resolver.close();
+            }
+        }
     }
-}
+

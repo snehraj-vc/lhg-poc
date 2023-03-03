@@ -33,7 +33,7 @@ public @interface UnpublishNotificationSchedulerTaskConfig {
             name = "Cron-job expression",
             description = "Cron expression used by the scheduler",
             type = AttributeType.STRING)
-    String scheduler_expression() default "0 * * * * ?";  //0 0 0 * * ? - everyday at midnight, 0 */5 * ? * * - every 5 min
+    String scheduler_expression() default "0 0 0 * * ?";  //0 0 0 * * ? - everyday at midnight, 0 */5 * ? * * - every 5 min
 
     @AttributeDefinition(name = "Concurrent task",
             description = "Whether or not to schedule this task concurrently")
@@ -44,8 +44,9 @@ public @interface UnpublishNotificationSchedulerTaskConfig {
      *
      * @return {@link String}
      */
-    @AttributeDefinition(name = "Custom Parameter",
+    @AttributeDefinition(name = "Reminder Days",
             description = "Can be configured in /system/console/configMgr",
             type = AttributeType.STRING)
-    String myParameter() default "Unpublish Notification scheduler Demo Test";
+    String myParameter() default "4";
+
 }
