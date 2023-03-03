@@ -144,6 +144,11 @@ const customCompsSettings = [{
     aemCompMap: 'lhg-lms/components/intl',
     compName: 'Internationalization',
     customPropCheck: (props) => (!props || !props.intl)
+},
+{
+    feCompPath: import(`../components/organisms/BrilliantHeader/BrilliantHeader`),
+    aemCompMap: 'lhg-lms/components/brilliantheader',
+    compName: 'BrilliantHeader'
 }
 ];
 
