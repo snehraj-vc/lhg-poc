@@ -113,7 +113,7 @@ const Carousel = props => {
         if (autoplay && inViewport && !autoplayStarted) {
             initiateAutoplay();
         }
-    }, [autoplay, autoPlayWithProgressBar, inViewport]);
+    }, [autoplay, autoPlayWithProgressBar, inViewport, elRef]);
 
     const getTransformOnDevice = () => {
         if (isMobile()) {
