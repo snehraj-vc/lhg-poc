@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, createRef } from 'react';
 import './style.scss';
 import useIntersection from '../../../utils/useIntersection';
+import { isMobile, isTablet, isDesktop } from '../../../utils';
 
 const Carousel = props => {
     const {
@@ -48,7 +49,7 @@ const Carousel = props => {
         setTouchPosition(touchDown)
     }
     const handleTouchMove = (e) => {
-        if(autoplay) {
+        if (autoplay) {
             return;
         }
         const touchDown = touchPosition;
@@ -79,38 +80,55 @@ const Carousel = props => {
             const timerInterval = setInterval(() => {
                 if (initTime >= targetTime) {
                     clearInterval(timerInterval);
-                    if (currIndex !== length - 1) {
+                    if (currIndex !== length - (isMobile() ? 1 : 2)) {
                         next();
                         runTimer(currIndex + 1);
+
                     } else {
                         //REPEATING CYCLE
-                        if(isInfinite) {
+                        if (isInfinite) {
                             setCurrentIndex(0);
-                            if(pgBar === 'indSlider') {
+                            if (pgBar === 'indSlider') {
                                 progressBarRef.current.forEach(ref => {
-                                    ref.current.style.width = `0%`;
+                                    if(ref) {
+                                        ref.current.style.width = `0%`;
+                                    }
                                 });
                             }
                             runTimer(0);
                         }
-
                     }
                     return;
                 }
                 initTime += 100;
-                if (autoPlayWithProgressBar && pgBar === 'indSlider') {
+                if (autoPlayWithProgressBar && pgBar === 'indSlider' && progressBarRef.current[currIndex].current) {
                     progressBarRef.current[currIndex].current.style.width = `${parseInt(initTime / targetTime * 100)}%`;
                 }
             }, 100);
         }
-        runTimer(slideIdx);
+        runTimer(0);
     }
 
     useEffect(() => {
         if (autoplay && inViewport && !autoplayStarted) {
             initiateAutoplay();
         }
-    }, [autoplay, autoPlayWithProgressBar, inViewport])
+    }, [autoplay, autoPlayWithProgressBar, inViewport]);
+
+    const getTransformOnDevice = () => {
+        if (isMobile()) {
+            return {
+                transform: `translateX(-${currentIndex * 85}%) translateX(-${currentIndex * 20}px)`
+            }
+        } else if (isTablet()) {
+            return {
+                transform: `translateX(-${currentIndex * 40}%) translateX(-${currentIndex * 20}px)`
+            }
+        }
+        return {
+            transform: `translateX(-${currentIndex * 25}%) translateX(-${currentIndex * 20}px)`
+        }
+    }
 
     return (
         <>
@@ -123,7 +141,7 @@ const Carousel = props => {
                         onTouchStart={handleTouchStart}
                         onTouchMove={handleTouchMove}
                     >
-                        <div className="carousel-content" style={{ transform: `translateX(-${currentIndex * 85}%) translateX(-${currentIndex * 20}px)` }}>
+                        <div className="carousel-content" style={getTransformOnDevice()}>
                             {children}
                         </div>
                     </div>
@@ -134,6 +152,9 @@ const Carousel = props => {
                 {autoplay && autoPlayWithProgressBar && progressBarType === 'indSlider' && <div className={"progress-bar-wrapper"}>
                     {
                         children.map((el, idx) => {
+                            if((isTablet() || isDesktop()) && idx === children.length - 1) {
+                                return null;
+                            }
                             return (
                                 <span key={idx} className={'progress-bar'} style={{
                                     width: `calc(${100 / length}% - 4px)`
@@ -144,17 +165,17 @@ const Carousel = props => {
                         })
                     }
                 </div>}
-                {autoplay 
+                {autoplay
                     && autoPlayWithProgressBar
-                    && pgBar === 'grpSlider' 
+                    && pgBar === 'grpSlider'
                     && <div className={"progress-bar-wrapper"}>
-                        {currentIndex + 1}/{children.length}
+                        {!(isTablet() || isDesktop()) &&  `${currentIndex + 1} / ${children.length}`}
                         <div className="slider-bar">
                             <span className="slider-bar-filled" style={{
-                                width: `${(currentIndex + 1) / children.length * 100}%`
+                                width: `${(currentIndex + 1) / (children.length - ((isTablet() || isDesktop()) ? 1 : 0)) * 100}%`
                             }}></span>
                         </div>
-                </div>}
+                    </div>}
             </div>
         </>
     )
