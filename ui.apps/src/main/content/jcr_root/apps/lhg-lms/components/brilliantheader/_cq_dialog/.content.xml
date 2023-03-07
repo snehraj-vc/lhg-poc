@@ -7,58 +7,149 @@
         jcr:primaryType="nt:unstructured"
         sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
         <items jcr:primaryType="nt:unstructured">
-            <column
+            <tabs
                 jcr:primaryType="nt:unstructured"
-                sling:resourceType="granite/ui/components/coral/foundation/container">
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maximized="{Boolean}true">
                 <items jcr:primaryType="nt:unstructured">
-                    <login
+                    <properties
                         jcr:primaryType="nt:unstructured"
-                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                        fieldLabel="Log In"
-                        name="./login"/>
-                    <menuitems
+                        jcr:title="Properties"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <column
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <login
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Log In"
+                                        name="./login"/>
+                                    <menuitems
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                        composite="{Boolean}true"
+                                        fieldLabel="Menu Items">
+                                        <field
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                                            name="./menuitems">
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <itemtext
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    emptyText="Item Name"
+                                                    fieldLabel="Item Name"
+                                                    name="./itemtext"/>
+                                                <itemlink
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                    emptyText="Item Link"
+                                                    fieldLabel="Item Link"
+                                                    name="./itemlink"/>
+                                            </items>
+                                        </field>
+                                    </menuitems>
+                                    <brilliantimage
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:orderBefore="login"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                        fieldLabel="Brilliant Logo Image"
+                                        name="./brilliantimage"
+                                        rootPath="/content/dam/lhg-lms"/>
+                                    <loginurl
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:orderBefore="menuitems"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                        fieldLabel="Log In url"
+                                        name="./loginurl"/>
+                                    <hamburgericon
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Hamburger Icon Alt Text"
+                                        name="./hamburgericon"/>
+                                    <createaccountlabel
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Create Account Label"
+                                        name="./createaccountlabel"/>
+                                    <createaccountlink
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                        fieldLabel="Create Account Link"
+                                        name="./createaccountlink"/>
+                                    <createaccounticonalt
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="Create Account Icon Alt Text"
+                                        name="./createaccounticonalt"/>
+                                </items>
+                            </column>
+                        </items>
+                    </properties>
+                    <languagetoggle
                         jcr:primaryType="nt:unstructured"
-                        sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
-                        composite="{Boolean}true"
-                        fieldLabel="Menu Items">
-                        <field
-                            jcr:primaryType="nt:unstructured"
-                            sling:resourceType="granite/ui/components/coral/foundation/container"
-                            name="./menuitems">
-                            <items jcr:primaryType="nt:unstructured">
-                                <itemtext
-                                    jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                    emptyText="Item Name"
-                                    fieldLabel="Item Name"
-                                    name="./itemtext"/>
-                                <itemlink
-                                    jcr:primaryType="nt:unstructured"
-                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                    emptyText="Item Link"
-                                    fieldLabel="Item Link"
-                                    name="./itemlink"/>
-                            </items>
-                        </field>
-                    </menuitems>
-                    <brilliantimage
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                        fieldLabel="Brilliant Logo Image"
-                        name="./brilliantimage"
-                        rootPath="/content/dam/lhg-lms"/>
-                    <loginurl
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                        fieldLabel="Log In url"
-                        name="./loginurl"/>
-                    <hamburgericon
-                        jcr:primaryType="nt:unstructured"
-                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                        fieldLabel="Hamburger Icon Text"
-                        name="./hamburgericon"/>
+                        jcr:title="Language Toggle"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <column
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <enlabel
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="EN Label"
+                                        name="./enLabel"/>
+                                    <enpath
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                        fieldLabel="EN Path"
+                                        name="./enPath"/>
+                                    <zhhklabel
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="ZH_HK Label"
+                                        name="./zhhkLabel"/>
+                                    <zhcnlabel
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="ZH_CN Label"
+                                        name="./zhcnLabel"/>
+                                    <zhhkpath
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                        fieldLabel="ZH_HK Path"
+                                        name="./zhhkPath"/>
+                                    <zhcnpath
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                        fieldLabel="ZH_CN Path"
+                                        name="./zhcnPath"/>
+                                    <entitle
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="EN Title"
+                                        name="./enTitle"/>
+                                    <zhhktitle
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="ZH_HK Title"
+                                        name="./zhhkTitle"/>
+                                    <zhcntitle
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                        fieldLabel="ZH_CN Title"
+                                        name="./zhcnTitle"/>
+                                </items>
+                            </column>
+                        </items>
+                    </languagetoggle>
                 </items>
-            </column>
+            </tabs>
         </items>
     </content>
 </jcr:root>

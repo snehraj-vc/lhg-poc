@@ -15,13 +15,18 @@
  */
 package com.lhg.lms.aem.core.models;
 
+
+import com.day.cq.wcm.api.Page;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.sling.api.resource.ResourceResolver;
 import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.models.annotations.Exporter;
 import org.apache.sling.models.annotations.Model;
 import org.apache.sling.models.annotations.injectorspecific.ChildResource;
 import org.apache.sling.models.annotations.injectorspecific.InjectionStrategy;
+import org.apache.sling.models.annotations.injectorspecific.ScriptVariable;
 import org.apache.sling.models.annotations.injectorspecific.ValueMapValue;
 
 import com.adobe.cq.export.json.ComponentExporter;
@@ -30,18 +35,60 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
-import javax.inject.Named;
+import javax.inject.Inject;
 import java.util.ArrayList;
-import java.util.List;
 
-
-@Model(adaptables = SlingHttpServletRequest.class,
+@Model(adaptables = {Resource.class, SlingHttpServletRequest.class},
         adapters = {ComponentExporter.class},
         resourceType = BrilliantHeader.RESOURCE_TYPE)
 @Exporter(name = ExporterConstants.SLING_MODEL_EXPORTER_NAME, extensions = ExporterConstants.SLING_MODEL_EXTENSION)
 public class BrilliantHeader implements ComponentExporter {
     private static final Logger logger = LoggerFactory.getLogger(BrilliantHeader.class);
     protected static final String RESOURCE_TYPE = "lhg-lms/components/brilliantheader";
+    private static final String LANG_EN = "EN";
+    private static final String LANG_ZH_HK = "ZH_HK";
+    private static final String LANG_ZH_CN = "ZH_CN";
+
+    @Inject
+    private ResourceResolver resourceResolver;
+
+    private String enURI;
+    private String zh_hkURI;
+    private String zh_cnURI;
+
+    @ScriptVariable
+    private Page currentPage;
+    @Inject
+    private SlingHttpServletRequest request;
+
+
+    private String currentPageUri;
+    @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
+    private String enTitle;
+    @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
+    private String zhhkTitle;
+    @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
+    private String zhcnTitle;
+
+    @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
+    private String enLabel;
+    @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
+    private String zhhkLabel;
+    @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
+    private String zhcnLabel;
+    @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
+    private String enPath;
+    @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
+    private String zhhkPath;
+    @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
+    private String zhcnPath;
+    private String enFallbackurl="/content/lhg-lms/en/home";
+    private String zhFallbackurl="/content/lhg-lms/zh_hk/home";
+    private String zh_cnFallbackurl="/content/lhg-lms/zh_cn/home";
+
+
+
+    private String redirectURI;
 
     @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
     protected String brilliantimage;
@@ -68,7 +115,25 @@ public class BrilliantHeader implements ComponentExporter {
     public String getHamburgericon() {
         return hamburgericon;
     }
+    @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
+    protected String createaccountlabel;
 
+    public String getCreateaccountlabel() {
+        return createaccountlabel;
+    }
+    @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
+    protected String createaccountlink;
+
+    public String getCreateaccountlink() {
+        return createaccountlink;
+    }
+    @ValueMapValue(injectionStrategy = InjectionStrategy.OPTIONAL)
+    protected String createaccounticonalt;
+
+    public String getCreateaccounticonalt() {
+        return createaccounticonalt;
+    }
+    private ArrayList<String> languageItems=new ArrayList<>();
     @ChildResource(injectionStrategy = InjectionStrategy.OPTIONAL, name = "menuitems")
 
     private Resource menuitems;
@@ -85,11 +150,93 @@ public class BrilliantHeader implements ComponentExporter {
                 items.setItemLink(valueMap.get("itemlink",String.class));
                 menuItems.add(items);
             }}
+
+        if (StringUtils.isNotEmpty(enLabel) && enLabel.equalsIgnoreCase(LANG_EN)) {
+            if (zhFallbackurl == null || zhFallbackurl.isEmpty() || zhhkPath == null || zhhkPath.isEmpty()) {
+                redirectURI = null;
+            }
+
+            currentPageUri=currentPage.getPath().concat(".html");
+            String currentPagePathUrl = currentPage.getPath();
+            String urlLocal= String.valueOf(currentPage.getLanguage());
+            if(urlLocal.equalsIgnoreCase(LANG_EN)){
+                enURI=currentPagePathUrl.concat(".html");
+                zh_hkURI=languageurlgenerator(currentPagePathUrl,enPath,zhhkPath).concat(".html");
+                zh_cnURI=languageurlgenerator(currentPagePathUrl,enPath,zhcnPath).concat(".html");
+
+
+            }
+        }
+
+        if (StringUtils.isNotEmpty(zhhkLabel) && zhhkLabel.equalsIgnoreCase(LANG_ZH_HK)) {
+            if (enFallbackurl == null || enFallbackurl.isEmpty() || enPath == null || enPath.isEmpty()) {
+                redirectURI = null;
+            }
+
+
+            currentPageUri=currentPage.getPath().concat(".html");
+            String currentPagePathUrl = currentPage.getPath();
+            String urlLocal= String.valueOf(currentPage.getLanguage());
+            if(urlLocal.equalsIgnoreCase(LANG_ZH_HK)){
+                zh_hkURI=currentPagePathUrl.concat(".html");
+                enURI=languageurlgenerator(currentPagePathUrl,zhhkPath,enPath).concat(".html");
+                zh_cnURI=languageurlgenerator(currentPagePathUrl,zhhkPath,zhcnPath).concat(".html");
+
+            }
+        }
+
+        if (StringUtils.isNotEmpty(zhcnLabel) && zhcnLabel.equalsIgnoreCase(LANG_ZH_CN)) {
+            if (enFallbackurl == null || enFallbackurl.isEmpty() || enPath == null || enPath.isEmpty()) {
+                redirectURI = null;
+            }
+
+
+            currentPageUri=currentPage.getPath().concat(".html");
+            String currentPagePathUrl = currentPage.getPath();
+            String urlLocal= String.valueOf(currentPage.getLanguage());
+            if(urlLocal.equalsIgnoreCase(LANG_ZH_CN)){
+                zh_cnURI=currentPagePathUrl.concat(".html");
+                enURI=languageurlgenerator(currentPagePathUrl,zhcnPath,enPath).concat(".html");
+                zh_hkURI=languageurlgenerator(currentPagePathUrl,zhcnPath,zhhkPath).concat(".html");
+            }
+        }
+
+    }
+    private String languageurlgenerator(String currentPage ,String sourcePath, String destinationPath){
+        if (sourcePath != null) {
+            redirectURI = currentPage.replace(sourcePath, destinationPath);
+        }
+        return redirectURI;
     }
 
     public ArrayList<MenuItems> getMenuItems() {
         return menuItems;
     }
+    public String getEnTitle() {
+        return enTitle;
+    }
+    public String getEnURI() {
+        return enURI;
+    }
+    public String getZhhkTitle() {
+        return zhhkTitle;
+    }
+    public String getZh_hkURI() {
+        return zh_hkURI;
+    }
+    public String getZhcnTitle() {
+        return zhcnTitle;
+    }
+    public String getZh_cnURI() {
+        return zh_cnURI;
+    }
+
+
+
+
+
+
+
 
     @Override
     public String getExportedType() {
