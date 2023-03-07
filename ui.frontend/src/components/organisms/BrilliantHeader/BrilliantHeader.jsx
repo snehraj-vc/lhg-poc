@@ -1,16 +1,18 @@
 import React from 'react';
 import { Navbar } from '../../atoms';
-import './BrilliantHeader.scss'
-import 'font-awesome/css/font-awesome.min.css';
 import { useState } from 'react';
+// import '../node_modules/font-awesome/css/font-awesome.min.css'; 
+import 'font-awesome/css/font-awesome.min.css';
+import './BrilliantHeader.scss'
 
 const BrilliantHeader = (props) => {
   const [hidedata,sethidedata]=useState(false)
-  const { imageurl = "",
-    data = [],
+  const { brilliantimage= "",
+  menuItems = [],
     options = [],
     value = "",
-    onChange = () => null
+    onChange = () => null,
+    login=""
   } = props
 
  const showdata=()=>{
@@ -23,16 +25,16 @@ else{
  }
    console.log(sethidedata)
   return (<><div className="header">
-               <div className='header-icon' >
-                 <i class="fa-solid fa-bars" onClick={showdata}></i>
+               <div className='header-icon'>
+               <i class="fa-sharp fa-regular fa-bars" onClick={showdata} ></i>
                </div>
                <div className='header-image'>
-                  <img src={imageurl} />
+                  <img src={brilliantimage} />
                </div>
-               <div className='header-login'>Login</div>
+               <div className='header-login'><h3>{login}</h3></div>
               </div>
                <div className={hidedata ? "header-hamburger" : "header-hamburger-hide"}>
-                 <Navbar data={data} options={options} value={value} onChange={onChange} />
+                 <Navbar menuItems={menuItems} options={options} value={value} onChange={onChange}/>
                </div>
   </>);
 }

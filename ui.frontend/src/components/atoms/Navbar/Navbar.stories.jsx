@@ -11,17 +11,18 @@ const Template = (args) => <Navbar {...args}/>;
 export const NavbarData = Template.bind({});
 
 NavbarData.args={
-    data:[
+    createaccountlabel: "Create Account",
+    menuItems:[
     {
-     title:"Home"
+     itemText:"Home"
     },{
-        title:"About Brillient"
+        itemText:"About Brillient"
     },{
-        title:"Brilliant Benefits"
+        itemText:"Brilliant Benefits"
     },{
-        title:"Redeem points"
+        itemText:"Redeem points"
     },{
-        title:"Global Campaigns"
+        itemText:"Global Campaigns"
     }
 ],
 options:[{
@@ -35,5 +36,4 @@ options:[{
     text: "french"
 }],
 value:"English",
-
 }

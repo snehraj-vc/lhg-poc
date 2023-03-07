@@ -1,23 +1,33 @@
+@media (max-width: 768px) {
+    @mixin alignment {
+        display: flex;
+        justify-content: center;
+        align-items: center; 
+    }
 .header-image{
     img{
-        width: 250px;
+        width: 100px;
         height: 50px;
     }
-   
 }
 .header{
     display: flex;
+    justify-content: space-around;
 }
 .header-login{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include alignment;
 }
 .header-icon{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include alignment;
 }
 .header-hamburger-hide{
     display: none;
+}
+.header-hamburger{
+    width: 200px;
+    height:100vh; 
+    li{
+        padding-left: 0;
+    }  
+}
 }

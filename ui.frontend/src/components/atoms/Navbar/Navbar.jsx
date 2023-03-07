@@ -3,25 +3,25 @@ import Select from "../Select/Select";
 import "./Navbar.scss"
 const Navbar = ((props) => {
     const {
-        data = [],
+        menuItems = [],
         options=[],
         value="",
-        onChange = () => null
+        onChange = () => null,
+        createaccountlabel = ""
     } = props
     return (<div className="navbar-list">
         {
-            data.map((res) => {
+            menuItems.map((res) => {
                 return (<>
-                    <ul>
-                        <li><a>{res.title}</a></li>
-                    </ul>
+                        <li><a>{res.itemText}</a></li>
 
                 </>)
             })
+    
         }
         <hr></hr>
         <div>
-            <a>Create New Account</a>
+            <a>{ createaccountlabel}</a>
             <div>
                 <Select
                 preSelectedValue={value}
