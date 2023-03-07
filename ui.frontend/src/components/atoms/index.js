@@ -9,8 +9,10 @@ import Button from './Button/Button';
 import Select from './Select/Select';
 import Datepicker from './Datepicker/Datepicker';
 import Accordion from './Accordion/Accordion';
+import Navbar from './Navbar/Navbar';
 
 export {
+    Navbar,
     Select,
     Button,
     Text,

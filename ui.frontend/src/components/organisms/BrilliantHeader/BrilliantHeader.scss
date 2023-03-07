@@ -1,0 +1,33 @@
+@media (max-width: 768px) {
+    @mixin alignment {
+        display: flex;
+        justify-content: center;
+        align-items: center; 
+    }
+.header-image{
+    img{
+        width: 100px;
+        height: 50px;
+    }
+}
+.header{
+    display: flex;
+    justify-content: space-around;
+}
+.header-login{
+    @include alignment;
+}
+.header-icon{
+    @include alignment;
+}
+.header-hamburger-hide{
+    display: none;
+}
+.header-hamburger{
+    width: 200px;
+    height:100vh; 
+    li{
+        padding-left: 0;
+    }  
+}
+}
