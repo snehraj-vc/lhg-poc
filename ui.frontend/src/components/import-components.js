@@ -151,7 +151,7 @@ const customCompsSettings = [{
     compName: 'BrilliantHeader'
 },
  {
-     feCompPath: import(`../components/organisms/BrilliantHeader/BrilliantHeader`),
+     feCompPath: import(`../components/organisms/BrilliantFooter/BrilliantFooter`),
      aemCompMap: 'lhg-lms/components/brilliantfooter',
      compName: 'BrilliantFooter'
  }
