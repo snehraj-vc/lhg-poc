@@ -139,11 +139,21 @@ const customCompsSettings = [{
     feCompPath: import(`../components/organisms/AutoSuggestion/AutoSuggestion`),
     aemCompMap: 'lhg-lms/components/autosuggest',
     compName: 'AutoSuggestion'
-}, {
+},
+,{
+    feCompPath: import(`../components/organisms/CircularCrop/CircularCrop`),
+    aemCompMap: 'lhg-lms/components/circularcrop',
+    compName: 'CircularCrop'
+},{
     feCompPath: import(`../components/helperComponents/Intl/Intl`),
     aemCompMap: 'lhg-lms/components/intl',
     compName: 'Internationalization',
     customPropCheck: (props) => (!props || !props.intl)
+},{
+    feCompPath: import(`./organisms/PeekCarousel/PeekCarousel`),
+    aemCompMap: 'lhg-lms/components/peekcarousel',
+    compName: 'Peek Carousel'
+}
 },
 {
     feCompPath: import(`../components/organisms/BrilliantHeader/BrilliantHeader`),

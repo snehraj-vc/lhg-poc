@@ -52,3 +52,29 @@ export async function getIntl() {
         }, 100);
     });
 }
+
+export const isMobile = () => {
+    const width = (window.innerWidth > 0) ? window.innerWidth : window.screen.width;
+    return width <= 767;
+};
+
+export const isTablet = () => {
+    const width = (window.innerWidth > 0) ? window.innerWidth : window.screen.width;
+    return width > 767 && width < 1400;
+};
+
+export const isDesktop = () => {
+    const width = (window.innerWidth > 0) ? window.innerWidth : window.screen.width;
+    return width >= 1400;
+
+};
+
+export const getViewport = () => {
+    if(isMobile()) {
+        return 'mobile';
+    } else if(isTablet()) {
+        return 'tablet';
+    } else {
+        return 'desktop';
+    }
+};
