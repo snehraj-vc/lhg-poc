@@ -13,7 +13,8 @@ const SsoGoogle = (props) => {
     const [imageUrl, setImageUrl] = useState("");
 
     const {
-        gglClientId = ''
+        gglClientId = '',
+        isLogin = false,
     } = props;
 
     useEffect(() => {
@@ -59,11 +60,15 @@ const SsoGoogle = (props) => {
                     step: 'loggedIn',
                 }
                 setLocal(LS_USER_DATA_TOKEN_KEY, JSON.stringify(currentUserLS));
+                console.log(first_name)
                 setProfile({
                     name: `${first_name} ${last_name}`,
                     email: email
                 });
             })
+            .catch(() => {
+                alert('Error logging in');
+            });
 
     }
 
@@ -80,15 +85,22 @@ const SsoGoogle = (props) => {
             enrolling_sponsor: 4
         };
 
-        postData(LJI_URLS.SSO_GG_SIGN_UP, payload)
-            .then(() => {
-                signInAction(res.tokenId, res.googleId)
-            })
-            .catch(err => {
-                if (err.response.data.error.code === 'member_exists') {
-                    signInAction(res.tokenId, res.googleId)
-                }
-            })
+        if(isLogin) {
+            signInAction(res.tokenId, res.googleId)
+        } else {
+            postData(LJI_URLS.SSO_GG_SIGN_UP, payload)
+                .then(() => {
+                    alert("Sign up successful");
+                })
+                .catch(err => {
+                  
+                    if (err.response.data.error.code === 'member_exists' || err.response.data.error.email[0].code === 'unique') {
+                        alert("user aready exist");
+                    } else {
+                        alert('sign up error');
+                    }
+                })
+        }
     };
 
     const onFailure = (err) => {
@@ -115,7 +127,7 @@ const SsoGoogle = (props) => {
             ) : (
                 <GoogleLogin
                     clientId={gglClientId}
-                    buttonText="Sign in with Google"
+                    buttonText={isLogin ? "Sign In" : "sign Up"}
                     onSuccess={onSuccess}
                     onFailure={onFailure}
                     cookiePolicy={'single_host_origin'}

@@ -1,9 +1,8 @@
 package com.lhg.lms.aem.core.models;
 
-class BrandsList {
+class SocialIconsList {
 
     private String logoPath;
-
     private String altText;
 
     public String getLogoPath() {
@@ -17,7 +16,6 @@ class BrandsList {
     public void setLogoPath(String logoPath) {
         this.logoPath = logoPath;
     }
-
     public void setAltText(String altText) {
         this.altText = altText;
     }
