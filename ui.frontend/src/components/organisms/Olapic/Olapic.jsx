@@ -14,7 +14,7 @@ const Olapic = (props) => {
 
     return (
         <>
-            {html && (<div className={`cp-olapic`} ref={olapicRef}></div>)}
+            {html && (<div className={`cp-olapic wrapper`} ref={olapicRef}></div>)}
         </>
     )
 };
