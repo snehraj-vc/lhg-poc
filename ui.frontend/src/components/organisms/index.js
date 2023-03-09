@@ -6,8 +6,12 @@ import Olapic from './Olapic/Olapic';
 import StaticOffer from './StaticOffer/StaticOffer';
 import AutoSuggestion from './AutoSuggestion/AutoSuggestion';
 import AuthModule from './AuthModule/AuthModule';
+import CircularCrop from './CircularCrop/CircularCrop';
+import SliderImage from './SliderImage/SliderImage';
 
 export {
+    SliderImage,
+    CircularCrop,
     AutoSuggestion,
     StaticOffer,
     HelloWorld,

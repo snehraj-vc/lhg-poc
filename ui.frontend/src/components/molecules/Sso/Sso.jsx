@@ -24,7 +24,8 @@ const Sso = (props) => {
         fbFields
     }
     const gglProps = {
-        gglClientId
+        gglClientId,
+        isLogin:true
     };
 
     return (
