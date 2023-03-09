@@ -17,6 +17,9 @@ package com.lhg.lms.aem.core.models;
 
 
 import com.day.cq.wcm.api.Page;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.resource.Resource;
 import org.apache.commons.lang3.StringUtils;
@@ -133,6 +136,7 @@ public class BrilliantHeader implements ComponentExporter {
     public String getCreateaccounticonalt() {
         return createaccounticonalt;
     }
+    private String languages;
     private ArrayList<String> languageItems=new ArrayList<>();
     @ChildResource(injectionStrategy = InjectionStrategy.OPTIONAL, name = "menuitems")
 
@@ -164,8 +168,24 @@ public class BrilliantHeader implements ComponentExporter {
                 zh_hkURI=languageurlgenerator(currentPagePathUrl,enPath,zhhkPath).concat(".html");
                 zh_cnURI=languageurlgenerator(currentPagePathUrl,enPath,zhcnPath).concat(".html");
 
-
+                Gson gson = new GsonBuilder().setPrettyPrinting().create();
+                JsonArray array = new JsonArray();
+                HeaderLanguage en = new HeaderLanguage();
+                en.setTitle(enTitle);
+                en.setLink(enURI);
+                HeaderLanguage zh_hk = new HeaderLanguage();
+                zh_hk.setTitle(zhhkTitle);
+                zh_hk.setLink(zh_hkURI);
+                HeaderLanguage zh_cn = new HeaderLanguage();
+                zh_cn.setTitle(zhcnTitle);
+                zh_cn.setLink(zh_cnURI);
+                array.add(gson.toJson(en, HeaderLanguage.class));
+                array.add(gson.toJson(zh_hk, HeaderLanguage.class));
+                array.add(gson.toJson(zh_cn, HeaderLanguage.class));
+                languages = gson.toJson(array, JsonArray.class);
+                logger.info("languages :::: {}", languages);
             }
+
         }
 
         if (StringUtils.isNotEmpty(zhhkLabel) && zhhkLabel.equalsIgnoreCase(LANG_ZH_HK)) {
@@ -181,6 +201,23 @@ public class BrilliantHeader implements ComponentExporter {
                 zh_hkURI=currentPagePathUrl.concat(".html");
                 enURI=languageurlgenerator(currentPagePathUrl,zhhkPath,enPath).concat(".html");
                 zh_cnURI=languageurlgenerator(currentPagePathUrl,zhhkPath,zhcnPath).concat(".html");
+
+                Gson gson = new GsonBuilder().setPrettyPrinting().create();
+                JsonArray array = new JsonArray();
+                HeaderLanguage en = new HeaderLanguage();
+                en.setTitle(enTitle);
+                en.setLink(enURI);
+                HeaderLanguage zh_hk = new HeaderLanguage();
+                zh_hk.setTitle(zhhkTitle);
+                zh_hk.setLink(zh_hkURI);
+                HeaderLanguage zh_cn = new HeaderLanguage();
+                zh_cn.setTitle(zhcnTitle);
+                zh_cn.setLink(zh_cnURI);
+                array.add(gson.toJson(en, HeaderLanguage.class));
+                array.add(gson.toJson(zh_hk, HeaderLanguage.class));
+                array.add(gson.toJson(zh_cn, HeaderLanguage.class));
+                languages = gson.toJson(array, JsonArray.class);
+                logger.info("languages :::: {}", languages);
 
             }
         }
@@ -198,6 +235,23 @@ public class BrilliantHeader implements ComponentExporter {
                 zh_cnURI=currentPagePathUrl.concat(".html");
                 enURI=languageurlgenerator(currentPagePathUrl,zhcnPath,enPath).concat(".html");
                 zh_hkURI=languageurlgenerator(currentPagePathUrl,zhcnPath,zhhkPath).concat(".html");
+
+                Gson gson = new GsonBuilder().setPrettyPrinting().create();
+                JsonArray array = new JsonArray();
+                HeaderLanguage en = new HeaderLanguage();
+                en.setTitle(enTitle);
+                en.setLink(enURI);
+                HeaderLanguage zh_hk = new HeaderLanguage();
+                zh_hk.setTitle(zhhkTitle);
+                zh_hk.setLink(zh_hkURI);
+                HeaderLanguage zh_cn = new HeaderLanguage();
+                zh_cn.setTitle(zhcnTitle);
+                zh_cn.setLink(zh_cnURI);
+                array.add(gson.toJson(en, HeaderLanguage.class));
+                array.add(gson.toJson(zh_hk, HeaderLanguage.class));
+                array.add(gson.toJson(zh_cn, HeaderLanguage.class));
+                languages = gson.toJson(array, JsonArray.class);
+                logger.info("languages :::: {}", languages);
             }
         }
 
@@ -212,31 +266,28 @@ public class BrilliantHeader implements ComponentExporter {
     public ArrayList<MenuItems> getMenuItems() {
         return menuItems;
     }
-    public String getEnTitle() {
-        return enTitle;
+//    public String getEnTitle() {
+//        return enTitle;
+//    }
+//    public String getEnURI() {
+//        return enURI;
+//    }
+//    public String getZhhkTitle() {
+//        return zhhkTitle;
+//    }
+//    public String getZh_hkURI() {
+//        return zh_hkURI;
+//    }
+//    public String getZhcnTitle() {
+//        return zhcnTitle;
+//    }
+//    public String getZh_cnURI() {
+//        return zh_cnURI;
+//    }
+
+    public String getLanguages() {
+        return languages;
     }
-    public String getEnURI() {
-        return enURI;
-    }
-    public String getZhhkTitle() {
-        return zhhkTitle;
-    }
-    public String getZh_hkURI() {
-        return zh_hkURI;
-    }
-    public String getZhcnTitle() {
-        return zhcnTitle;
-    }
-    public String getZh_cnURI() {
-        return zh_cnURI;
-    }
-
-
-
-
-
-
-
 
     @Override
     public String getExportedType() {
@@ -262,5 +313,27 @@ class MenuItems {
 
     public void setItemLink(String itemLink) {
         this.itemLink = itemLink;
+    }
+}
+
+class HeaderLanguage {
+    private String title;
+    private String link;
+    public HeaderLanguage(){}
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
     }
 }
