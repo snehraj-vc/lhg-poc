@@ -24,5 +24,4 @@ export {
     AuthModule,
     BrilliantHeader,
     BrilliantFooter
-
 };
