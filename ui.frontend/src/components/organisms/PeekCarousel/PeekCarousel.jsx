@@ -1,6 +1,7 @@
-import React, {useRef} from 'react';
-import {Carousel} from '../../molecules';
+import React, { useRef } from 'react';
+import { Carousel } from '../../molecules';
 import './style.scss';
+import RibbonEffect from '../../helperComponents/RibbonEffect/RibbonEffect';
 
 const PeekCarousel = props => {
     const {
@@ -26,12 +27,14 @@ const PeekCarousel = props => {
             return (
                 <div className={'item-wrapper'} key={idx}>
                     <div className="picture-wrapper">
+                    <RibbonEffect position={'topRight'} color={'red'} />
                         {checkVideo(videopath) ?
                             (<video ref={cont => {
                                 videosRef.current[idx] = cont;
                             }} id={`item-video-${idx}`} muted="muted">
                                 <source src={videopath} type="video/mp4" />
                             </video>) : <img src={videopath} alt={title} />}
+                        <RibbonEffect position={'bottomLeft'} color={'white'} />
                     </div>
                     <div className="content-wrapper">
                         <div className="title">{title}</div>
@@ -57,8 +60,8 @@ const PeekCarousel = props => {
     return (<>
         <div className="cp-peek-carousel">
             <Carousel
-                autoplay={true}
-                autoPlayWithProgressBar={true}
+                autoplay={false}
+                autoPlayWithProgressBar={false}
                 secondsPerSlide={2}
                 onSlideChangeCallback={slideShift}
                 isInfinite={false}
