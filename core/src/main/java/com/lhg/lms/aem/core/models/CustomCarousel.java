@@ -53,7 +53,8 @@ public class CustomCarousel implements ComponentExporter {
             CustomCarouselDTO model = new CustomCarouselDTO();
             model.setTitle(valueMap.get("title",String.class));
             model.setDescription(valueMap.get("description",String.class));
-            model.setVideopath(valueMap.get("videopath",String.class));
+            model.setDesktopimage(valueMap.get("desktopimage",String.class));
+            model.setMobileimage(valueMap.get("mobileimage",String.class));
             service.add(model);
         }}
     }
