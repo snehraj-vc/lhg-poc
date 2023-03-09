@@ -65,7 +65,7 @@ export const isTablet = () => {
 
 export const isDesktop = () => {
     const width = (window.innerWidth > 0) ? window.innerWidth : window.screen.width;
-    return width >= 1400;
+    return width >= 1280;
 
 };
 

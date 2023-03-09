@@ -2,6 +2,8 @@ import React, { useRef } from 'react';
 import { Carousel } from '../../molecules';
 import './style.scss';
 import RibbonEffect from '../../helperComponents/RibbonEffect/RibbonEffect';
+import { isDesktop } from '../../../utils';
+
 
 const PeekCarousel = props => {
     const {
@@ -22,19 +24,25 @@ const PeekCarousel = props => {
             const {
                 title,
                 description,
-                videopath,
+                desktopimage,
+                mobileimage
             } = item;
+            const renderImg = (fileName, idx) => {
+                return checkVideo(fileName) ?
+                    (<video ref={cont => {
+                        videosRef.current[idx] = cont;
+                    }} id={`item-video-${idx}`} muted="muted">
+                        <source src={fileName} type="video/mp4" />
+                    </video>)
+                    :
+                    (<img src={fileName} alt={title} />)
+            }
+
             return (
                 <div className={'item-wrapper'} key={idx}>
                     <div className="picture-wrapper">
-                    <RibbonEffect position={'topRight'} color={'red'} />
-                        {checkVideo(videopath) ?
-                            (<video ref={cont => {
-                                videosRef.current[idx] = cont;
-                            }} id={`item-video-${idx}`} muted="muted">
-                                <source src={videopath} type="video/mp4" />
-                            </video>) : <img src={videopath} alt={title} />}
-                        <RibbonEffect position={'bottomLeft'} color={'white'} />
+                        <RibbonEffect position={'topRight'} color={'teal'} />
+                        {isDesktop() ? renderImg(desktopimage, idx) : renderImg(mobileimage, idx)}
                     </div>
                     <div className="content-wrapper">
                         <div className="title">{title}</div>
