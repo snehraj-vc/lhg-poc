@@ -59,7 +59,7 @@ const PeekCarousel = props => {
             <Carousel
                 autoplay={true}
                 autoPlayWithProgressBar={true}
-                secondsPerSlide={3}
+                secondsPerSlide={2}
                 onSlideChangeCallback={slideShift}
                 isInfinite={false}
                 progressBarType="grpSlider"
