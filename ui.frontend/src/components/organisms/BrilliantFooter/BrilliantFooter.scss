@@ -1,24 +1,115 @@
-@media(max-width:768px){
-    .footer-bg{
-        background-color:#515A5A;
-        padding: 10px;
+@media(max-width:767px) {
+    @mixin alignment {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    .footer-bg {
+        background-color: #515A5A;
+        padding: 30px;
         text-align: center;
-        border-radius: 0 120px 0 0;
-        
-        }
-        
-        .footerimg {
-            img{
-            height: 70px;
+        border-radius: 0 80px 0 0;
+
+    }
+
+    .footerimg {
+        img {
+            height: 50px;
             width: 150px;
-            }
         }
-        
-        .arrayimg{
-            img{
-                height: 70px;
-                width: 100px;
-                padding-right: 10px;
-            }
+    }
+
+    .arrayimg {
+        img {
+            height: 70px;
+            width: 90px;
+            padding-right: 10px;
         }
+    }
+
+    .address {
+        background-color: black;
+        color: azure;
+        // padding-left: 30px;
+        padding: 20px 20px 30px 20px;
+
+    }
+
+    .social-icons-label {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .social-icons {
+        background-color: black;
+        color: white;
+        display: flex;
+        padding: 10px;
+
+        img {
+            width: 50px;
+            height: 50px;
+            padding-left: 20px;
+        }
+    }
+    .footer-list {
+        list-style: none;
+        background-color: black;
+        color: white;
+
+    }
+
+}
+
+//Tablet
+@media(max-width:1023px) {
+
+    .arrayimg {
+        img {
+            height: 35px;
+            width: 50px;
+            padding-right: 5px;
+        }
+    }
+
+    .footer-list {
+        list-style: none;
+        background-color: black;
+        color: white;
+        display:flex;
+        font-size: 10px;
+
+        li {
+            padding: 2px;
+        }
+    }
+}
+
+
+//desktop
+
+@media(max-width:1199px) {
+    .arrayimg {
+        img {
+            height: 35px;
+            width: 50px;
+            padding-right: 5px;
+        }
+    }
+
+    // .footer-list {
+    //     list-style: none;
+    //     background-color: black;
+    //     color: white;
+    //     display: flex;
+    //     font-size: 10px;
+
+    //     li {
+    //         padding: 2px;
+    //     }
+
+    // }
 }
