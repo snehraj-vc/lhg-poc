@@ -19,7 +19,7 @@ const BrilliantHeader = (props) => {
 
   const sanitizeLanguageVals = () => {
     let langArr = [...JSON.parse(languages)];
-    for(let i = 0; i < langArr.length; i++) {
+    for (let i = 0; i < langArr.length; i++) {
       langArr[i] = JSON.parse(langArr[i]);
       langArr[i] = {
         text: langArr[i].title,
@@ -28,9 +28,11 @@ const BrilliantHeader = (props) => {
     };
     setLangs(langArr);
   };
-
+console.log(languages)
   useEffect(() => {
-    sanitizeLanguageVals();
+    if (languages) {
+      sanitizeLanguageVals();
+    }
   }, []);
 
   const showdata = () => {
