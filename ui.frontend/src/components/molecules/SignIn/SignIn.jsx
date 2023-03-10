@@ -39,7 +39,7 @@ const SignIn = (props) => {
                 loggedIn: true
             });
         }
-    }, []);
+    }, [inputVals,logInInfo]);
 
     const onInputChange = (val, name) => {
         setInputVals({
@@ -55,8 +55,9 @@ const SignIn = (props) => {
             username: inputVals.memberId
         };
         const headers = {
-            ['x-api-key']: xApiKey
+            'x-api-key': xApiKey
         };
+        console.dir(this.headers);
         postData(memberLoginApiEndpoint, payload, headers)
             .then(resp => {
                 let currentUserTokenLS = localStorage.getItem(LS_USER_DATA_TOKEN_KEY);

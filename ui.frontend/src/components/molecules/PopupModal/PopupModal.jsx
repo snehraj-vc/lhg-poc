@@ -34,7 +34,8 @@ const PopupModal = props => {
             document.body.style.overflow = 'visible';
             document.removeEventListener('keydown', () => null)
         }
-    }, []);
+        
+    },);
 
     return (<>
         <div ref={popupRef} className={'cp-popup-modal'}>

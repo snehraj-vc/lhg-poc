@@ -65,20 +65,23 @@ const SsoFacebook = (props) => {
         facebookSignIn();
         
       })
+      
       .catch(err => {
         console.log('err on sign in', err)
         const checkUnique = (allErr) => {
-          let isUnique = false;
+          
           for (let errType in allErr) {
+            let isUnique = false;
             if (Array.isArray(allErr[errType])) {
               allErr[errType].forEach(errInstance => {
                 if (errInstance.code === 'unique') {
-                  isUnique = true;
+                   isUnique = true;
                 }
               })
             }
+            return isUnique;
           }
-          return isUnique;
+          
         }
         if (checkUnique(err.response.data.error)) {
           facebookSignIn();

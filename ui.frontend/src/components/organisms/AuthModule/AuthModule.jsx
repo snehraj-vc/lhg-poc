@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { RegisterForm, SignIn, ChoosePassword } from '../../molecules';
+import { RegisterForm, SignIn, /*ChoosePassword*/ } from '../../molecules';
 
 const AuthModule = (props) => {
     const [authState, setAuthState] = useState('register');
