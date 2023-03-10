@@ -8,6 +8,7 @@ import AutoSuggestion from './AutoSuggestion/AutoSuggestion';
 import AuthModule from './AuthModule/AuthModule';
 import CircularCrop from './CircularCrop/CircularCrop';
 import SliderImage from './SliderImage/SliderImage';
+import Tier from './Tier/Tier';
 
 export {
     SliderImage,
@@ -19,5 +20,6 @@ export {
     Navigation,
     HeaderSearch,
     Olapic,
-    AuthModule
+    AuthModule,
+    Tier
 };

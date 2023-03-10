@@ -153,6 +153,11 @@ const customCompsSettings = [{
     feCompPath: import(`./organisms/PeekCarousel/PeekCarousel`),
     aemCompMap: 'lhg-lms/components/peekcarousel',
     compName: 'Peek Carousel'
+},
+{
+    feCompPath: import(`./organisms/Tier/Tier`),
+    aemCompMap: 'lhg-lms/components/tierhighlight',
+    compName: 'Tier'
 }
 ];
 

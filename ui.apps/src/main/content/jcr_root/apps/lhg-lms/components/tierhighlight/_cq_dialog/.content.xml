@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:sling="http://sling.apache.org/jcr/sling/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured"
+    jcr:title="Properties"
+    sling:resourceType="cq/gui/components/authoring/dialog">
+    <content
+        jcr:primaryType="nt:unstructured"
+        sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns">
+        <items jcr:primaryType="nt:unstructured">
+            <tabs
+                jcr:primaryType="nt:unstructured"
+                sling:resourceType="granite/ui/components/coral/foundation/tabs"
+                maximized="{Boolean}true">
+                <items jcr:primaryType="nt:unstructured">
+                    <tabitems
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Tab Items"
+                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                        margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <column
+                                jcr:primaryType="nt:unstructured"
+                                sling:resourceType="granite/ui/components/coral/foundation/container">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <tier
+                                        jcr:primaryType="nt:unstructured"
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                        composite="{Boolean}true"
+                                        fieldLabel="Tier">
+                                        <field
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                                            name="./tier">
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <tiercaption
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    emptyText="Tier Caption"
+                                                    fieldLabel="Tier Caption"
+                                                    name="./tierCaption"/>
+                                                <tiertablabel
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    emptyText="Tier Tab Label"
+                                                    fieldLabel="Tier Tab Label"
+                                                    name="./tierTabLabel"/>
+                                                <tierimage
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                    fieldLabel="Tier Image"
+                                                    name="./tierImage"
+                                                    rootPath="/content/dam/lhg-lms"/>
+                                                <pointslabel
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    emptyText="Points Label"
+                                                    fieldLabel="Points Label"
+                                                    name="./pointsLabel"/>
+                                                <pointsdata
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    emptyText="Points Data"
+                                                    fieldLabel="Points Data"
+                                                    name="./pointsData"/>
+                                                <otheroptions
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    emptyText="Other Options"
+                                                    fieldLabel="Other Options"
+                                                    name="./otherOptions"/>
+                                                <otheritems
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                                    composite="{Boolean}true"
+                                                    fieldLabel="Other Items">
+                                                    <field
+                                                        jcr:primaryType="nt:unstructured"
+                                                        sling:resourceType="granite/ui/components/coral/foundation/container"
+                                                        name="./otherItems">
+                                                        <items jcr:primaryType="nt:unstructured">
+                                                            <itemtext
+                                                                jcr:primaryType="nt:unstructured"
+                                                                sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                                emptyText="Item Name"
+                                                                fieldLabel="Item Name"
+                                                                name="./itemtext"/>
+                                                            <itemimage
+                                                                jcr:primaryType="nt:unstructured"
+                                                                sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                                fieldLabel="Item Image"
+                                                                name="./itemImage"
+                                                                rootPath="/content/dam/lhg-lms"/>
+                                                        </items>
+                                                    </field>
+                                                </otheritems>
+                                            </items>
+                                        </field>
+                                    </tier>
+                                </items>
+                            </column>
+                        </items>
+                    </tabitems>
+                </items>
+            </tabs>
+        </items>
+    </content>
+</jcr:root>
