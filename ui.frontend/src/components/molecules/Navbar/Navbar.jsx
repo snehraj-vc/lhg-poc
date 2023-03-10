@@ -6,13 +6,13 @@ const Navbar = ((props) => {
         menuItems = [],
         languages = [],
         value = "",
-        onChange = () => null,
+        onLanguageSelect = () => null,
         createaccountlabel = "",
         createaccountlink="",
         login = "",
         loginurl ="",
-
-    } = props
+    } = props;
+    console.log('languages:::', languages);
     return (<div className="cp-navbar">
         <ul>
             {
@@ -32,7 +32,7 @@ const Navbar = ((props) => {
                     preSelectedValue={value}
                     options={languages}
                     value={value}
-                    onChange={onChange} />
+                    onChange={onLanguageSelect} />
             </div>
         </div>
         
