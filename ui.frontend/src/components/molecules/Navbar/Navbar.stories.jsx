@@ -11,6 +11,7 @@ const Template = (args) => <Navbar {...args}/>;
 export const NavbarData = Template.bind({});
 
 NavbarData.args={
+    login: "Log In",
     createaccountlink:"dummy comment",
     createaccountlabel: "Create Account",
     menuItems:[

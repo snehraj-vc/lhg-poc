@@ -36,6 +36,7 @@ const BrilliantHeader = (props) => {
   </div>
     <div className={hidedata ? "header-hamburger" : "header-hamburger-hide"}>
       <Navbar menuItems={menuItems} options={languages} value={value} onChange={onChange} createaccountlink={createaccountlink} createaccountlabel={createaccountlabel}/>
+      <div className='header-login-desktop'><a href={loginurl}>{login}</a></div>
     </div>
   </>);
 }

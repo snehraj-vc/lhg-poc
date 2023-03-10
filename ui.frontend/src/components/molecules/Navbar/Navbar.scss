@@ -46,13 +46,14 @@
    }
  
 }
+
 }
 
 @media (min-width: 1023px) {
      .cp-navbar{
       display: flex;
+      justify-content: center;
       ul{
-
          list-style: none;
          display: flex;
          li{
@@ -61,9 +62,25 @@
       }
       a{
          text-decoration: none;
+         color: black;
       }
       hr{
          display: none;
       }
      }
+     .cp-navbar-bottom{
+      margin-left: 100px;
+      display: flex;
+      align-items: center;
+      a{
+         text-decoration: none;
+         color: black;
+      }
+      .cp-navbar-languageToggle{
+          margin-left: 30px;
+      }
+    
+   }
+
+     
 }

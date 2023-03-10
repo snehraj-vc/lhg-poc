@@ -8,7 +8,9 @@ const Navbar = ((props) => {
         value = "",
         onChange = () => null,
         createaccountlabel = "",
-        createaccountlink=""
+        createaccountlink="",
+        login = "",
+        loginurl ="",
 
     } = props
     return (<div className="cp-navbar">
@@ -25,7 +27,7 @@ const Navbar = ((props) => {
         <hr></hr>
         <div className="cp-navbar-bottom">
             <a href={createaccountlink}>{createaccountlabel}</a>
-            <div>
+            <div className="cp-navbar-languageToggle">
                 <Select
                     preSelectedValue={value}
                     options={languages}
@@ -33,6 +35,7 @@ const Navbar = ((props) => {
                     onChange={onChange} />
             </div>
         </div>
+        
     </div>)
 })
 export default Navbar;
