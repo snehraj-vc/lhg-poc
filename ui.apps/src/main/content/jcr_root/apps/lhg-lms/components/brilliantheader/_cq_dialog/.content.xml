@@ -89,9 +89,9 @@
                             </column>
                         </items>
                     </properties>
-                    <languagetoggle
+                    <languagetogglenew
                         jcr:primaryType="nt:unstructured"
-                        jcr:title="Language Toggle"
+                        jcr:title="Language Toggle New"
                         sling:resourceType="granite/ui/components/coral/foundation/container"
                         margin="{Boolean}true">
                         <items jcr:primaryType="nt:unstructured">
@@ -99,55 +99,43 @@
                                 jcr:primaryType="nt:unstructured"
                                 sling:resourceType="granite/ui/components/coral/foundation/container">
                                 <items jcr:primaryType="nt:unstructured">
-                                    <enlabel
+                                    <languagetoggle
                                         jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                        fieldLabel="EN Label"
-                                        name="./enLabel"/>
-                                    <enpath
-                                        jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                        fieldLabel="EN Path"
-                                        name="./enPath"/>
-                                    <zhhklabel
-                                        jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                        fieldLabel="ZH_HK Label"
-                                        name="./zhhkLabel"/>
-                                    <zhcnlabel
-                                        jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                        fieldLabel="ZH_CN Label"
-                                        name="./zhcnLabel"/>
-                                    <zhhkpath
-                                        jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                        fieldLabel="ZH_HK Path"
-                                        name="./zhhkPath"/>
-                                    <zhcnpath
-                                        jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
-                                        fieldLabel="ZH_CN Path"
-                                        name="./zhcnPath"/>
-                                    <entitle
-                                        jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                        fieldLabel="EN Title"
-                                        name="./enTitle"/>
-                                    <zhhktitle
-                                        jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                        fieldLabel="ZH_HK Title"
-                                        name="./zhhkTitle"/>
-                                    <zhcntitle
-                                        jcr:primaryType="nt:unstructured"
-                                        sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
-                                        fieldLabel="ZH_CN Title"
-                                        name="./zhcnTitle"/>
+                                        sling:resourceType="granite/ui/components/coral/foundation/form/multifield"
+                                        composite="{Boolean}true"
+                                        fieldLabel="Language Toggle">
+                                        <field
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                                            name="./languagetoggle">
+                                            <items jcr:primaryType="nt:unstructured">
+                                                <languagelabel
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldLabel="Language Label"
+                                                    name="./languageLabel"/>
+                                                <languagepath
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/pathfield"
+                                                    fieldLabel="Language Path"
+                                                    name="./languagePath"/>
+                                                <languagetitle
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldLabel="Language Title"
+                                                    name="./languageTitle"/>
+                                                <languageconstant
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldLabel="Language Constant"
+                                                    name="./languageConstant"/>
+                                            </items>
+                                        </field>
+                                    </languagetoggle>
                                 </items>
                             </column>
                         </items>
-                    </languagetoggle>
+                    </languagetogglenew>
                 </items>
             </tabs>
         </items>
