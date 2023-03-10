@@ -11,8 +11,10 @@ import SignIn from './SignIn/SignIn';
 import InfiniteScrollList from './InfiniteScrollList/InfiniteScrollList';
 import PopupModal from './PopupModal/PopupModal';
 import Carousel from './Carousel/Carousel';
+import Navbar from './Navbar/Navbar';
 
 export {
+    Navbar,
     StaticOfferTemplate,
     SelectOption,
     ButtonGroup,
