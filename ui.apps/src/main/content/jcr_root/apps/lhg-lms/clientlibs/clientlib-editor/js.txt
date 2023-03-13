@@ -1,0 +1,14 @@
+#base=js
+
+rte/setup.js
+rte/FontColorPlugin.js
+rte/FontStylePlugin.js
+rte/FontSizePlugin.js
+
+## Commands
+rte/StylesCommandImpl.js
+
+## UI Elements
+rte/StyleSelectorImpl.js
+rte/CuiToolbarBuilder.js
+rte/ToolkitImpl.js
