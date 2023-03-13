@@ -55,7 +55,6 @@
     .header {
         display: flex;
         justify-content: space-around;
-        border: black 1px solid;
     }
 
     .header-image {
@@ -99,13 +98,14 @@
         justify-content: center;
 
         img {
-            width: 300px;
-            height: 70px;
+            width: 104px;
+            height: 24px;
         }
 
     }
     .header-hamburger-hide{
         display: flex;
+        justify-content: center;
     }
     .header-login{
         display: none;
