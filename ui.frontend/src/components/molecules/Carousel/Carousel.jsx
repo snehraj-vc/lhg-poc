@@ -111,9 +111,10 @@ const Carousel = props => {
 
     useEffect(() => {
         if (autoplay && inViewport && !autoplayStarted) {
-            initiateAutoplay();
+            
         }
     }, [autoplay, autoPlayWithProgressBar, inViewport, elRef]);
+    initiateAutoplay();
 
     const getTransformOnDevice = () => {
         if (isMobile()) {

@@ -39,7 +39,7 @@ const SignIn = (props) => {
                 loggedIn: true
             });
         }
-    }, []);
+    }, [inputVals,logInInfo]);
 
     const onInputChange = (val, name) => {
         setInputVals({
@@ -55,7 +55,7 @@ const SignIn = (props) => {
             username: inputVals.memberId
         };
         const headers = {
-            ['x-api-key']: xApiKey
+            'x-api-key': xApiKey
         };
         postData(memberLoginApiEndpoint, payload, headers)
             .then(resp => {

@@ -75,7 +75,7 @@ const RegisterForm = (props) => {
         };
 
         const headers = {
-            ['x-api-key']: xApiKey
+            'x-api-key': xApiKey
         };
 
         postData(createMemberApiEndpoint ? createMemberApiEndpoint : LJI_URLS.CREATE_MEMBER, payload, headers)

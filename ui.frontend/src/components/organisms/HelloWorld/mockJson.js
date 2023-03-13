@@ -1,4 +1,4 @@
-export default [
+const data= [
   {
     "_id": "63f467043649c868da1d4740",
     "balance": "$1,096.62",
@@ -385,3 +385,4 @@ export default [
     "name": "Esperanza Castro"
   }
 ]
+export default data

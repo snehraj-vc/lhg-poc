@@ -108,8 +108,9 @@ const SearchOther = (props) => {
   }
 
   useEffect(() => {
-    filterSearchResults();
+    
   }, [query]);
+  filterSearchResults();
 
   return (<>
     <SelectOption options={categories} onChange={selectCategory} />
