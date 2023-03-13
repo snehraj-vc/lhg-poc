@@ -101,12 +101,9 @@ const Carousel = props => {
 
     useEffect(() => {
         if (autoplay && inViewport && !autoplayStarted) {
-            
+            initiateAutoplay();
         }
-        
-    }, [autoplay, autoplayStarted, autoPlayWithProgressBar, inViewport])
-    
-    initiateAutoplay();
+    }, [autoplay, autoPlayWithProgressBar, inViewport])
 
     return (
         <>

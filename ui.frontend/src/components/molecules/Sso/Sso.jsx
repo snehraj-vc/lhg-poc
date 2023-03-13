@@ -7,7 +7,7 @@ import {
 } from '../../atoms';
 
 const Sso = (props) => {
-    console.log(props)
+    {console.log(props)}
     const {
         className="",
         id="",
@@ -36,6 +36,5 @@ const Sso = (props) => {
         </div>
     );
 };
-
 
 export default Sso;

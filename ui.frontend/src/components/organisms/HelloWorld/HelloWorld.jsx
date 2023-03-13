@@ -143,7 +143,7 @@ const Helloworld = (props) => {
       firstJson.push(json[i]);
     }
     setScrollItems(firstJson);
-  },[]);
+  }, [json]);
 
   const displayPopup = (show) => {
     setShowPopup(show);

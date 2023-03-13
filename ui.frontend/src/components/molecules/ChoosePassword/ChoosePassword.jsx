@@ -27,7 +27,7 @@ const ChoosePassword = (props) => {
             password: inputVals.password
         };
         const headers = {
-            'x-api-key': xApiKey,
+            ['x-api-key']: xApiKey,
             Authorization: `JWT ${jwt}`
         };
         postData(choosePasswordWithJWTTokenApiEndPoint, payload, headers)
@@ -62,7 +62,7 @@ const ChoosePassword = (props) => {
         if (currentLS.token) {
             setJwt(currentLS.token);
         }
-    }, [inputVals]);
+    }, []);
 
     const onInputChange = (val, name) => {
         setInputVals({

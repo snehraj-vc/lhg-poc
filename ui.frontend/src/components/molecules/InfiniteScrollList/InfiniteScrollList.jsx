@@ -21,23 +21,13 @@ const InfiniteScrollList = props => {
 
     useEffect(() => {
         if(hasMore) {
-            return()=>{
-                el.removeEventListener();
-            }
-            
+            return () => el.current.removeEventListener('scroll', onScroll);
         }
-        // return () => el.current.removeEventListener('scroll', onScroll);
-        
-    },);
+    }, [hasMore]);
 
     useEffect(() => {
         el.current.addEventListener('scroll', onScroll)
-        return()=> {
-            el.removeEventListener();
-
-        }
-        // return () => el.current.removeEventListener('scroll', onScroll)
-        
+        return () => el.current.removeEventListener('scroll', onScroll)
     });
 
     return (<>

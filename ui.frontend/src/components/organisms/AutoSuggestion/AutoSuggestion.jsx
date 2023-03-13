@@ -77,7 +77,7 @@ const AutoSuggestion = (props) => {
     if (lastSearch) {
       setRecentSearch(lastSearch);
     }
-  },[]);
+  });
 
   const resetModifiedHotelsFullList = () => {
     if (hotels && hotels.length) {
@@ -101,7 +101,7 @@ const AutoSuggestion = (props) => {
 
   useEffect(() => {
     resetModifiedHotelsFullList();
-  },);
+  }, [json]);
 
   return (<>
     <div className={"cp-auto-suggest"}>

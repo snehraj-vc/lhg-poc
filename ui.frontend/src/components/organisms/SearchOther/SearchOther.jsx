@@ -42,7 +42,7 @@ const SearchOther = (props) => {
 
   const text = button.text;
   
-  const [/*category,*/ setCategory] = useState(categories[0] && categories[0].value);
+  const [category, setCategory] = useState(categories[0] && categories[0].value);
   const [filteredLinkList, setFilteredLinkList] = useState([]);
   const [query, setQuery] = useState("");
   const [filteredValues, setFilteredValues] = useState([]);
@@ -108,9 +108,8 @@ const SearchOther = (props) => {
   }
 
   useEffect(() => {
-    
+    filterSearchResults();
   }, [query]);
-  filterSearchResults();
 
   return (<>
     <SelectOption options={categories} onChange={selectCategory} />
