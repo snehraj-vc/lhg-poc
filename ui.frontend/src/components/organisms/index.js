@@ -6,9 +6,11 @@ import Olapic from './Olapic/Olapic';
 import StaticOffer from './StaticOffer/StaticOffer';
 import AutoSuggestion from './AutoSuggestion/AutoSuggestion';
 import AuthModule from './AuthModule/AuthModule';
-import BrilliantHeader from './BrilliantHeader/BrilliantHeader';
+import ExclusiveOffers from './ExclusiveOffers/ExclusiveOffers';
 import CircularCrop from './CircularCrop/CircularCrop';
 import SliderImage from './SliderImage/SliderImage';
+import BrilliantHeader from './BrilliantHeader/BrilliantHeader';
+import BrilliantFooter from './BrilliantFooter/BrilliantFooter';
 
 export {
     SliderImage,
@@ -21,5 +23,7 @@ export {
     HeaderSearch,
     Olapic,
     AuthModule,
-    BrilliantHeader
+    BrilliantHeader,
+    BrilliantFooter,
+    ExclusiveOffers
 };
