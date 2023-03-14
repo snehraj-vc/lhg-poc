@@ -1,10 +1,10 @@
 import React from 'react';
+import { TextField } from '@mui/material';
+import './style.scss';
 
 const Input = (props) => {
-    
     const {
         id="",
-        className="",
         placeholder="",
         type="text",
         required=false,
@@ -13,23 +13,32 @@ const Input = (props) => {
         onChange = () => null,
         onBlur = () => null,
         onFocus = () => null,
-        disabled=false
+        disabled=false,
+        helperText="",
+        label="",
+        error=false,
+        className="",
+        variant="standard"
     } = props;
 
     return (
         <>
-            <input
+            <TextField
                 id={id}
-                name={name}
-                className={`cp-input ${className}`}
-                placeholder={placeholder}
-                type={type}
-                required={required}
-                value={value}
                 onChange={(e) => onChange(e.target.value, name)}
                 onBlur={(e) => onBlur(e.target.value, name)}
                 onFocus={(e) => onFocus(e.target.value, name)}
+                placeholder={placeholder}
+                required={required}
+                name={name}
+                type={type}
                 disabled={disabled}
+                helperText={helperText}
+                value={value}
+                label={label}
+                error={error}
+                variant={variant}
+                className={`cp-input ${className}`}
             />
         </>
     )
