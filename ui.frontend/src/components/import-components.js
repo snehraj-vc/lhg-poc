@@ -140,7 +140,7 @@ const customCompsSettings = [{
     feCompPath: import(`../components/organisms/AutoSuggestion/AutoSuggestion`),
     aemCompMap: 'lhg-lms/components/autosuggest',
     compName: 'AutoSuggestion'
-}, 
+},
 ,{
     feCompPath: import(`../components/organisms/CircularCrop/CircularCrop`),
     aemCompMap: 'lhg-lms/components/circularcrop',
@@ -159,7 +159,17 @@ const customCompsSettings = [{
     feCompPath: import(`./organisms/PeekCarousel/PeekCarousel`),
     aemCompMap: 'lhg-lms/components/peekcarousel',
     compName: 'Peek Carousel'
-}
+},
+{
+    feCompPath: import(`../components/organisms/BrilliantHeader/BrilliantHeader`),
+    aemCompMap: 'lhg-lms/components/brilliantheader',
+    compName: 'BrilliantHeader'
+},
+ {
+     feCompPath: import(`../components/organisms/BrilliantFooter/BrilliantFooter`),
+     aemCompMap: 'lhg-lms/components/brilliantfooter',
+     compName: 'BrilliantFooter'
+ }
 ];
 
 
