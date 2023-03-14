@@ -17,6 +17,10 @@ export const InputCustom = Template.bind({});
     placeholder:"Common",
     type:"text",
     required:false,
-    name:"MainInputCustom"
-  
+    name:"MainInputCustom",
+    label: "Enter text",
+    helperText: "This is helper text",
+    error: false,
+    value: '',
+    disabled: false,
 }

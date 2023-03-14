@@ -6,6 +6,7 @@ import Olapic from './Olapic/Olapic';
 import StaticOffer from './StaticOffer/StaticOffer';
 import AutoSuggestion from './AutoSuggestion/AutoSuggestion';
 import AuthModule from './AuthModule/AuthModule';
+import ExclusiveOffers from './ExclusiveOffers/ExclusiveOffers';
 import CircularCrop from './CircularCrop/CircularCrop';
 import SliderImage from './SliderImage/SliderImage';
 import BrilliantHeader from './BrilliantHeader/BrilliantHeader';
@@ -23,5 +24,6 @@ export {
     Olapic,
     AuthModule,
     BrilliantHeader,
-    BrilliantFooter
+    BrilliantFooter,
+    ExclusiveOffers
 };
