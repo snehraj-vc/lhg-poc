@@ -84,6 +84,7 @@ BrilliantFooterData.args = {
             itemPath: "/content/dam/core-components-examples/library/sample-assets/Bodea Brochure.pdf"
             },
             ],
-            copyrightText:"Copyright Text"
+            copyrightText:"Copyright Text",
+            contactInfo : "2701, Great Eagle Centre, 23 Harbour Road, Wan Chai, Hong Kong info@brilliantbylangham F: +852 2186 2300 info@langhamhotels.com"
     
 }

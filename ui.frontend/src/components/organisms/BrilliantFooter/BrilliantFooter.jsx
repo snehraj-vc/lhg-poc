@@ -27,8 +27,7 @@ const BrilliantFooter = (props) => {
         <div className="footer-contactContainer">
             <div className="footer-contactHeader">BRILLIANT BY LANGHAM</div>
             <div className="footer-contactAddress">
-                <p>2701, Great Eagle Centre, 23 Harbour Road, Wan Chai, Hong Kong info@brilliantbylangham
-                    F: +852 2186 2300 info@langhamhotels.com
+                <p>{contactInfo}
                 </p>
 
             </div>
