@@ -1,0 +1,9 @@
+.cq-RichText-editable table th {
+min-width:80px;
+}
+.cq-RichText-editable table td {
+min-width:80px; 
+}
+.cq-RichText-editable  {
+    font-size: 18px !important;
+}

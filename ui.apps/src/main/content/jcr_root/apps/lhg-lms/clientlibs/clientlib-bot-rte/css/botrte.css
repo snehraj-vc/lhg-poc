@@ -1,0 +1,21 @@
+@charset "utf-8";
+body [type=button]:-moz-focusring,body [type=reset]:-moz-focusring,body [type=submit]:-moz-focusring,body button:-moz-focusring,html [type=button]:-moz-focusring,html [type=reset]:-moz-focusring,html [type=submit]:-moz-focusring,html button:-moz-focusring{
+    outline:none
+}
+
+html body .font-navyBlue{
+    color:#003366
+}
+html body .font-white{
+    color:#FFFFFF
+}
+html body .font-black{
+    color:#333333
+}
+table, tr, td, th {
+  border: 1px solid #000;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
