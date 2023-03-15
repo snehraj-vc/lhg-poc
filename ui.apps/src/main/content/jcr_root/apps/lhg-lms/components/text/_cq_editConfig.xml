@@ -86,7 +86,7 @@
                 </misctools>
                 <links
                     jcr:primaryType="nt:unstructured"
-                    features="modifylink,unlink"/>
+                    features="modifylink,unlink,anchor"/>
                 <justify
                     jcr:primaryType="nt:unstructured"
                     features="-"/>
@@ -98,7 +98,7 @@
                 <cui jcr:primaryType="nt:unstructured">
                     <inline
                         jcr:primaryType="nt:unstructured"
-                        toolbar="[#format,#justify,#lists,links#modifylink,links#unlink,#paraformat,fullscreen#start,control#close,control#save]">
+                        toolbar="[#format,#justify,#lists,links#anchor,links#modifylink,links#unlink,#paraformat,fullscreen#start,control#close,control#save]">
                         <popovers jcr:primaryType="nt:unstructured">
                             <format
                                 jcr:primaryType="nt:unstructured"
