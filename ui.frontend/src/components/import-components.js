@@ -16,6 +16,7 @@
 import withAsyncImport from "../utils/withAsyncImport";
 import {MapTo} from '@adobe/aem-react-editable-components';
 import './pages/Page/Page';
+import './pages/OffersPage/OffersPage';
 import './helperComponents/Container/Container';
 import './helperComponents/ExperienceFragment/ExperienceFragment';
 
@@ -149,6 +150,11 @@ const customCompsSettings = [{
     aemCompMap: 'lhg-lms/components/intl',
     compName: 'Internationalization',
     customPropCheck: (props) => (!props || !props.intl)
+},
+{
+    feCompPath: import(`../components/organisms/ExclusiveOffers/ExclusiveOffers`),
+    aemCompMap: 'lhg-lms/components/exclusiveoffers',
+    compName: 'ExclusiveOffers'
 },{
     feCompPath: import(`./organisms/PeekCarousel/PeekCarousel`),
     aemCompMap: 'lhg-lms/components/peekcarousel',
