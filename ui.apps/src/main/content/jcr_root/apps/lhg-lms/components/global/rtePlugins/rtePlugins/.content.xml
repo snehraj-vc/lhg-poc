@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0"
+    jcr:primaryType="nt:unstructured">
+    <paraformat
+        jcr:primaryType="nt:unstructured"
+        features="*">
+        <formats jcr:primaryType="nt:unstructured">
+            <item0
+                jcr:primaryType="nt:unstructured"
+                description="Paragraph"
+                tag="p"/>
+            <item1
+                jcr:primaryType="nt:unstructured"
+                description="Heading 1"
+                tag="h1"/>
+            <item2
+                jcr:primaryType="nt:unstructured"
+                description="Heading 2"
+                tag="h2"/>
+            <item3
+                jcr:primaryType="nt:unstructured"
+                description="Heading 3"
+                tag="h3"/>
+            <item4
+                jcr:primaryType="nt:unstructured"
+                description="Heading 4"
+                tag="h4"/>
+            <item5
+                jcr:primaryType="nt:unstructured"
+                description="Heading 5"
+                tag="h5"/>
+            <item6
+                jcr:primaryType="nt:unstructured"
+                description="Heading 6"
+                tag="h6"/>
+            <item7
+                jcr:primaryType="nt:unstructured"
+                description="Quote"
+                tag="blockquote"/>
+            <item8
+                jcr:primaryType="nt:unstructured"
+                description="Horizontal Rule (visual line break)"
+                tag="hr"/>
+            <item9
+                jcr:primaryType="nt:unstructured"
+                description="Preformatted"
+                tag="pre"/>
+        </formats>
+    </paraformat>
+    <misctools
+        jcr:primaryType="nt:unstructured"
+        features="specialchars,sourceedit">
+        <specialCharsConfig jcr:primaryType="nt:unstructured">
+            <chars
+                jcr:primaryType="nt:unstructured"
+                override="true">
+                <item0
+                    jcr:primaryType="nt:unstructured"
+                    entity="&amp;copy;"
+                    name="copyright"/>
+                <item1
+                    jcr:primaryType="nt:unstructured"
+                    entity="&amp;euro;"
+                    name="euro"/>
+                <item2
+                    jcr:primaryType="nt:unstructured"
+                    entity="&amp;reg;"
+                    name="registered"/>
+                <item3
+                    jcr:primaryType="nt:unstructured"
+                    entity="&amp;trade;"
+                    name="trademark"/>
+            </chars>
+        </specialCharsConfig>
+    </misctools>
+    <edit
+        jcr:primaryType="nt:unstructured"
+        features="*"/>
+    <findreplace
+        jcr:primaryType="nt:unstructured"
+        features="*"/>
+    <undo
+        jcr:primaryType="nt:unstructured"
+        features="*"/>
+    <spellcheck
+        jcr:primaryType="nt:unstructured"
+        features="*"/>
+    <image
+        jcr:primaryType="nt:unstructured"
+        features="*"/>
+    <table
+        jcr:primaryType="nt:unstructured"
+        features="*"/>
+    <lists
+        jcr:primaryType="nt:unstructured"
+        features="*"/>
+    <justify
+        jcr:primaryType="nt:unstructured"
+        features="*"/>
+    <format
+        jcr:primaryType="nt:unstructured"
+        features="bold,italic,underline"/>
+    <links
+        jcr:primaryType="nt:unstructured"
+        features="*"/>
+    <subsuperscript
+        jcr:primaryType="nt:unstructured"
+        features="*"/>
+    <fontcolors
+        jcr:primaryType="nt:unstructured"
+        features="*">
+        <styles jcr:primaryType="nt:unstructured"/>
+    </fontcolors>
+</jcr:root>

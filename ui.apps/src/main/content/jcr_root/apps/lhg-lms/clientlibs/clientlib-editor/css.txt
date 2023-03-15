@@ -1,0 +1,2 @@
+#base=css
+rte/table_layout.css
