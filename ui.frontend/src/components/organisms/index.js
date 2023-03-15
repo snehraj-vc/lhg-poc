@@ -10,6 +10,7 @@ import CircularCrop from './CircularCrop/CircularCrop';
 import SliderImage from './SliderImage/SliderImage';
 import BrilliantHeader from './BrilliantHeader/BrilliantHeader';
 import BrilliantFooter from './BrilliantFooter/BrilliantFooter';
+import HeroCarouselBanner from './HeroCarouselBanner/HeroCarouselBanner';
 
 export {
     SliderImage,
@@ -23,5 +24,6 @@ export {
     Olapic,
     AuthModule,
     BrilliantHeader,
-    BrilliantFooter
+    BrilliantFooter,
+    HeroCarouselBanner
 };

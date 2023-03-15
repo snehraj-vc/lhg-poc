@@ -163,7 +163,12 @@ const customCompsSettings = [{
      feCompPath: import(`../components/organisms/BrilliantFooter/BrilliantFooter`),
      aemCompMap: 'lhg-lms/components/brilliantfooter',
      compName: 'BrilliantFooter'
- }
+ },
+   {
+       feCompPath: import(`../components/organisms/HeroCarouselBanner/HeroCarouselBanner`),
+       aemCompMap: 'lhg-lms/components/herocarouselbanner',
+       compName: 'HeroCarouselBanner'
+   }
 ];
 
 
