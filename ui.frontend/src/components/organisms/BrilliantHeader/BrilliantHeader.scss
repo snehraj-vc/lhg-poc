@@ -5,85 +5,119 @@
 }
 
 @media (max-width: 767px) {
-    .cp-navbar {
-
-        li {
-            list-style: none;
-            line-height: 3rem;
-            padding-left: 0;
-        }
-
-        font-weight: bolder;
+    .header-container {
+        width: 390px;
+        height: 64px;
+        position: relative;
     }
 
-    .header {
-        display: flex;
-        justify-content: space-around;
+    .header-icon {
+        .icon {
+            position: absolute;
+            top: 23px;
+            bottom: 35px;
+            right: 343px;
+            left: 27px;
+            width: 24px;
+            height: 24px;
+        }
     }
 
     .header-image {
         img {
-            width: 150px;
-            height: 60px;
+            position: absolute;
+            top: 20px;
+            bottom: 20px;
+            right: 142.56px;
+            left: 143px;
+            width: 104.44px;
+            height: 24px;
         }
     }
 
     .header-login {
-        @include alignment;
-        font-size: 20px;
+        position: absolute;
+        top: 23px;
+        bottom: 21px;
+        right: 24px;
+        left: 313px;
+        width: 53px;
+        height: 20px;
 
         a {
+            font-style: normal;
+            font-weight: 700;
+            font-size: 14px;
+            line-height: 20px;
+            color: #16585B;
             text-decoration: none
         }
 
     }
 
-    .header-icon {
-        @include alignment;
-        font-size: 40px;
-    }
 
     .header-hamburger-hide {
         display: none;
     }
-    .header-login-desktop{
+
+    .header-login-desktop {
         display: none;
     }
 }
 
-@media (min-width: 767px) and (max-width: 1022px) {
-    .header {
-        display: flex;
-        justify-content: space-around;
+@media (min-width: 768px) and (max-width: 1400px) {
+    .header-container {
+        width: 668px;
+        height: 64px;
+        position: relative;
+        left: 80px;
+        right: 80px;
+    }
+
+    .header-icon {
+        position: absolute;
+        top: 26px;
+        bottom: 26px;
+        right: 626px;
+        left: 30px;
+        width: 24px;
+        height: 24px;
     }
 
     .header-image {
         img {
-            width: 300px;
-            height: 70px;
+            position: absolute;
+            top: 22px;
+            bottom: 22px;
+            right: 284.49px;
+            left: 286.35px;
+            width: 97.17px;
+            height: 24px;
         }
     }
 
     .header-login {
-        @include alignment;
-        font-size: 30px;
-
+        position: absolute;
+        top: 29px;
+        bottom: 36px;
+        right: 3px;
+        left: 620px;
         a {
-            text-decoration: none;
+            font-style: normal;
+            font-weight: 700;
+            font-size: 14px;
+            line-height: 20px;
+            color: #16585B;
+            text-decoration: none
         }
 
-    }
-
-    .header-icon {
-        @include alignment;
-        font-size: 50px;
-        font-weight: lighter
     }
 
     .header-hamburger-hide {
         display: none;
     }
-    .header-login-desktop{
+
+    .header-login-desktop {
         display: none;
     }
 }
@@ -103,17 +137,21 @@
         }
 
     }
-    .header-hamburger-hide{
+
+    .header-hamburger-hide {
         display: flex;
         justify-content: center;
     }
-    .header-login{
+
+    .header-login {
         display: none;
     }
-    .header-login-desktop{
+
+    .header-login-desktop {
         @include alignment;
         padding-left: 20px;
-        a{
+
+        a {
             text-decoration: none;
             color: black;
         }

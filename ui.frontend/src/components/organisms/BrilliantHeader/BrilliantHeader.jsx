@@ -28,7 +28,6 @@ const BrilliantHeader = (props) => {
     };
     setLangs(langArr);
   };
-console.log(languages)
   useEffect(() => {
     if (languages) {
       sanitizeLanguageVals();
@@ -48,7 +47,7 @@ console.log(languages)
     window.location.href = val;
   };
 
-  return (<><div className="header">
+  return (<><div className="header-container">
     <div className='header-icon' onClick={showdata}>
       {hidedata ? <div className='icon'>&#10006;</div> : <div className='icon'>&#9868;</div>}
     </div>

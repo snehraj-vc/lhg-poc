@@ -14,7 +14,9 @@ const Navbar = ((props) => {
     } = props;
     console.log('languages:::', languages);
     return (<div className="cp-navbar">
-        <ul>
+        <div className="navbar-list">
+
+        <ul >
             {
                 menuItems.map((res) => {
                     return (<>
@@ -24,8 +26,11 @@ const Navbar = ((props) => {
 
             }
         </ul>
-        <hr></hr>
+        </div>
+       
+      <div className="horizontal-line"></div>
         <div className="cp-navbar-bottom">
+            <div></div>
             <a href={createaccountlink}>{createaccountlabel}</a>
             <div className="cp-navbar-languageToggle">
                 <Select

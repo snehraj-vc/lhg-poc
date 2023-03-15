@@ -1,52 +1,87 @@
 @media (max-width:767px){
-   .cp-navbar-bottom{
-      padding-left: 40px;
-      line-height: 2.5rem;
-      font-size:1.25rem ;
-      a{
-         text-decoration: none;
-         color: black;
-      }
-   }
+
    .cp-navbar{
-      margin-left: 30px;
+      width: 390px;
+      position: relative;
       a{
          text-decoration: none;
          color: black;
+         text-transform: uppercase;
+         font-size: 16px;
+         letter-spacing: 1px;
+         font-weight: 500;
+         line-height: 32px;
       }
       li{
          list-style: none;
-         line-height: 2.5rem;
-         font-size:1.25rem ;
+        
       }
-}
-}
-
-@media (min-width: 767px) and (max-width: 1022px) {
-.cp-navbar{
-   margin-left: 30px;
-   a{
-      text-decoration: none;
-      color: black;
    }
-     li{
-        list-style: none;
-        line-height: 2.5rem;
-        font-size:1.5rem ;
-     }
-     font-weight: bolder;
-}
-.cp-navbar-bottom{
-   padding-left: 40px;
-   line-height: 2.5rem;
-   font-size:1.5rem ;
-   a{
-      text-decoration: none;
-      color: black;
+   .horizontal-line{
+      width: 342px;
+      position: absolute;
+      left: 24px;
+      right:24px;
+      border: 1px solid rgba(0, 0, 0, 0.15);
    }
- 
+   .cp-navbar-bottom{
+      width:390px;
+      position: relative;
+      a{
+         position: absolute;
+         top:44px;
+         left:70px;
+      }
+   }
+   .cp-navbar-languageToggle{
+      position: absolute;
+      top:104px;
+      left:40px;
+      right:274px;
+   }
+   
 }
-
+@media (min-width: 768px) and (max-width: 1400px) {
+   
+   .cp-navbar{
+      width:668px;
+      position: relative;
+      left: 96px;
+      right: 96px;
+      ul{
+         list-style: none;
+         padding-left: 0;
+      }
+      a{
+         text-decoration: none;
+         color: black;
+         text-transform: uppercase;
+         font-size: 16px;
+         letter-spacing: 1px;
+         font-weight: 500;
+         line-height: 32px;
+      }
+   }
+   .horizontal-line{
+      width: 668px;
+      border: 1px solid rgba(0, 0, 0, 0.15);
+   }
+   .cp-navbar-bottom{
+      width:668px;
+      position: relative;
+      a{
+         position: absolute;
+         top:28px;
+         left:42px;
+      }
+   }
+   .cp-navbar-languageToggle{
+      position: absolute;
+      top:88px;
+      left:16px;
+      right:576px;
+   }
+   
 }
 
 @media (min-width: 1023px) {
