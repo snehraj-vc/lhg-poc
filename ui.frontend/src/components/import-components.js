@@ -16,6 +16,7 @@
 import withAsyncImport from "../utils/withAsyncImport";
 import {MapTo} from '@adobe/aem-react-editable-components';
 import './pages/Page/Page';
+import './pages/OffersPage/OffersPage';
 import './helperComponents/Container/Container';
 import './helperComponents/ExperienceFragment/ExperienceFragment';
 
@@ -139,7 +140,7 @@ const customCompsSettings = [{
     feCompPath: import(`../components/organisms/AutoSuggestion/AutoSuggestion`),
     aemCompMap: 'lhg-lms/components/autosuggest',
     compName: 'AutoSuggestion'
-}, 
+},
 ,{
     feCompPath: import(`../components/organisms/CircularCrop/CircularCrop`),
     aemCompMap: 'lhg-lms/components/circularcrop',
@@ -151,14 +152,24 @@ const customCompsSettings = [{
     customPropCheck: (props) => (!props || !props.intl)
 },
 {
-    feCompPath: import(`../components/organisms/BrilliantHeader/BrilliantHeader`),
-    aemCompMap: 'lhg-lms/components/brilliantheader',
-    compName: 'BrilliantHeader'
+    feCompPath: import(`../components/organisms/ExclusiveOffers/ExclusiveOffers`),
+    aemCompMap: 'lhg-lms/components/exclusiveoffers',
+    compName: 'ExclusiveOffers'
 },{
     feCompPath: import(`./organisms/PeekCarousel/PeekCarousel`),
     aemCompMap: 'lhg-lms/components/peekcarousel',
     compName: 'Peek Carousel'
-}
+},
+{
+    feCompPath: import(`../components/organisms/BrilliantHeader/BrilliantHeader`),
+    aemCompMap: 'lhg-lms/components/brilliantheader',
+    compName: 'BrilliantHeader'
+},
+ {
+     feCompPath: import(`../components/organisms/BrilliantFooter/BrilliantFooter`),
+     aemCompMap: 'lhg-lms/components/brilliantfooter',
+     compName: 'BrilliantFooter'
+ }
 ];
 
 

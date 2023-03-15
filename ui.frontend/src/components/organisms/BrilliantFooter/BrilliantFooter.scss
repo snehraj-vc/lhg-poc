@@ -1,0 +1,319 @@
+@mixin alignment {
+    display: flex;
+    justify-content: center;
+}
+
+@media screen and (max-width:767px) {
+    .footer-container {
+        position: relative;
+        width: 390px;
+        height: 250px;
+        background-color: #595D5F;
+        border-top-right-radius: 40px;
+    }
+
+    .footer-HeaderBrandLog {
+        position: absolute;
+        top: 30px;
+        bottom: 192;
+        left: 143px;
+        right: 142px;
+
+        img {
+
+            width: 104.44px;
+            height: 24px;
+        }
+    }
+
+    .footer-brandlogs {
+        @include alignment();
+        flex-wrap: wrap;
+        width: 358;
+        height: 145px;
+        position: absolute;
+        left: 16px;
+        top: 71px;
+        bottom: 34px;
+
+        img {
+            padding: 5px 15px;
+            width: 90px;
+            height: 40px;
+        }
+    }
+
+    .footer-address {
+        width: 80px;
+        height: 50px;
+    }
+
+    .footer-contactContainer {
+        background-color: black;
+        width: 390px;
+        height: 713px;
+        color: #FFFFFF;
+        position: absolute;
+        line-height: 20px;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+
+        .footer-contactHeader {
+            font-weight: 700;
+            font-size: 16px;
+            letter-spacing: 2px;
+            position: absolute;
+            width: 252px;
+            height: 20px;
+            top: 54px;
+            left: 25px;
+
+        }
+
+    }
+
+    .footer-contactAddress {
+        width: 296px;
+        height: 120px;
+        position: absolute;
+        top: 84px;
+        left: 25px;
+        right: 69px;
+        bottom: 509px;
+
+        p {
+            letter-spacing: 1px;
+        }
+    }
+
+    .footerHorizontalLine-1 {
+        width: 350px;
+        height: 0px;
+        position: absolute;
+        left: 20px;
+        right: 20px;
+        top: 227px;
+        bottom: 481px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .footerHorizontalLine-2 {
+        width: 350px;
+        height: 0px;
+        position: absolute;
+        left: 20px;
+        right: 20px;
+        top: 299px;
+        bottom: 414px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .footerHorizontalLine-3 {
+        width: 350px;
+        height: 0px;
+        position: absolute;
+        left: 20px;
+        right: 20px;
+        top: 541px;
+        bottom: 172px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .footer-socialicons {
+       width: 252px;
+       height: 32px;
+       position: absolute;
+       top:253px;
+       bottom:432px;
+       left:25px;
+       right: 113px;
+       display: flex;
+       align-items: center;
+       .socialIcons{
+        position: absolute;
+        left:50px;
+       }
+        img{
+            padding-left: 10px;
+            width: 32px;
+            height: 32px;
+        }
+        
+    }
+    .footer-secondLevelList{
+        width: 252px;
+       height: 180px;
+       position: absolute;
+       top:338px;
+       left:25px;
+       right:113px;
+       bottom: 195px;
+       
+       a{
+        line-height: 35px;
+        font-size: 11px;
+        font-weight: 400px;
+        display: block;
+        text-decoration: none;
+        color: #FFFFFF;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+       }
+    }
+    .footer-thirdLevelList{
+    
+        width: 341px;
+        height: 100px;
+        position: absolute;
+        top:590px;
+        left:25px;
+        right:24px;
+        bottom: 43px;
+        a{
+            text-decoration: none;
+        color: #FFFFFF;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        padding-right: 10px;
+        line-height: 20px;
+        }
+    }
+}
+
+
+
+@media(min-width:769px) and (max-width:1023px)
+ {
+    .footer-container {
+        position: relative;
+        width: 828px;
+        height: 200px;
+        background-color: #595D5F;
+        border-top-right-radius: 40px;
+    }
+    .footer-HeaderBrandLog {
+        position: absolute;
+        top: 39.77px;
+        bottom: 132.16px;
+        left: 357.94px;
+        right: 357.46px;
+
+        img {
+            width: 112.6px;
+            height: 28px;
+        }
+    }
+
+    .footer-brandlogs {
+        @include alignment();
+        flex-wrap: wrap;
+        width: 628px;
+        height: 44px;
+        position: absolute;
+        left: 80px;
+        right: 120px;
+        top: 100px;
+        bottom: 56px;
+
+        img {
+            padding: 5px;
+            width: 50px;
+            height: 40px;
+        }
+    }
+    .footer-contactContainer {
+        background-color: black;
+        width: 828px;
+        height: 853px;
+        color: #FFFFFF;
+        position: absolute;
+        line-height: 20px;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+    }
+    .footer-contactHeader {
+        font-weight: 700;
+        font-size: 16px;
+        letter-spacing: 2px;
+        position: absolute;
+        width: 261.69px;
+        height: 20px;
+        top: 78px;
+        bottom: 755px;
+        left: 25px;
+        right: 528.28px;
+
+    }
+    .footer-contactAddress {
+        width: 296px;
+        height: 120px;
+        position: absolute;
+        top: 108px;
+        left: 28.03px;
+        right: 503.97px;
+        bottom: 625px;
+
+        p {
+            letter-spacing: 1px;
+        }
+    }
+    .footer-socialicons {
+        width: 252px;
+        height: 20px;
+        position: absolute;
+        top:291px;
+        bottom:542px;
+        left:28.03px;
+        right: 547.97px;
+        display: flex;
+        align-items: center;
+        .socialIcons{
+         position: absolute;
+         left:50px;
+        }
+         img{
+             padding-left: 10px;
+             width: 32px;
+             height: 32px;
+         }
+         
+     }
+     .footer-secondLevelList{
+        width: 688px;
+       height: 20px;
+       position: absolute;
+       top:368px;
+       left:28.03px;
+       right:111.97px;
+       bottom: 465px;
+       
+       a{
+        line-height: 35px;
+        font-size: 11px;
+        font-weight: 400px;
+        padding-right: 20px;
+        text-decoration: none;
+        color: #FFFFFF;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+       }
+    }
+    .footer-thirdLevelList{
+    
+        width: 728px;
+        height: 80px;
+        position: absolute;
+        top:442px;
+        left:28.03px;
+        right:71px;
+        bottom: 331px;
+        a{
+            text-decoration: none;
+        color: #FFFFFF;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        padding-right: 10px;
+        line-height: 20px;
+        }
+    }
+ }
